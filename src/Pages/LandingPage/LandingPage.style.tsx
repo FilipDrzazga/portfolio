@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const LandingPageContainer = styled(motion.section)`
+const LandingPageContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;

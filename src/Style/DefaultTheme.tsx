@@ -1,4 +1,37 @@
-const lightTheme = {
+import { DefaultTheme } from "styled-components";
+
+import "styled-components";
+
+declare module "styled-components" {
+  export interface DefaultTheme {
+    colors: {
+      primary: string;
+      secondary: string;
+    };
+    padding: {
+      small: string;
+      medium: string;
+      large: string;
+    };
+    fontSize: {
+      small: string;
+      medium: string;
+      large: string;
+    };
+    fontWeight: {
+      light: number;
+      regular: number;
+      medium: number;
+      bold: number;
+    };
+    fontType: {
+      primary: string;
+      secondary: string;
+    };
+  }
+}
+
+const lightTheme: DefaultTheme = {
   colors: {
     primary: "#FFFFFF",
     secondary: "#2B2C2E",

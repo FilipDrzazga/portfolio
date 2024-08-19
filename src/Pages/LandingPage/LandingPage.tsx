@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import * as S from "./LandingPage.style";
 import { textStaggerAnimation, name } from "./LandingPage.anime";
 
-function LandingPage() {
+const LandingPage = () => {
   const [isComplete, setIsComplete] = useState(false);
+
   const animationText = useMemo(() => {
     return textStaggerAnimation;
   }, []);
@@ -32,6 +33,6 @@ function LandingPage() {
       </S.Title>
     </S.LandingPageContainer>
   );
-}
+};
 
 export default memo(LandingPage);
