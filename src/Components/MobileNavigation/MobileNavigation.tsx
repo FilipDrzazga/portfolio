@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
-import { useMotionValue, useTransform } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import FadeTransition from "../FadeTransition/FadeTransition";
 
 import * as S from "././MobileNavigation.style";
 import Icon from "../Icon/Icon";
@@ -22,6 +23,7 @@ const MobileNavigation = () => {
 
   return (
     <S.MobileNavigationContainer>
+      <AnimatePresence mode="wait">{isMenuOpen === 1 && <FadeTransition />}</AnimatePresence>
       <S.Header>
         <S.Title>F</S.Title>
         <S.ToggleMenuButton onClick={() => handleClickMenuBtn()}>

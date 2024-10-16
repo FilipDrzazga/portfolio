@@ -2,7 +2,31 @@ import { memo, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 import * as S from "./LandingPage.style";
-import { textStaggerAnimation, name } from "./LandingPage.anime";
+
+const name = ["F", "I", "L", "I", "P", " ", "D", "R", "Z", "A", "Z", "G", "A"];
+
+const textStaggerAnimation = {
+  variants: {
+    hidden: {
+      opacity: 0,
+      filter: "blur(40px)",
+      transition: {
+        duration: 6,
+        staggerChildren: 0.1,
+        staggerDirection: -1,
+        when: "afterChildren",
+      },
+    },
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: {
+        duration: 3,
+        staggerChildren: 0.1,
+      },
+    },
+  },
+};
 
 const LandingPage = () => {
   const [isComplete, setIsComplete] = useState(false);
