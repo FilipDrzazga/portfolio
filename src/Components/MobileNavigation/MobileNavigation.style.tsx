@@ -47,9 +47,10 @@ const MenuText = styled(motion.span)`
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
-const IconContainer = styled.div`
+const IconContainer = styled(motion.div)`
   dispalay: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 export { MobileNavigationContainer, Header, Title, ToggleMenuButton, MenuText, IconContainer };
