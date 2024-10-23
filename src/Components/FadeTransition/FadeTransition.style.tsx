@@ -11,7 +11,7 @@ const FadeTransitionBlock = styled(motion.div)<{ $backgroundColor?: string }>`
 `;
 const SvgCurve = styled.svg`
   position: absolute;
-  top: 90vh;
+  top: 99.9%;
   left: 0;
   width: 100%;
   height: 10vh;
