@@ -30,6 +30,7 @@ const ToggleMenuButton = styled.button`
   border: none;
   cursor: pointer;
   overflow: hidden;
+  z-index: 999;
 `;
 const MenuText = styled(motion.span)`
   font-size: ${({ theme }) => theme.fontSize.small};

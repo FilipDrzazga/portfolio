@@ -9,7 +9,7 @@ const textMenuVariants = {
   open: {
     y: -15,
   },
-  close: {
+  exit: {
     y: 0,
   },
 };
@@ -34,7 +34,7 @@ const MobileNavigation = () => {
           >
             <Icon iconType={isMenuOpen ? "close" : "dot"} />
           </S.IconContainer>
-          <S.MenuText variants={textMenuVariants} initial="close" animate={isMenuOpen ? "open" : "close"}>
+          <S.MenuText variants={textMenuVariants} initial="exit" animate={isMenuOpen ? "open" : "exit"}>
             Menu
           </S.MenuText>
         </S.ToggleMenuButton>
