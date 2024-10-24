@@ -25,7 +25,7 @@ const MobileNavigation = () => {
     <S.MobileNavigationContainer>
       <AnimatePresence mode="wait">{isMenuOpen === 1 && <FadeTransition />}</AnimatePresence>
       <S.Header>
-        <S.Title>F</S.Title>
+        <S.Title>FILIP DRZAZGA</S.Title>
         <S.ToggleMenuButton onClick={() => handleClickMenuBtn()}>
           <S.IconContainer
             key={isMenuOpen}

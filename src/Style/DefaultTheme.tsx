@@ -17,6 +17,8 @@ declare module "styled-components" {
       small: string;
       medium: string;
       large: string;
+      xl: string;
+      xxl: string;
     };
     fontWeight: {
       light: number;
@@ -44,7 +46,9 @@ const lightTheme: DefaultTheme = {
   fontSize: {
     small: "0.8rem",
     medium: "1rem",
-    large: "6rem",
+    large: "2rem",
+    xl: "3rem",
+    xxl: "4rem",
   },
   fontWeight: {
     light: 300,

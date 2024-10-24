@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const MobileNavigationContainer = styled.div`
+const MobileNavigationContainer = styled.section`
   width: 100vw;
   height: 10vh;
   padding: ${({ theme }) => theme.padding.small};
@@ -15,10 +15,11 @@ const Header = styled.header`
   align-items: center;
 `;
 const Title = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   font-family: ${({ theme }) => theme.fontType.primary};
   color: ${({ theme }) => theme.colors.secondary};
+  letter-spacing: 0.1rem;
 `;
 const ToggleMenuButton = styled.button`
   height: 1rem;
