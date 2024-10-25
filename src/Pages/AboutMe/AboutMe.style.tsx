@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const AboutMeContainer = styled.section`
   width: 100%;
@@ -11,11 +12,11 @@ const AboutMeTittleContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  gap: 0.2rem;
+  //   gap: 0.2rem;
 `;
 const AboutMeTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.xl};
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-family: ${({ theme }) => theme.fontType.primary};
   color: ${({ theme }) => theme.colors.secondary};
 `;
@@ -36,14 +37,20 @@ const AboutMeTextContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-const AboutMeTextDescription = styled.p`
-  width: 50%;
+const AboutMeTextDescription = styled.span`
+  width: 90%;
   text-align: right;
-  font-size: 1rem;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
   font-family: ${({ theme }) => theme.fontType.primary};
   letter-spacing: 0.1rem;
   line-height: 1.5;
+`;
+const AboutMeTextDescriptionSpan = styled(motion.span)`
+  display: inline-block;
+  font-size: ${({ theme }) => theme.fontSize.medium};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-family: ${({ theme }) => theme.fontType.primary};
 `;
 
 export {
@@ -54,4 +61,5 @@ export {
   AboutMeSvgLineContainer,
   AboutMeTextContainer,
   AboutMeTextDescription,
+  AboutMeTextDescriptionSpan,
 };

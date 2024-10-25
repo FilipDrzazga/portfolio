@@ -24,6 +24,7 @@ declare module "styled-components" {
       light: number;
       regular: number;
       medium: number;
+      large: number;
       bold: number;
     };
     fontType: {
@@ -45,7 +46,7 @@ const lightTheme: DefaultTheme = {
   },
   fontSize: {
     small: "0.8rem",
-    medium: "1rem",
+    medium: "1.2rem",
     large: "2rem",
     xl: "3rem",
     xxl: "4rem",
@@ -54,6 +55,7 @@ const lightTheme: DefaultTheme = {
     light: 300,
     regular: 400,
     medium: 500,
+    large: 600,
     bold: 700,
   },
   fontType: {
