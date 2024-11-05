@@ -1,8 +1,16 @@
 import * as S from "../AboutMe/AboutMe.style";
+<<<<<<< HEAD
 // import { useScroll } from "framer-motion";
+=======
+import { useScroll } from "framer-motion";
+>>>>>>> fa57f062cec36b1e7aee0acd10cb09631ca121c1
 
 const AboutMe = () => {
   const text = ["a", "n", "i", "m", "a", "t", "i", "o", "n", "s", "."];
+  const initialPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 240 0 240`;
+  const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
+  const enterForwardPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 0 0 240`;
+  const targetPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} -50 0 240`;
 
   const initialPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 240 0 240`;
   const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
