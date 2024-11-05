@@ -1,8 +1,12 @@
-import { motion } from "framer-motion";
 import * as S from "../AboutMe/AboutMe.style";
+import { useScroll } from "framer-motion";
 
 const AboutMe = () => {
   const text = ["a", "n", "i", "m", "a", "t", "i", "o", "n", "s", "."];
+  const initialPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 240 0 240`;
+  const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
+  const enterForwardPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 0 0 240`;
+  const targetPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} -50 0 240`;
 
   const spanAnimationTextVariants = {
     initial: (index: number) => ({
@@ -18,9 +22,25 @@ const AboutMe = () => {
         duration: 0.8,
         delay: index * 0.1,
         repeat: Infinity,
-        repeatType: "reverse",
+        repeatType: "reverse" as const,
       },
     }),
+  };
+
+  const pathVariants = {
+    initial: {
+      d: initialPath,
+    },
+    enter: {
+      d: enterPath,
+      transition: {
+        duration: 0.8,
+        ease: [0.65, 0, 0.35, 1],
+        type: "spring",
+        damping: 3,
+        stiffness: 500,
+      },
+    },
   };
 
   return (
@@ -28,17 +48,14 @@ const AboutMe = () => {
       <S.AboutMeContainer>
         <S.AboutMeTittleContainer>
           <S.AboutMeTitleSpan>こんにちは</S.AboutMeTitleSpan>
-          {/* <S.AboutMeTitleSpan>.01</S.AboutMeTitleSpan> */}
           <S.AboutMeTitle>Hello.</S.AboutMeTitle>
         </S.AboutMeTittleContainer>
-        <S.AboutMeSvgLineContainer>
-          <motion.path d="M 0 0 L375 0 " fill="none" stroke="#87909f" strokeWidth="2" />
-        </S.AboutMeSvgLineContainer>
         <S.AboutMeTextContainer>
           <S.AboutMeTextDescription>
             Passionate about unique web design and{" "}
             {text.map((char, index) => (
               <S.AboutMeTextDescriptionSpan
+                key={index}
                 variants={spanAnimationTextVariants}
                 initial="initial"
                 animate="enter"
@@ -51,7 +68,13 @@ const AboutMe = () => {
             development.
           </S.AboutMeTextDescription>
         </S.AboutMeTextContainer>
+        <S.AboutMeSvgContainer>
+          <S.AboutMeSvg>
+            <S.AboutMePath variants={pathVariants} initial="initial" animate="enter" $d={initialPath}></S.AboutMePath>
+          </S.AboutMeSvg>
+        </S.AboutMeSvgContainer>
       </S.AboutMeContainer>
+      <S.AboutMeStoryContainer></S.AboutMeStoryContainer>
     </>
   );
 };
