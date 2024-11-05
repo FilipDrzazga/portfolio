@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-const FadeTransitionBlock = styled(motion.div)<{ $backgroundColor?: string }>`
+interface FadeTransitionBlockProps {
+  readonly $backgroundColor: string;
+}
+
+const FadeTransitionBlock = styled(motion.div)<FadeTransitionBlockProps>`
   position: absolute;
   top: 0;
   left: 0;
