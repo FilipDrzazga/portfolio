@@ -1,21 +1,26 @@
 import * as S from "../AboutMe/AboutMe.style";
-<<<<<<< HEAD
-// import { useScroll } from "framer-motion";
-=======
-import { useScroll } from "framer-motion";
->>>>>>> fa57f062cec36b1e7aee0acd10cb09631ca121c1
+import { useScroll, useTransform, useSpring, useMotionValueEvent } from "framer-motion";
 
 const AboutMe = () => {
+  const { scrollY } = useScroll();
+
   const text = ["a", "n", "i", "m", "a", "t", "i", "o", "n", "s", "."];
-  const initialPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 240 0 240`;
-  const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
-  const enterForwardPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 0 0 240`;
-  const targetPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} -50 0 240`;
 
   const initialPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 240 0 240`;
   const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
-  // const enterForwardPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 0 0 240`;
-  // const targetPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} -50 0 240`;
+  const activePath = `M 0 240 H ${window.innerWidth + 20} Q ${window.innerWidth / 2} 0 -20 240`;
+  const exitPath = `M 0 240 H ${window.innerWidth + 320} Q ${window.innerWidth / 2} -50 -300 240`;
+  const targetPath = `M 0 240 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} -100 -1000 240`;
+  const withSpring = useSpring(scrollY, {
+    damping: 3,
+    stiffness: 500,
+  });
+  const dPath = useTransform(withSpring, [0, 150, 230, 280], [enterPath, activePath, exitPath, targetPath]);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log(latest);
+    // 240 scrollY to finis last stage of animation
+  });
 
   const spanAnimationTextVariants = {
     initial: (index: number) => ({
@@ -79,7 +84,13 @@ const AboutMe = () => {
         </S.AboutMeTextContainer>
         <S.AboutMeSvgContainer>
           <S.AboutMeSvg>
-            <S.AboutMePath variants={pathVariants} initial="initial" animate="enter" $d={initialPath}></S.AboutMePath>
+            <S.AboutMePath
+              variants={pathVariants}
+              initial="initial"
+              animate="enter"
+              d={dPath}
+              $d={initialPath}
+            ></S.AboutMePath>
           </S.AboutMeSvg>
         </S.AboutMeSvgContainer>
       </S.AboutMeContainer>
@@ -89,3 +100,5 @@ const AboutMe = () => {
 };
 
 export default AboutMe;
+
+// zmienic nazwy contenerow dla poszczegolnych sekcji

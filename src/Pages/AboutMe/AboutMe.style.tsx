@@ -13,14 +13,13 @@ const AboutMeContainer = styled.section`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  //   padding: ${({ theme }) => theme.padding.small};
+  padding: ${({ theme }) => theme.padding.small};
 `;
 const AboutMeTittleContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
-  padding: 0 ${({ theme }) => theme.padding.small};
 `;
 const AboutMeTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.xxl};
@@ -40,7 +39,6 @@ const AboutMeTextContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 5rem;
-  padding: 0 ${({ theme }) => theme.padding.small};
 `;
 const AboutMeTextDescription = styled.span`
   width: 90%;
@@ -78,7 +76,7 @@ const AboutMePath = styled(motion.path)<AboutMeProps>`
   d: ${(props) => props.$d};
   fill: ${({ theme }) => theme.colors.secondary};
 `;
-const AboutMeStoryContainer = styled.div`
+const AboutMeStoryContainer = styled(motion.section)`
   width: 100%;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.secondary};

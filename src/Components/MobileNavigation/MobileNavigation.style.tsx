@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const MobileNavigationContainer = styled.section`
-  width: 100vw;
+  width: 100%;
   height: 10vh;
   padding: ${({ theme }) => theme.padding.small};
 `;

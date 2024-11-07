@@ -3,12 +3,10 @@ import { motion } from "framer-motion";
 import * as S from "./FadeTransition.style";
 
 const initialPath = `M 0 0 H ${window.innerWidth} Q ${window.innerWidth / 2} 0 0 0`;
-const targetPath1 = `M 0 0 H ${window.innerWidth + 10} Q ${window.innerWidth / 2} ${
+const enterPath = `M 0 0 H ${window.innerWidth + 10} Q ${window.innerWidth / 2} ${
   window.innerHeight - window.innerHeight * 0.85
 } -10 0`;
-const targetPath2 = `M 0 0 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} ${
-  window.innerHeight - 520
-} -1000 0`;
+const targetPath = `M 0 0 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} ${window.innerHeight - 520} -1000 0`;
 
 const pathColorArray = [
   "rgb(224, 251, 226)",
@@ -47,7 +45,7 @@ const pathTransitionVariants = {
   },
   open: (index: number) => ({
     y: "0%",
-    d: [initialPath, targetPath1, targetPath2],
+    d: [initialPath, enterPath, targetPath],
     transition: {
       duration: 1,
       ease: [0.65, 0, 0.35, 1],
@@ -55,7 +53,7 @@ const pathTransitionVariants = {
     },
   }),
   exit: (index: number) => ({
-    d: [targetPath2, targetPath1, initialPath],
+    d: [targetPath, enterPath, initialPath],
     transition: {
       duration: 1,
       ease: [0.65, 0, 0.35, 1],
