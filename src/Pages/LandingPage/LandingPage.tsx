@@ -10,9 +10,10 @@ const textStaggerAnimation = {
     hidden: {
       opacity: 0,
       filter: "blur(40px)",
+      scale: 0.2,
       transition: {
         duration: 6,
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         staggerDirection: -1,
         when: "afterChildren",
       },
@@ -20,9 +21,10 @@ const textStaggerAnimation = {
     visible: {
       opacity: 1,
       filter: "blur(0px)",
+      scale: 1,
       transition: {
         duration: 3,
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   },

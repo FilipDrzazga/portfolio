@@ -10,16 +10,20 @@ const AboutMe = () => {
   const enterPath = `M 0 240 H ${window.innerWidth} Q ${window.innerWidth / 2} 150 0 240`;
   const activePath = `M 0 240 H ${window.innerWidth + 20} Q ${window.innerWidth / 2} 0 -20 240`;
   const exitPath = `M 0 240 H ${window.innerWidth + 320} Q ${window.innerWidth / 2} -50 -300 240`;
-  const targetPath = `M 0 240 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} -100 -1000 240`;
+  const targetPath = `M 0 240 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} -150 -1000 240`;
   const withSpring = useSpring(scrollY, {
     damping: 3,
     stiffness: 500,
   });
-  const dPath = useTransform(withSpring, [0, 150, 230, 280], [enterPath, activePath, exitPath, targetPath]);
+  const dPath = useTransform(
+    withSpring,
+    [0, window.innerHeight / 3, window.innerHeight / 2, window.innerHeight],
+    [enterPath, activePath, exitPath, targetPath]
+  );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     console.log(latest);
-    // 240 scrollY to finis last stage of animation
+    // 250 scrollY to finis last stage of animation
   });
 
   const spanAnimationTextVariants = {
@@ -54,6 +58,12 @@ const AboutMe = () => {
         damping: 3,
         stiffness: 500,
       },
+    },
+  };
+
+  const sectionVariants = {
+    enter: {
+      y: 0,
     },
   };
 
@@ -94,7 +104,7 @@ const AboutMe = () => {
           </S.AboutMeSvg>
         </S.AboutMeSvgContainer>
       </S.AboutMeContainer>
-      <S.AboutMeStoryContainer></S.AboutMeStoryContainer>
+      <S.AboutMeStoryContainer variants={sectionVariants} animate="enter"></S.AboutMeStoryContainer>
     </>
   );
 };

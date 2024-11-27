@@ -4,18 +4,25 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^9.117.3",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/rapier": "^1.5.0",
+    "@types/three": "^0.170.0",
     "flubber": "^0.4.2",
     "framer-motion": "^11.3.21",
+    "framer-motion-3d": "^11.2.0",
+    "leva": "^0.9.35",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
-    "styled-components": "^6.1.12"
+    "styled-components": "^6.1.12",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",

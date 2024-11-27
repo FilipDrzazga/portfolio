@@ -10,10 +10,11 @@ const LandingPageContainer = styled.section`
 `;
 
 const Title = styled(motion.h1)`
-  font-size: ${({ theme }) => theme.fontSize.small};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: 0.9rem;
+  font-weight: ${({ theme }) => theme.fontWeight.light};
   font-family: ${({ theme }) => theme.fontType.primary};
   color: ${({ theme }) => theme.colors.secondary};
+  letter-spacing: 0.5em;
 `;
 
 export { LandingPageContainer, Title };
