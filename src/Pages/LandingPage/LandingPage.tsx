@@ -1,9 +1,8 @@
 import { memo, useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
 
 import * as S from "./LandingPage.style";
 
-const name = ["F", "I", "L", "I", "P", " ", "D", "R", "Z", "A", "Z", "G", "A"];
+const name = ["F", "I", "L", "I", "P", "D", "R", "Z", "A", "Z", "G", "A"];
 
 const textStaggerAnimation = {
   variants: {
@@ -11,6 +10,7 @@ const textStaggerAnimation = {
       opacity: 0,
       filter: "blur(40px)",
       scale: 0.2,
+      y: 50,
       transition: {
         duration: 6,
         staggerChildren: 0.08,
@@ -22,6 +22,7 @@ const textStaggerAnimation = {
       opacity: 1,
       filter: "blur(0px)",
       scale: 1,
+      y: 0,
       transition: {
         duration: 3,
         staggerChildren: 0.08,
@@ -51,9 +52,9 @@ const LandingPage = () => {
       <S.Title initial="hidden" animate={isComplete ? "hidden" : "visible"} variants={animationText.variants}>
         {splitNameArray.map((letter, id) => {
           return (
-            <motion.span variants={animationText.variants} key={id}>
+            <S.Letter variants={animationText.variants} key={id}>
               {letter}
-            </motion.span>
+            </S.Letter>
           );
         })}
       </S.Title>

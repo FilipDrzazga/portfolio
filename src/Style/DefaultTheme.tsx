@@ -7,6 +7,7 @@ declare module "styled-components" {
     colors: {
       primary: string;
       secondary: string;
+      accent: string;
     };
     padding: {
       small: string;
@@ -27,17 +28,22 @@ declare module "styled-components" {
       large: number;
       bold: number;
     };
-    fontType: {
-      primary: string;
-      secondary: string;
+    fontFamily: {
+      latoLight: string;
+      latoRegular: string;
+      latoBold: string;
+      playfairRegular: string;
+      playfairMedium: string;
+      playfairBold: string;
     };
   }
 }
 
 const lightTheme: DefaultTheme = {
   colors: {
-    primary: "#FFFFFF",
-    secondary: "#2B2C2E",
+    primary: "#E9E9E9",
+    secondary: "#121212",
+    accent: "#25F18B",
   },
   padding: {
     small: "1rem",
@@ -58,16 +64,21 @@ const lightTheme: DefaultTheme = {
     large: 600,
     bold: 700,
   },
-  fontType: {
-    primary: "Inter",
-    secondary: "Halant",
+  fontFamily: {
+    latoLight: "Lato-Light",
+    latoRegular: "Lato-Regular",
+    latoBold: "Lato-Bold",
+    playfairRegular: "PlayfairDisplay-Regular",
+    playfairMedium: "PlayfairDisplay-Medium",
+    playfairBold: "PlayfairDisplay-Bold",
   },
 };
 
 const darkTheme = {
   colors: {
-    primary: "#2B2C2E",
-    secondary: "#FFFFFF",
+    primary: "#121212",
+    secondary: "#E9E9E9",
+    accent: "#25F18B",
   },
   padding: {
     small: "1rem",
@@ -85,9 +96,13 @@ const darkTheme = {
     medium: 500,
     bold: 700,
   },
-  fontType: {
-    primary: "Inter",
-    secondary: "Halant",
+  fontFamily: {
+    latoLight: "Lato-Light",
+    latoRegular: "Lato-Regular",
+    latoBold: "Lato-Bold",
+    playfairRegular: "PlayfairDisplay-Regular",
+    playfairMedium: "PlayfairDisplay-Medium",
+    playfairBold: "PlayfairDisplay-Bold",
   },
 };
 
