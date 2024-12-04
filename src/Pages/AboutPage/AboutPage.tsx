@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 
-import ImageMesh from "../../Components/ImageMesh/ImageMesh";
+import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ImageMesh";
 
 import * as S from "./AboutPage.styled";
 
@@ -8,7 +9,9 @@ const AboutPage = () => {
   return (
     <S.SectionAboutContainer>
       <Canvas>
-        <ImageMesh />
+        <color attach="background" args={["#E9E9E9"]} />
+        <OrbitControls/>
+        <ShaderImageMaterial />
       </Canvas>
     </S.SectionAboutContainer>
   );

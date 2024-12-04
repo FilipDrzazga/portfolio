@@ -7,6 +7,7 @@ const SectionAboutContainer = styled.section`
   width: 100%;
   height: 100%;
   padding: ${({ theme }) => theme.padding.small};
+  background-color:${({theme})=>theme.colors.primary};
 `;
 
 export { SectionAboutContainer };
