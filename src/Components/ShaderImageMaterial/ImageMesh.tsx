@@ -1,7 +1,7 @@
 import { useRef, useMemo } from "react";
 import { useTexture } from "@react-three/drei";
 
-import image from '../../Images/face_original.jpg'
+import image from "../../Images/face_original.jpg";
 
 const vertexShader = `
 
@@ -29,23 +29,21 @@ void main() {
   gl_FragColor = vec4(imageTexture);
 }`;
 
-
 const ShaderImageMaterial = () => {
   const imageTexture = useTexture(image);
   const meshRef = useRef(null);
-  
-  const uniforms = useMemo(()=>({
-    u_Imagetexture: {value: imageTexture},
-  }),[]);
+
+  const uniforms = useMemo(
+    () => ({
+      u_Imagetexture: { value: imageTexture },
+    }),
+    [imageTexture]
+  );
 
   return (
     <mesh ref={meshRef} position={[0.55, 1.3, 0]}>
       <planeGeometry args={[3, 4, 32, 32]} />
-      <shaderMaterial 
-        fragmentShader={fragmentShader}
-        vertexShader={vertexShader}
-        uniforms={uniforms} 
-      />
+      <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );
 };
