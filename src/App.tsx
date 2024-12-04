@@ -5,6 +5,7 @@ import { lightTheme, darkTheme } from "./Style/DefaultTheme";
 
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import AboutPage from "./Pages/AboutPage/AboutPage";
+import Navigation from "./Components/Navigation/Navigation";
 
 export default function App() {
   // const [theme, setTheme] = useState("lightTheme");
@@ -18,7 +19,8 @@ export default function App() {
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
       {/* <LandingPage /> */}
-      <AboutPage/>
+      <Navigation />
+      <AboutPage />
     </ThemeProvider>
   );
 }

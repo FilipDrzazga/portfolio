@@ -1,13 +1,17 @@
-import {Canvas, useFrame} from '@react-three/fiber';
-import { Html } from '@react-three/drei';
+import { Canvas } from "@react-three/fiber";
 
-import Navigation from '../../Components/Navigation/Navigation';
+import ImageMesh from "../../Components/ImageMesh/ImageMesh";
 
+import * as S from "./AboutPage.styled";
 
-const AboutPage = ()=>{
-    return(
-        <Navigation/>
-    );
+const AboutPage = () => {
+  return (
+    <S.SectionAboutContainer>
+      <Canvas>
+        <ImageMesh />
+      </Canvas>
+    </S.SectionAboutContainer>
+  );
 };
 
 export default AboutPage;
