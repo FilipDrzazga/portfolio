@@ -46,6 +46,7 @@ const WatfordTime = styled.span`
   font-size: ${({ theme }) => theme.fontSize.small};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
+  color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
 

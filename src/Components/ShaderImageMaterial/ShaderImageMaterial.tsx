@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-// import { useControls } from "leva";
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
