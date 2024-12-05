@@ -1,5 +1,4 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ImageMesh";
 
@@ -10,7 +9,6 @@ const AboutPage = () => {
     <S.SectionAboutContainer>
       <Canvas>
         <color attach="background" args={["#E9E9E9"]} />
-        <OrbitControls/>
         <ShaderImageMaterial />
       </Canvas>
     </S.SectionAboutContainer>
