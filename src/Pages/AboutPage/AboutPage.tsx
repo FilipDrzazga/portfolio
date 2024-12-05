@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ImageMesh";
+import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 
 import * as S from "./AboutPage.styled";
 
