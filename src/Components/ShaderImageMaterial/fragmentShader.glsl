@@ -1,4 +1,3 @@
-`
 varying vec2 vUv;
 
 uniform sampler2D u_imageTexture;
@@ -8,25 +7,47 @@ uniform vec2 u_mouse;
 uniform float u_time;
 uniform float u_decay;
 
+float hash(vec2 p){
+  return fract(sin(dot(p, vec2(127.1, 311.7)))*43758.5453123);
+}
+
+float interpNoise(vec2 p){
+  vec2 i = floor(p);
+  vec2 f = floor(p);
+
+  float a = hash(i);
+  float b = hash(i + vec2(1.0, 0.0));
+  float c = hash(i + vec2(0.0, 1.0));
+  float d = hash(i + vec2(1.0, 1.0));
+
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
 void main() {
 
-  vec2 mouse = vec2(u_mouse.x, u_mouse.y);
+vec4 noise = texture2D(u_displacementTexture, vUv);
 
-  float dist = distance(vUv, mouse);
+float mouseDist = distance(vUv, u_mouse);
+float mouseEffect = exp(-mouseDist * 8.0) * (1.0 - u_decay);
 
-  vec2 noiseUV = vUv * 1.0; // Scale noise UV, higher value means smaller noise patterns
-  float noise = texture2D(u_displacementTexture, noiseUV).r;
+float lineWidth = 0.3;
 
-  float falloff = exp(-dist * 8.0); // Decrease the multiplier for a slower fade
+float progressLine = smoothstep(u_progress - lineWidth, u_progress, vUv.y) * smoothstep(u_progress + lineWidth, u_progress, vUv.y);
 
-  // Displace each color channel differently for a chromatic aberration effect
-  vec2 redUV = mix(vUv,vUv + noise * 0.9 * falloff, 1.0 - u_decay);
-  vec2 greenUV = mix(vUv,vUv + noise * 0.25 * falloff, 1.0 - u_decay);
-  vec2 blueUV = mix(vUv,vUv + noise * 0.3 * falloff, 1.0 - u_decay);
+float totalEffect = max(mouseEffect, progressLine);
 
-  vec4 red = texture2D(u_imageTexture, redUV);
-  vec4 green = texture2D(u_imageTexture, greenUV);
-  vec4 blue = texture2D(u_imageTexture, blueUV);
+vec2 distortedUV = vUv + noise.rg * totalEffect * 0.1;
 
-  gl_FragColor = vec4(red.r, green.g, blue.b, 1.0);
-}`
+vec2 redUV = distortedUV - noise.rg * totalEffect * 0.09;
+vec2 greenUV = distortedUV + noise.rg * totalEffect  * 0.05;
+vec2 blueUV = distortedUV + noise.rg * totalEffect * 0.01;
+
+float r = texture2D(u_imageTexture, redUV).r;
+float g = texture2D(u_imageTexture, greenUV).g;
+float b = texture2D(u_imageTexture, blueUV).b;
+
+vec3 color = vec3(r, g, b);
+
+gl_FragColor = vec4(color, 1.0);
+}

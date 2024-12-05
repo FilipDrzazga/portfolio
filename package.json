@@ -12,9 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
-    "@react-three/rapier": "^1.5.0",
     "@types/three": "^0.170.0",
-    "flubber": "^0.4.2",
     "framer-motion": "^11.3.21",
     "framer-motion-3d": "^11.2.0",
     "leva": "^0.9.35",

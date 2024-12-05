@@ -1,81 +1,14 @@
-import { useState,useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import * as THREE from "three";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 // import { useControls } from "leva";
 
+import fragmentShader from "./fragmentShader.glsl?raw";
+import vertexShader from "./vertexShader.glsl?raw";
+
 import image from "../../Images/face_original1.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
-
-const vertexShader = `
-
-varying vec2 vUv;
-
-void main() {
-  vec4 modelPosition = modelMatrix * vec4(position, 1.0);
-  vec4 viewPosition = viewMatrix * modelPosition;
-  vec4 projectedPosition = projectionMatrix * viewPosition;
-
-  gl_Position = projectedPosition;
-
-  vUv = uv;
-}`;
-
-const fragmentShader = `
-
-varying vec2 vUv;
-
-uniform sampler2D u_imageTexture;
-uniform sampler2D u_displacementTexture;
-uniform float u_progress;
-uniform vec2 u_mouse;
-uniform float u_time;
-uniform float u_decay;
-
-float hash(vec2 p){
-  return fract(sin(dot(p, vec2(127.1, 311.7)))*43758.5453123);
-}
-
-float interpNoise(vec2 p){
-  vec2 i = floor(p);
-  vec2 f = floor(p);
-
-  float a = hash(i);
-  float b = hash(i + vec2(1.0, 0.0));
-  float c = hash(i + vec2(0.0, 1.0));
-  float d = hash(i + vec2(1.0, 1.0));
-
-  vec2 u = f * f * (3.0 - 2.0 * f);
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-void main() {
-
-vec4 noise = texture2D(u_displacementTexture, vUv);
-
-float mouseDist = distance(vUv, u_mouse);
-float mouseEffect = exp(-mouseDist * 8.0) * (1.0 - u_decay);
-
-float lineWidth = 0.3;
-
-float progressLine = smoothstep(u_progress - lineWidth, u_progress, vUv.y) * smoothstep(u_progress + lineWidth, u_progress, vUv.y);
-
-float totalEffect = max(mouseEffect, progressLine);
-
-vec2 distortedUV = vUv + noise.rg * totalEffect * 0.1;
-
-vec2 redUV = distortedUV - noise.rg * totalEffect * 0.09;
-vec2 greenUV = distortedUV + noise.rg * totalEffect  * 0.05;
-vec2 blueUV = distortedUV + noise.rg * totalEffect * 0.01;
-
-float r = texture2D(u_imageTexture, redUV).r;
-float g = texture2D(u_imageTexture, greenUV).g;
-float b = texture2D(u_imageTexture, blueUV).b;
-
-vec3 color = vec3(r, g, b);
-
-gl_FragColor = vec4(color, 1.0);
-}`;
 
 const ShaderImageMaterial = () => {
   const [isMouseOver, setIsMouseOver] = useState(false);
@@ -90,7 +23,8 @@ const ShaderImageMaterial = () => {
   const effectDuration = 1.5;
 
   useFrame((state, delta) => {
-    if (meshRef.current) {// vec4 imageColor = texture2D(u_imageTexture, distortedUV);
+    if (meshRef.current) {
+      // vec4 imageColor = texture2D(u_imageTexture, distortedUV);
       const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
 
       shaderMaterialUniforms.u_time.value = state.clock.getElapsedTime();
@@ -102,30 +36,22 @@ const ShaderImageMaterial = () => {
         delta * 2
       );
 
-      if(isEffectDistortion){
+      if (isEffectDistortion) {
         shaderMaterialUniforms.u_progress.value += delta / effectDuration;
 
-        if(shaderMaterialUniforms.u_progress.value > 3.0){
+        if (shaderMaterialUniforms.u_progress.value > 3.0) {
           shaderMaterialUniforms.u_progress.value = -0.5;
           setIsEffectDistortion(false);
         }
-      };
+      }
     }
   });
-
-  // const options = useMemo(() => {
-  //   return {
-  //     progress: { value: 0, min: 0, max: 1, step: 0.01 },
-  //   };
-  // }, []);
-
-  // const { progress } = useControls(options);
 
   const uniforms = useMemo(
     () => ({
       u_imageTexture: { value: imageTexture },
       u_displacementTexture: { value: displacementTexture },
-      u_progress: { value: 0},
+      u_progress: { value: 0 },
       u_mouse: { value: new THREE.Vector2() },
       u_time: { value: 0 },
       u_decay: { value: 1.0 },
@@ -147,16 +73,16 @@ const ShaderImageMaterial = () => {
     setIsMouseOver(true);
   };
 
-  useEffect(()=>{
-    if(meshRef.current){
+  useEffect(() => {
+    if (meshRef.current) {
       setIsEffectDistortion(true);
-    };
-    const interval = setInterval(()=>{
+    }
+    const interval = setInterval(() => {
       setIsEffectDistortion(true);
-    },10000)
+    }, 10000);
 
-    return ()=> clearInterval(interval);
-  },[]);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <mesh
