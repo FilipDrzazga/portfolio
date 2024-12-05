@@ -4,10 +4,10 @@ import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 // import { useControls } from "leva";
 
-import fragmentShader from "./fragmentShader.glsl?raw";
-import vertexShader from "./vertexShader.glsl?raw";
+import fragmentShader from "./shaders/fragmentShader.glsl?raw";
+import vertexShader from "./shaders/vertexShader.glsl?raw";
 
-import image from "../../Images/face_original1.jpg";
+import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 const ShaderImageMaterial = () => {
@@ -20,11 +20,10 @@ const ShaderImageMaterial = () => {
   const imageTexture = useTexture(image);
   const displacementTexture = useTexture(displacement);
 
-  const effectDuration = 1.5;
+  const effectDuration = 3.0;
 
   useFrame((state, delta) => {
     if (meshRef.current) {
-      // vec4 imageColor = texture2D(u_imageTexture, distortedUV);
       const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
 
       shaderMaterialUniforms.u_time.value = state.clock.getElapsedTime();

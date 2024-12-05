@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./Style/GlobalStyle";
 import { lightTheme, darkTheme } from "./Style/DefaultTheme";
 
-import LandingPage from "./Pages/LandingPage/LandingPage";
+// import LandingPage from "./Pages/LandingPage/LandingPage";
 import AboutPage from "./Pages/AboutPage/AboutPage";
 import Navigation from "./Components/Navigation/Navigation";
 

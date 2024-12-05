@@ -29,11 +29,11 @@ void main() {
 vec4 noise = texture2D(u_displacementTexture, vUv);
 
 float mouseDist = distance(vUv, u_mouse);
-float mouseEffect = exp(-mouseDist * 8.0) * (1.0 - u_decay);
+float mouseEffect = exp(-mouseDist * 5.0) * (1.0 - u_decay);
 
-float lineWidth = 0.3;
+float lineWidth = 0.5;
 
-float progressLine = smoothstep(u_progress - lineWidth, u_progress, vUv.y) * smoothstep(u_progress + lineWidth, u_progress, vUv.y);
+float progressLine = smoothstep(u_progress - lineWidth, u_progress, 1.0 - vUv.y) * smoothstep(u_progress + lineWidth, u_progress, 1.0 - vUv.y);
 
 float totalEffect = max(mouseEffect, progressLine);
 
