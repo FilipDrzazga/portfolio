@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {motion} from 'framer-motion';
 
 const SectionAboutContainer = styled.section`
   position: relative;
@@ -49,5 +50,51 @@ const WatfordTime = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
+const DivInfiScrollContainer = styled.div`
+position: absolute;
+top:67%;
+left:0;
+display:flex;
+align-items:center;
+width:100vw;
+overflow:hidden;
+z-index: 999;
+`
+const InfiScrollFirst = styled(motion.div)`
+width:100%;
+flex-shrink:0;
+`
+const InfiScrollSecond = styled(motion.div)`
+width:100%;
+flex-shrink:0;
+`
+const TextInfScrollFirst = styled.span`
+  padding-top:0.5rem;
+  margin-left:1rem;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-family: ${({ theme }) => theme.fontFamily.latoBold};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.secondary};
+  letter-spacing: -0.05rem;
+`
+const TextInfScrollSecond = styled.span`
+margin-right:1rem;
+  font-size: ${({ theme }) => theme.fontSize.xl};
+  font-family: ${({ theme }) => theme.fontFamily.playfairRegular};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  color: ${({ theme }) => theme.colors.secondary};
+  letter-spacing: -0.05rem;
+  font-style:italic;
+`;
 
-export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime };
+export { SectionAboutContainer,
+   HeaderAbout, 
+   TitleAboutFirst, 
+   TitleAboutSecond, 
+   WatfordTime,
+   DivInfiScrollContainer,
+   InfiScrollFirst,
+   InfiScrollSecond,
+   TextInfScrollFirst,
+   TextInfScrollSecond
+   };
