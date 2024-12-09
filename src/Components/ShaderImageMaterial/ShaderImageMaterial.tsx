@@ -88,7 +88,7 @@ const ShaderImageMaterial = () => {
       onPointerEnter={handleMouseEnter}
       onPointerMove={handleMouseMove}
       onPointerLeave={handleMouseLeave}
-      position={[0.55, 1.3, 0]}
+      position={[0.6, 1.3, 0]}
     >
       <planeGeometry args={[2.5, 4, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />

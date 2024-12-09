@@ -19,7 +19,7 @@ const TitleNavigation = styled.h1`
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   font-size: 0.7rem;
-  letter-spacing: 0.1rem;
+  letter-spacing: -0.01rem;
 `;
 const NavNavigation = styled.nav`
   width: 50%;
