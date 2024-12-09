@@ -6,7 +6,7 @@ const useWatfordTime = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setWatfordTime(new Date());
-    }, 1000);
+    }, 60000);
     return () => clearInterval(interval);
   }, []);
 

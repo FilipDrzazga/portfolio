@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import {motion} from 'framer-motion';
+import {motion} from "motion/react";
 
 const SectionAboutContainer = styled.section`
   position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   padding: ${({ theme }) => theme.padding.small};
   background-color: ${({ theme }) => theme.colors.primary};
 `;
@@ -61,16 +61,15 @@ overflow:hidden;
 z-index: 999;
 `
 const InfiScrollFirst = styled(motion.div)`
-width:100%;
+width:103%;
 flex-shrink:0;
 `
 const InfiScrollSecond = styled(motion.div)`
-width:100%;
+width:103%;
 flex-shrink:0;
 `
 const TextInfScrollFirst = styled.span`
   padding-top:0.5rem;
-  margin-left:1rem;
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-family: ${({ theme }) => theme.fontFamily.latoBold};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
@@ -78,7 +77,6 @@ const TextInfScrollFirst = styled.span`
   letter-spacing: -0.05rem;
 `
 const TextInfScrollSecond = styled.span`
-margin-right:1rem;
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-family: ${({ theme }) => theme.fontFamily.playfairRegular};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
