@@ -1,3 +1,4 @@
+import { useScroll, useMotionValueEvent } from "motion/react"
 import { Canvas } from "@react-three/fiber";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
@@ -8,6 +9,12 @@ import * as S from "./AboutPage.styled";
 
 const AboutPage = () => {
   const watfordTime = useWatfordTime();
+  const { scrollY } = useScroll()
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("Page scroll: ", latest)
+  })
+
 
   return (
     <S.SectionAboutContainer>
@@ -20,13 +27,32 @@ const AboutPage = () => {
         </S.TitleAboutSecond>
         <S.WatfordTime>{watfordTime}</S.WatfordTime>
       </S.HeaderAbout>
+      <S.DivInfiScrollContainer>
+        <S.InfiScrollFirst animate={{x:['0%','-100%'],transition:{duration:5,repeat:Infinity, repeatType:'loop', ease:'linear'}}}>
+          <S.TextInfScrollFirst>SCROLL</S.TextInfScrollFirst>
+          <S.TextInfScrollSecond>/SCROLL/</S.TextInfScrollSecond>
+        </S.InfiScrollFirst>
+        <S.InfiScrollSecond animate={{x:['0%','-100%'],transition:{duration:5,repeat:Infinity, repeatType:'loop', ease:'linear'}}}>
+          <S.TextInfScrollFirst>SCROLL</S.TextInfScrollFirst>
+          <S.TextInfScrollSecond>/SCROLL/</S.TextInfScrollSecond>
+        </S.InfiScrollSecond>  
+      </S.DivInfiScrollContainer>
+      <section>
+        <div>Hello!</div>  
+      </section>
       <Canvas
+<<<<<<< HEAD
         style={{ position: "absolute", top: 0, right: 0, width: "100%", height: "100%", zIndex: 1 }}
         gl={{ alpha: true }}
+=======
+        style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 1 }}
+        gl={{ alpha: true } }
+        dpr={[1,Math.min(window.devicePixelRatio,2)]}
+>>>>>>> 5607d79f
       >
         <color attach="background" args={["#E9E9E9"]} />
         <ShaderImageMaterial />
-      </Canvas>
+      </Canvas>     
     </S.SectionAboutContainer>
   );
 };
