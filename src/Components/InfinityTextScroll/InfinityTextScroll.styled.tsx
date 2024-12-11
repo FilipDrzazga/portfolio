@@ -6,6 +6,7 @@ const DivInfiScrollContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100vw;
+  margin-top:7vh;
   overflow: hidden;
   z-index: 999;
 `;

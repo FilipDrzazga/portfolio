@@ -1,4 +1,6 @@
+import { useState, useRef, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
+import { useMotionValue } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 
@@ -8,7 +10,21 @@ import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityText
 import * as S from "./AboutPage.styled";
 
 const AboutPage = () => {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [svgSize,setSvgSize] = useState<number>();
+
+  const svgHeightSize = useMotionValue(0)
   const watfordTime = useWatfordTime();
+
+  useEffect(()=>{
+    if(svgRef.current){
+      const getSvgSize = svgRef.current.getBoundingClientRect().height;
+      setSvgSize(getSvgSize);
+      svgHeightSize.set(getSvgSize);
+    }
+  },[])
+
+  const path = `M 0 100 C ${window.innerWidth / 3} 33 ${(window.innerWidth / 3) * 2} 33 ${window.innerWidth} 100`
 
   return (
     <>
@@ -31,8 +47,10 @@ const AboutPage = () => {
         </S.HeaderAbout>
         <InfinityTextScroll />
       </S.SectionAboutContainer>
-      <section style={{ width: "100%", height: "200vh", background: "black" }}>
-        <div></div>
+      <section style={{ position:'relative',width: "100%", height: "200vh", background: "black" }}>
+        <svg ref={svgRef} width={window.innerWidth} height='100px' style={{position:'absolute',content:'',top:'-100px',left:0}}>
+          <path d={path}></path>
+        </svg>
       </section>
     </>
   );
