@@ -1,19 +1,14 @@
-import { useScroll, useMotionValueEvent } from "motion/react";
 import { Canvas } from "@react-three/fiber";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
+import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 
 import * as S from "./AboutPage.styled";
 
 const AboutPage = () => {
   const watfordTime = useWatfordTime();
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Page scroll: ", latest);
-  });
 
   return (
     <>
@@ -22,7 +17,6 @@ const AboutPage = () => {
         gl={{ alpha: true }}
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       >
-        <color attach="background" args={["#E9E9E9"]} />
         <ShaderImageMaterial />
       </Canvas>
       <S.SectionAboutContainer>
@@ -35,27 +29,11 @@ const AboutPage = () => {
           </S.TitleAboutSecond>
           <S.WatfordTime>{watfordTime}</S.WatfordTime>
         </S.HeaderAbout>
-        <S.DivInfiScrollContainer>
-          <S.InfiScrollFirst
-            animate={{
-              x: ["0%", "-100%"],
-              transition: { duration: 5, repeat: Infinity, repeatType: "loop", ease: "linear" },
-            }}
-          >
-            <S.TextInfScrollFirst>SCROLL</S.TextInfScrollFirst>
-            <S.TextInfScrollSecond>/SCROLL/</S.TextInfScrollSecond>
-          </S.InfiScrollFirst>
-          <S.InfiScrollSecond
-            animate={{
-              x: ["0%", "-100%"],
-              transition: { duration: 5, repeat: Infinity, repeatType: "loop", ease: "linear" },
-            }}
-          >
-            <S.TextInfScrollFirst>SCROLL</S.TextInfScrollFirst>
-            <S.TextInfScrollSecond>/SCROLL/</S.TextInfScrollSecond>
-          </S.InfiScrollSecond>
-        </S.DivInfiScrollContainer>
+        <InfinityTextScroll />
       </S.SectionAboutContainer>
+      <section style={{ width: "100%", height: "200vh", background: "black" }}>
+        <div></div>
+      </section>
     </>
   );
 };
