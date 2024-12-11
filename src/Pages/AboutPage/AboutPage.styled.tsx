@@ -18,7 +18,7 @@ const HeaderAbout = styled.header`
   display: flex;
   flex-direction: column;
   z-index: 999;
-`;
+`;20
 const TitleAboutFirst = styled.h2`
   width: 100%;
   font-size: 2.5rem;

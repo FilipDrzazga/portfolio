@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import {useRef, useEffect} from 'react';
 import { Canvas } from "@react-three/fiber";
-import { useMotionValue } from "motion/react";
+import { motion ,useScroll,useSpring , useTransform } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 
@@ -10,21 +10,26 @@ import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityText
 import * as S from "./AboutPage.styled";
 
 const AboutPage = () => {
-  const svgRef = useRef<SVGSVGElement>(null);
-  const [svgSize,setSvgSize] = useState<number>();
-
-  const svgHeightSize = useMotionValue(0)
+  const scrollSectionRef = useRef<HTMLElement>(null);
   const watfordTime = useWatfordTime();
 
-  useEffect(()=>{
-    if(svgRef.current){
-      const getSvgSize = svgRef.current.getBoundingClientRect().height;
-      setSvgSize(getSvgSize);
-      svgHeightSize.set(getSvgSize);
-    }
-  },[])
+  const {scrollYProgress} = useScroll({
+    target:scrollSectionRef,
+    offset:["start end", "end end"]
+  });
 
-  const path = `M 0 100 C ${window.innerWidth / 3} 33 ${(window.innerWidth / 3) * 2} 33 ${window.innerWidth} 100`
+  const yPos =  useTransform(scrollYProgress,[0,0.5],[0,100]);
+  const yPosWithSpring = useSpring(yPos,{
+    stiffness:500,
+    bounce:0.4,
+    // damping:20,
+    // mass:1
+  });
+
+  const dPathPosition = useTransform(yPosWithSpring, (pos)=>{
+    const newPos = Math.floor(pos);  
+    return `M -20 100 C ${window.innerWidth / 3} ${newPos} ${(window.innerWidth / 3) * 2} ${newPos} ${window.innerWidth + 20} 100`
+  });
 
   return (
     <>
@@ -47,9 +52,9 @@ const AboutPage = () => {
         </S.HeaderAbout>
         <InfinityTextScroll />
       </S.SectionAboutContainer>
-      <section style={{ position:'relative',width: "100%", height: "200vh", background: "black" }}>
-        <svg ref={svgRef} width={window.innerWidth} height='100px' style={{position:'absolute',content:'',top:'-100px',left:0}}>
-          <path d={path}></path>
+      <section ref={scrollSectionRef} style={{ position:'relative',width: "100%", height: "200vh", background: "#121212" }}>
+        <svg width={window.innerWidth} height='100px' style={{position:'absolute',content:'',top:'-100px',left:0}}>
+          <motion.path  d={dPathPosition} fill="#121212"></motion.path>
         </svg>
       </section>
     </>
