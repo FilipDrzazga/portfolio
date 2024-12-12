@@ -43,6 +43,7 @@ const AboutPage = () => {
       <S.SectionAboutStory ref={scrollSectionRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
+      
     </>
   );
 };
