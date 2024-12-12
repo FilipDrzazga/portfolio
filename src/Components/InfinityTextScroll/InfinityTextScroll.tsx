@@ -4,6 +4,7 @@ import { useScroll, useVelocity, useMotionValue, useTransform, useAnimationFrame
 import * as S from "./InfinityTextScroll.styled";
 
 const InfinityTextScroll = () => {
+  const directionFactor = useRef<number>(1);
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -17,7 +18,6 @@ const InfinityTextScroll = () => {
 
   const x = useTransform(baseX, (v) => `${wrap(0, -100, v)}%`);
 
-  const directionFactor = useRef<number>(1);
   useAnimationFrame((_, delta) => {
     let moveBy = directionFactor.current * 10 * (delta / 1000);
 

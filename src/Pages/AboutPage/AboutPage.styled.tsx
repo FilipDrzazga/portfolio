@@ -18,7 +18,8 @@ const HeaderAbout = styled.header`
   display: flex;
   flex-direction: column;
   z-index: 999;
-`;20
+`;
+20;
 const TitleAboutFirst = styled.h2`
   width: 100%;
   font-size: 2.5rem;
@@ -48,5 +49,11 @@ const WatfordTime = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
+const SectionAboutStory = styled.section`
+  position: relative;
+  width: 100%;
+  height: 200vh;
+  background-color: ${({ theme }) => theme.colors.secondary};
+`;
 
-export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime };
+export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime, SectionAboutStory };
