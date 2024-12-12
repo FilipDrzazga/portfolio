@@ -43,9 +43,7 @@ const AboutPage = () => {
       </S.SectionAboutContainer>
       <S.SectionAboutStory ref={scrollSectionRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
-        <S.DivStoryContainer>
-          <BlurRevealText/>
-        </S.DivStoryContainer>
+        <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
       
     </>

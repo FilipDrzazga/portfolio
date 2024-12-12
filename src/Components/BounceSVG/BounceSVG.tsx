@@ -3,7 +3,7 @@ import { useSpring, useTransform, type MotionValue } from "motion/react";
 import * as S from "./BounceSVG.styled";
 
 interface BounceSVGProps {
-  scrollYProgress: MotionValue<number>;
+  readonly scrollYProgress: MotionValue<number>;
 }
 
 const BounceSVG = ({ scrollYProgress }: BounceSVGProps) => {

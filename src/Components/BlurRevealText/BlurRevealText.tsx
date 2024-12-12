@@ -1,3 +1,6 @@
+import { useRef, useEffect, useState } from 'react';
+import { type MotionValue, useMotionValueEvent, useTransform } from 'motion/react';
+
 import * as S from './BlurRevealText.styled';
 
 const text1 = 'A'.split('');
@@ -26,18 +29,36 @@ const wordsObj = {
     char11:text7
 };
 
+interface BlurRevealTextProps {
+     readonly scrollYProgress:MotionValue<number>
+}
 
-const BlurRevealText = ()=>{
+
+const BlurRevealText = ({scrollYProgress}:BlurRevealTextProps)=>{
+const DivStoryContainerRef = useRef<HTMLDivElement>(null);
+const [divStoryContainerHeight, setdivStoryContainerHeight] = useState(0);
+
+    useMotionValueEvent(scrollYProgress, 'change', (latest)=>{
+        console.log(latest)
+    });
+
+    useEffect(()=>{
+        if(DivStoryContainerRef.current){
+            const height = DivStoryContainerRef.current.getBoundingClientRect().height;
+            setdivStoryContainerHeight(height);
+        };
+    },[])
+
     return(
-    <>        
-        {Object.entries(wordsObj).map(([key,charArr],id)=>(
+    <S.DivStoryContainer $height={divStoryContainerHeight} ref={DivStoryContainerRef}>        
+        {Object.entries(wordsObj).map(([key,charArr])=>(
             <S.CharactersContainer data-specialcontainer={key.includes('special') ? 'true' : 'false'} key={key}>
                 {charArr.map((char,id)=>(
                     <S.SpanCharacters data-specialchar={key.includes('special') ? 'true' : 'false'} key={id}>{char}</S.SpanCharacters>
                 ))}
             </S.CharactersContainer>
         ))}
-    </>
+    </S.DivStoryContainer>
     );
 };
 

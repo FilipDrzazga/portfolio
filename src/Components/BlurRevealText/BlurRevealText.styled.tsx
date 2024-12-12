@@ -1,5 +1,19 @@
 import styled from "styled-components";
 
+interface Props {
+    $height:number;
+}
+
+const DivStoryContainer = styled.div<Props>`
+position:sticky;
+${({$height}) => `top: calc(50vh - ${$height / 2});`};
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:0.2rem;
+color: ${({ theme }) => theme.colors.primary};
+`;
 const CharactersContainer = styled.div`
 margin-bottom:-0.5rem;
 &[data-specialcontainer='true'] {
@@ -18,4 +32,4 @@ const SpanCharacters = styled.span`
   }
 `;
 
-export {CharactersContainer, SpanCharacters};
+export {DivStoryContainer, CharactersContainer, SpanCharacters};
