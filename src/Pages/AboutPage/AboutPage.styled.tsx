@@ -61,7 +61,7 @@ const DivStoryContainer = styled.div`
   flex-wrap:wrap;
   justify-content:center;
   align-items:center;
-  gap:0.3rem;
+  gap:0.2rem;
   color: ${({ theme }) => theme.colors.primary};
 `;
 

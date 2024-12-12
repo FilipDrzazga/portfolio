@@ -10,19 +10,19 @@ const text5 = 'the boundaries to bring'.split('');
 const text3special = 'cuzy'.split('');
 const text6 = 'ideas to'.split('');
 const text4special = 'web/app'.split('');
-const text7 = 'development'.split('');
+const text7 = 'development.'.split('');
 
 const wordsObj = {
     char1:text1,
-    char2:text1special,
+    special1:text1special,
     char3:text2,
     char4:text3,
-    char5:text2special,
+    special2:text2special,
     char6:text4,
     char7:text5,
-    cart8:text3special,
+    special3:text3special,
     char9:text6,
-    char10:text4special,
+    special410:text4special,
     char11:text7
 };
 
@@ -31,9 +31,9 @@ const BlurRevealText = ()=>{
     return(
     <>        
         {Object.entries(wordsObj).map(([key,charArr],id)=>(
-            <S.CharactersContainer key={key}>
+            <S.CharactersContainer data-specialcontainer={key.includes('special') ? 'true' : 'false'} key={key}>
                 {charArr.map((char,id)=>(
-                    <S.SpanCharacters key={id}>{char}</S.SpanCharacters>
+                    <S.SpanCharacters data-specialchar={key.includes('special') ? 'true' : 'false'} key={id}>{char}</S.SpanCharacters>
                 ))}
             </S.CharactersContainer>
         ))}
