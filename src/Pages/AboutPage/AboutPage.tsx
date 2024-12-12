@@ -7,6 +7,7 @@ import useWatfordTime from "../../hooks/useWatfordTime";
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
+import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 
@@ -21,13 +22,13 @@ const AboutPage = () => {
 
   return (
     <>
-      <Canvas
+      {/* <Canvas
         style={{ position: "fixed", top: "7vh", left: 0, width: "100%", height: "100vh", zIndex: 1 }}
         gl={{ alpha: true }}
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       >
         <ShaderImageMaterial />
-      </Canvas>
+      </Canvas> */}
       <S.SectionAboutContainer>
         <S.HeaderAbout>
           <S.TitleAboutFirst>
@@ -42,6 +43,9 @@ const AboutPage = () => {
       </S.SectionAboutContainer>
       <S.SectionAboutStory ref={scrollSectionRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
+        <S.DivStoryContainer>
+          <BlurRevealText/>
+        </S.DivStoryContainer>
       </S.SectionAboutStory>
       
     </>

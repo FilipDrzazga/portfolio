@@ -54,6 +54,15 @@ const SectionAboutStory = styled.section`
   width: 100%;
   height: 200vh;
   background-color: ${({ theme }) => theme.colors.secondary};
+  padding: ${({ theme }) => theme.padding.small};
+`;
+const DivStoryContainer = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:0.3rem;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
-export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime, SectionAboutStory };
+export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime, SectionAboutStory,DivStoryContainer };

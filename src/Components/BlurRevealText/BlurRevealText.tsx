@@ -1,3 +1,5 @@
+import * as S from './BlurRevealText.styled';
+
 const text1 = 'A'.split('');
 const text1special = 'self-taught'.split('');
 const text2 = 'and emerging'.split('');
@@ -5,8 +7,9 @@ const text3 = 'creator,'.split('');
 const text2special = 'always'.split('');
 const text4 = 'trying to push'.split('');
 const text5 = 'the boundaries to bring'.split('');
+const text3special = 'cuzy'.split('');
 const text6 = 'ideas to'.split('');
-const text3special = 'web/app'.split('');
+const text4special = 'web/app'.split('');
 const text7 = 'development'.split('');
 
 const wordsObj = {
@@ -17,21 +20,24 @@ const wordsObj = {
     char5:text2special,
     char6:text4,
     char7:text5,
-    char8:text6,
-    char9:text3special,
-    char10:text7
+    cart8:text3special,
+    char9:text6,
+    char10:text4special,
+    char11:text7
 };
 
 
 const BlurRevealText = ()=>{
     return(
+    <>        
         {Object.entries(wordsObj).map(([key,charArr],id)=>(
-            <div key={key}>
+            <S.CharactersContainer key={key}>
                 {charArr.map((char,id)=>(
-                    <span key={id}>{char}</span>
+                    <S.SpanCharacters key={id}>{char}</S.SpanCharacters>
                 ))}
-            </div>
+            </S.CharactersContainer>
         ))}
+    </>
     );
 };
 
