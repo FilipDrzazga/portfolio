@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import {motion} from 'motion/react'
 
 interface Props {
     $height:number;
 }
 
-const DivStoryContainer = styled.div<Props>`
+const DivStoryContainer = styled(motion.div)<Props>`
 position:sticky;
-${({$height}) => `top: calc(50vh - ${$height / 2});`};
+top: ${({$height})=> `calc(45% - ${$height / 2}px)` };
+// top:50vh;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
@@ -14,13 +16,13 @@ align-items:center;
 gap:0.2rem;
 color: ${({ theme }) => theme.colors.primary};
 `;
-const CharactersContainer = styled.div`
+const CharactersContainer = styled(motion.div)`
 margin-bottom:-0.5rem;
 &[data-specialcontainer='true'] {
 margin-top:-0.35rem;
 }
 `;
-const SpanCharacters = styled.span`
+const SpanCharacters = styled(motion.span)`
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
