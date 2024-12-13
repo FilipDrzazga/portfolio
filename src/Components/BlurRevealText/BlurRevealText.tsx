@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { type MotionValue, useMotionValueEvent} from 'motion/react';
 
 import * as S from './BlurRevealText.styled';
+import { delay } from 'motion';
 
 const text1 = 'A'.split('');
 const text1special = 'self-taught'.split('');
@@ -36,9 +37,8 @@ const charContainerVariants = {
     enter:(i:number)=>({
         opacity:1,
         transition:{
-            delay: i * 0.8,
+            // delay: i * 0.01,
             staggerChildren:0.1,
-            // when: "afterChildren"
         }
     })
 };
@@ -52,7 +52,7 @@ const charVariants = {
         opacity: 1,
         filter: "blur(0px)",
         transition:{
-            duration:0.4
+            duration:0.8
         }
     }
 }
@@ -90,7 +90,7 @@ const [isAnimationComplete, setIsAnimationComplete] = useState(0);
             custom={id} 
             variants={charContainerVariants} 
             initial='initial' 
-            animate={id === isAnimationComplete && 'enter'} 
+            animate={id <= isAnimationComplete ? 'enter' : 'initial'} 
             data-specialcontainer={key.includes('special') ? 'true' : 'false'} 
             key={key}>
                 {charArr.map((char,id)=>(
