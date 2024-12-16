@@ -49,8 +49,15 @@ const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
   return (
     <S.DivStoryContainer $height={divStoryContainerHeight} ref={DivStoryContainerRef}>
       {Object.entries(wordsObj).map(([key, charArr], id) => {
-        const start = id / 15; //delay each word by 1/11
-        const end = start + 1 / 12;
+        let start;
+        let end;
+        if(charArr.includes('A') && id === 0){
+          start = id;
+           end = start + (1 * 0.01);
+        }else{
+           start = id / 20
+           end = start + (1 * 0.08);
+        }
         return (
           <CharactersContainer
             key={id}
@@ -83,14 +90,13 @@ interface CharactersContainerProps {
 const CharactersContainer = ({ children, ...props }: CharactersContainerProps) => {
   const { progress, range, charArr, keyValue } = props;
   const amount = range[1] - range[0];
-  const step = amount / (Array.isArray(children) ? children.length : 1);
-  //   const opacity = useTransform(progress, range, [0, 1]);
+  const step = amount / (Array.isArray(children) ? children.length : 0);
 
   return (
     <S.CharactersContainer {...props}>
       {charArr.map((char, id) => {
-        const start = range[0] + (step * id) / 11;
-        const end = range[0] + step * (id + 10);
+        const start = range[0] + (step * id);
+        const end = range[0] + step * (id + 20)
         return (
           <SpanCharacters key={id} keyValue={keyValue} range={[start, end]} progress={progress}>
             {char}
@@ -111,6 +117,7 @@ interface SpanCharactersProps {
 
 const SpanCharacters = ({ children, ...props }: SpanCharactersProps) => {
   const { progress, range, keyValue } = props;
+
   const opacity = useTransform(progress, range, [0, 1]);
   const blur = useTransform(progress, range, ["blur(40px)", "blur(0px)"]);
   const scale = useTransform(progress, range, [0, 1]);
