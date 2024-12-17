@@ -12,14 +12,13 @@ import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 interface ShaderImageMaterialProps {
   readonly imageRect:{[key:string]:number | undefined}
-  readonly scrollYProgress:MotionValue<number>
+  readonly scrollY:MotionValue<number>
   
 }
 
-const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos,leftMeshPos},scrollYProgress}:ShaderImageMaterialProps) => {
+const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos,leftMeshPos},scrollY}:ShaderImageMaterialProps) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isEffectDistortion, setIsEffectDistortion] = useState(false);
-  console.log(scrollYProgress.get())
 
   const meshRef = useRef<THREE.Mesh>(null);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
@@ -29,9 +28,14 @@ const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos
 
   const effectDuration = 3.0;
 
+  
   useFrame((state, delta) => {
     if (meshRef.current) {
-      meshRef.current.position.y = scrollYProgress.get();
+      // const currentScroll = scrollY.get();
+      // console.log(scrollY.get())
+      // currentScroll > 0 ? meshRef.current.position.y = scrollY.get():meshRef.current.position.y;
+      // meshRef.current.position.y = scrollY.get()
+      // meshPos.topMeshPosition -= scrollY.get();
 
       const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
 
@@ -74,7 +78,7 @@ const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos
         leftMeshPosition: leftMeshPos - window.innerWidth/2 + geometryWidth/2
       });
     };
-  },[topMeshPos,leftMeshPos])
+  },[topMeshPos,leftMeshPos,geometryHeight,geometryWidth])
 
   const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {

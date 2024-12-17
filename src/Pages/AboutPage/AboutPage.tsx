@@ -14,13 +14,19 @@ import * as S from "./AboutPage.styled";
 import myImg from '../../Images/mobile_man_face.jpg';
 
 const AboutPage = () => {
-  const scrollSectionRef = useRef<HTMLDivElement>(null);
+  const scrollSectionAboutContainerRef = useRef<HTMLDivElement>(null);
+  const scrollSectionAboutStory = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const imgRect = useRect(imgRef);
+
   const watfordTime = useWatfordTime();
 
+  const { scrollY } = useScroll({
+    target: scrollSectionAboutContainerRef,
+    offset: ["start end", "end end"],
+  });
   const { scrollYProgress } = useScroll({
-    target: scrollSectionRef,
+    target: scrollSectionAboutStory,
     offset: ["start end", "end end"],
   });
 
@@ -40,9 +46,9 @@ const AboutPage = () => {
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position:[0,0,600]}}
       >
-        <ShaderImageMaterial imageRect={imgRect} scrollYProgress={scrollYProgress} />
+        <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
       </Canvas>
-      <S.SectionAboutContainer>
+      <S.SectionAboutContainer ref={scrollSectionAboutContainerRef}>
         <S.HeaderAbout>
           <S.TitleAboutFirst>
             Creative<span> Developer</span>
@@ -57,7 +63,7 @@ const AboutPage = () => {
         </S.HeaderAbout>
         <InfinityTextScroll />
       </S.SectionAboutContainer>
-      <S.SectionAboutStory ref={scrollSectionRef}>
+      <S.SectionAboutStory ref={scrollSectionAboutStory}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
