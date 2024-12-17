@@ -11,6 +11,7 @@ import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 interface ShaderImageMaterialProps {
+<<<<<<< HEAD
   readonly imageRect: { [key: string]: number | undefined };
   readonly scrollY: MotionValue<number>;
 }
@@ -19,6 +20,14 @@ const ShaderImageMaterial = ({
   imageRect: { geometryWidth, geometryHeight, topMeshPos, leftMeshPos },
   scrollY,
 }: ShaderImageMaterialProps) => {
+=======
+  readonly imageRect:{[key:string]:number | undefined}
+  readonly scrollY:MotionValue<number>
+  
+}
+
+const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos,leftMeshPos},scrollY}:ShaderImageMaterialProps) => {
+>>>>>>> b1b20599
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isEffectDistortion, setIsEffectDistortion] = useState(false);
 
@@ -30,10 +39,19 @@ const ShaderImageMaterial = ({
 
   const effectDuration = 3.0;
 
+  
   useFrame((state, delta) => {
     if (meshRef.current) {
+<<<<<<< HEAD
       console.log(scrollY.get());
       meshRef.current.position.y = scrollY.get();
+=======
+      // const currentScroll = scrollY.get();
+      // console.log(scrollY.get())
+      // currentScroll > 0 ? meshRef.current.position.y = scrollY.get():meshRef.current.position.y;
+      // meshRef.current.position.y = scrollY.get()
+      // meshPos.topMeshPosition -= scrollY.get();
+>>>>>>> b1b20599
 
       const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
 
@@ -69,6 +87,7 @@ const ShaderImageMaterial = ({
     [imageTexture, displacementTexture]
   );
 
+<<<<<<< HEAD
   const meshPos = useMemo(() => {
     if (topMeshPos && leftMeshPos && geometryHeight && geometryWidth) {
       return {
@@ -77,6 +96,16 @@ const ShaderImageMaterial = ({
       };
     }
   }, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
+=======
+  const meshPos = useMemo(()=>{
+    if(topMeshPos && leftMeshPos && geometryHeight && geometryWidth){
+      return({
+        topMeshPosition: -topMeshPos + window.innerHeight/2 - geometryHeight/2,
+        leftMeshPosition: leftMeshPos - window.innerWidth/2 + geometryWidth/2
+      });
+    };
+  },[topMeshPos,leftMeshPos,geometryHeight,geometryWidth])
+>>>>>>> b1b20599
 
   const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
