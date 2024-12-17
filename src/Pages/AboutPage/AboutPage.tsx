@@ -11,7 +11,7 @@ import BounceSVG from "../../Components/BounceSVG/BounceSVG";
 import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
-import myImg from '../../Images/mobile_man_face.jpg';
+import myImg from "../../Images/mobile_man_face.jpg";
 
 const AboutPage = () => {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
@@ -19,18 +19,16 @@ const AboutPage = () => {
   const imgRect = useRect(imgRef);
   const watfordTime = useWatfordTime();
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
     target: scrollSectionRef,
     offset: ["start end", "end end"],
   });
 
-  const fovPosition = useMemo(()=>{
+  const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
-    const newFovPosition = 2*Math.atan((window.innerHeight/2)/cameraZPosition) * (180/Math.PI);
+    const newFovPosition = 2 * Math.atan(window.innerHeight / 2 / cameraZPosition) * (180 / Math.PI);
     return newFovPosition;
-  },[]);
-
-
+  }, []);
 
   return (
     <>
@@ -38,9 +36,9 @@ const AboutPage = () => {
         style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 1 }}
         gl={{ alpha: true }}
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
-        camera={{ fov: fovPosition, position:[0,0,600]}}
+        camera={{ fov: fovPosition, position: [0, 0, 600] }}
       >
-        <ShaderImageMaterial imageRect={imgRect} scrollYProgress={scrollYProgress} />
+        <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
       </Canvas>
       <S.SectionAboutContainer>
         <S.HeaderAbout>
@@ -61,7 +59,6 @@ const AboutPage = () => {
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
-      
     </>
   );
 };
