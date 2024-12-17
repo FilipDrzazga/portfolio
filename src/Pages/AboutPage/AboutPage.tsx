@@ -1,8 +1,9 @@
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useScroll } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
+import useRect from "../../hooks/useRect";
 
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
@@ -13,7 +14,9 @@ import * as S from "./AboutPage.styled";
 import myImg from '../../Images/mobile_man_face.jpg';
 
 const AboutPage = () => {
-  const scrollSectionRef = useRef<HTMLElement>(null);
+  const scrollSectionRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const imgRect = useRect(imgRef);
   const watfordTime = useWatfordTime();
 
   const { scrollYProgress } = useScroll({
@@ -27,12 +30,14 @@ const AboutPage = () => {
     return newFovPosition;
   },[]);
 
+
+
   return (
     <>
       <Canvas
         style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 1 }}
         gl={{ alpha: true }}
-        // dpr={[1, Math.min(window.devicePixelRatio, 2)]}
+        dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position:[0,0,600]}}
       >
         <ShaderImageMaterial />
@@ -46,7 +51,7 @@ const AboutPage = () => {
             <span>Based in</span> Watford.
           </S.TitleAboutSecond>
           <S.WatfordTime>{watfordTime}</S.WatfordTime>
-          <S.ImgContainer>
+          <S.ImgContainer ref={imgRef}>
             <S.Img src={myImg}  alt="Photo of mine face"></S.Img>
           </S.ImgContainer>
         </S.HeaderAbout>
