@@ -49,6 +49,22 @@ const WatfordTime = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
+const ImgContainer = styled.div`
+  position:absolute;
+  top:10%;
+  right:${({ theme }) => theme.padding.small};
+  content:'';
+  width:60%;
+  height:55%;
+  background-color:red;
+  z-index:-1;
+  overflow:hidden;
+`
+const Img = styled.img`
+   width: auto;
+   max-width: 100%;
+   object-fit:cover;
+`
 const SectionAboutStory = styled.section`
   position: relative;
   width: 100%;
@@ -57,4 +73,4 @@ const SectionAboutStory = styled.section`
   padding: ${({ theme }) => theme.padding.small};
 `;
 
-export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime, SectionAboutStory };
+export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime,ImgContainer,Img, SectionAboutStory };

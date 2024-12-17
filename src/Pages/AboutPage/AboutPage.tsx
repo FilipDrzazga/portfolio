@@ -4,12 +4,13 @@ import { useScroll } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 
-import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
+// import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
 import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
+import myImg from '../../Images/mobile_man_face.jpg';
 
 const AboutPage = () => {
   const scrollSectionRef = useRef<HTMLElement>(null);
@@ -38,6 +39,9 @@ const AboutPage = () => {
             <span>Based in</span> Watford.
           </S.TitleAboutSecond>
           <S.WatfordTime>{watfordTime}</S.WatfordTime>
+          <S.ImgContainer>
+            <S.Img src={myImg}  alt="Photo of mine face"></S.Img>
+          </S.ImgContainer>
         </S.HeaderAbout>
         <InfinityTextScroll />
       </S.SectionAboutContainer>
