@@ -1,10 +1,10 @@
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useScroll } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 
-// import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
+import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
 import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
@@ -21,15 +21,22 @@ const AboutPage = () => {
     offset: ["start end", "end end"],
   });
 
+  const fovPosition = useMemo(()=>{
+    const cameraZPosition = 600;
+    const newFovPosition = 2*Math.atan((window.innerHeight/2)/cameraZPosition) * (180/Math.PI);
+    return newFovPosition;
+  },[]);
+
   return (
     <>
-      {/* <Canvas
-        style={{ position: "fixed", top: "7vh", left: 0, width: "100%", height: "100vh", zIndex: 1 }}
+      <Canvas
+        style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 1 }}
         gl={{ alpha: true }}
-        dpr={[1, Math.min(window.devicePixelRatio, 2)]}
+        // dpr={[1, Math.min(window.devicePixelRatio, 2)]}
+        camera={{ fov: fovPosition, position:[0,0,600]}}
       >
         <ShaderImageMaterial />
-      </Canvas> */}
+      </Canvas>
       <S.SectionAboutContainer>
         <S.HeaderAbout>
           <S.TitleAboutFirst>
