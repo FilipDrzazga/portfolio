@@ -10,10 +10,10 @@ const useRect = <T extends HTMLElement>(elementRef:RefObject<T>)=>{
     },[])
 
     return({
-        width:elementInfo?.width,
-        height:elementInfo?.height,
-        top:elementInfo?.top,
-        left:elementInfo?.left
+        geometryWidth:elementInfo?.width,
+        geometryHeight:elementInfo?.height,
+        topMeshPos:elementInfo?.top,
+        leftMeshPos:elementInfo?.left
     });
 };
 

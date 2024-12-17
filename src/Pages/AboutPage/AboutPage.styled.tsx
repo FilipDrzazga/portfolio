@@ -56,7 +56,6 @@ const ImgContainer = styled.div`
   content:'';
   width:60%;
   height:55%;
-  background-color:red;
   z-index:-1;
   overflow:hidden;
 `
@@ -64,6 +63,7 @@ const Img = styled.img`
    width: auto;
    max-width: 100%;
    object-fit:cover;
+   opacity:0;
 `
 const SectionAboutStory = styled.section`
   position: relative;

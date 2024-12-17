@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useScroll } from "motion/react";
 
@@ -40,7 +40,7 @@ const AboutPage = () => {
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position:[0,0,600]}}
       >
-        <ShaderImageMaterial />
+        <ShaderImageMaterial {...imgRect} />
       </Canvas>
       <S.SectionAboutContainer>
         <S.HeaderAbout>
@@ -52,7 +52,7 @@ const AboutPage = () => {
           </S.TitleAboutSecond>
           <S.WatfordTime>{watfordTime}</S.WatfordTime>
           <S.ImgContainer ref={imgRef}>
-            <S.Img src={myImg}  alt="Photo of mine face"></S.Img>
+            <S.Img src={myImg} alt="Photo of mine face"></S.Img>
           </S.ImgContainer>
         </S.HeaderAbout>
         <InfinityTextScroll />

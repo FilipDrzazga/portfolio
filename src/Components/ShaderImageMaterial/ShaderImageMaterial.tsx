@@ -9,7 +9,11 @@ import vertexShader from "./shaders/vertexShader.glsl?raw";
 import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
-const ShaderImageMaterial = () => {
+interface ShaderImageMaterialProps {
+  [key:string]:number | undefined
+}
+
+const ShaderImageMaterial = ({geometryWidth, geometryHeight, topMeshPos, leftMeshPos}:ShaderImageMaterialProps) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isEffectDistortion, setIsEffectDistortion] = useState(false);
 
@@ -57,6 +61,15 @@ const ShaderImageMaterial = () => {
     [imageTexture, displacementTexture]
   );
 
+  const meshPos = useMemo(()=>{
+    if(topMeshPos && leftMeshPos && geometryHeight && geometryWidth){
+      return({
+        topMeshPosition: -topMeshPos + window.innerHeight/2 - geometryHeight/2,
+        leftMeshPosition: leftMeshPos - window.innerWidth/2 + geometryWidth/2
+      });
+    };
+  },[topMeshPos,leftMeshPos])
+
   const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
       mousePosRef.current = event.uv;
@@ -88,9 +101,9 @@ const ShaderImageMaterial = () => {
       onPointerEnter={handleMouseEnter}
       onPointerMove={handleMouseMove}
       onPointerLeave={handleMouseLeave}
-      position={[0.6, 1.2, 0]}
+      position={[meshPos!.leftMeshPosition, meshPos!.topMeshPosition, 0]}
     >
-      <planeGeometry args={[100, 100, 32, 32]} />
+      <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );
