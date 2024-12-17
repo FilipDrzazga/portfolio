@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
+import {type MotionValue} from 'motion/react';
 import * as THREE from "three";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
@@ -10,12 +11,15 @@ import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 interface ShaderImageMaterialProps {
-  [key:string]:number | undefined
+  readonly imageRect:{[key:string]:number | undefined}
+  readonly scrollYProgress:MotionValue<number>
+  
 }
 
-const ShaderImageMaterial = ({geometryWidth, geometryHeight, topMeshPos, leftMeshPos}:ShaderImageMaterialProps) => {
+const ShaderImageMaterial = ({imageRect:{geometryWidth,geometryHeight,topMeshPos,leftMeshPos},scrollYProgress}:ShaderImageMaterialProps) => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isEffectDistortion, setIsEffectDistortion] = useState(false);
+  console.log(scrollYProgress.get())
 
   const meshRef = useRef<THREE.Mesh>(null);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
@@ -27,6 +31,8 @@ const ShaderImageMaterial = ({geometryWidth, geometryHeight, topMeshPos, leftMes
 
   useFrame((state, delta) => {
     if (meshRef.current) {
+      meshRef.current.position.y = scrollYProgress.get();
+
       const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
 
       shaderMaterialUniforms.u_time.value = state.clock.getElapsedTime();

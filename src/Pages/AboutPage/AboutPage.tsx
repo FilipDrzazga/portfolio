@@ -40,7 +40,7 @@ const AboutPage = () => {
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position:[0,0,600]}}
       >
-        <ShaderImageMaterial {...imgRect} />
+        <ShaderImageMaterial imageRect={imgRect} scrollYProgress={scrollYProgress} />
       </Canvas>
       <S.SectionAboutContainer>
         <S.HeaderAbout>
