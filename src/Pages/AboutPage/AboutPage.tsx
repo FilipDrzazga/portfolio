@@ -21,17 +21,12 @@ const AboutPage = () => {
 
   const watfordTime = useWatfordTime();
 
-<<<<<<< HEAD
-  const { scrollYProgress, scrollY } = useScroll({
-    target: scrollSectionRef,
-=======
   const { scrollY } = useScroll({
     target: scrollSectionAboutContainerRef,
-    offset: ["start end", "end end"],
+    offset: ["end end", "start start"],
   });
   const { scrollYProgress } = useScroll({
     target: scrollSectionAboutStory,
->>>>>>> b1b20599
     offset: ["start end", "end end"],
   });
 

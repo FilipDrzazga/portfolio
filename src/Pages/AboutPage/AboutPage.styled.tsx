@@ -50,21 +50,21 @@ const WatfordTime = styled.span`
   letter-spacing: -0.05rem;
 `;
 const ImgContainer = styled.div`
-  position:absolute;
-  top:10%;
-  right:${({ theme }) => theme.padding.small};
-  content:'';
-  width:60%;
-  height:55%;
-  z-index:-1;
-  overflow:hidden;
-`
+  position: absolute;
+  top: 8%;
+  right: ${({ theme }) => theme.padding.small};
+  content: "";
+  width: 60%;
+  height: 55%;
+  z-index: -1;
+  overflow: hidden;
+`;
 const Img = styled.img`
-   width: auto;
-   max-width: 100%;
-   object-fit:cover;
-   opacity:0;
-`
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+  opacity: 0;
+`;
 const SectionAboutStory = styled.section`
   position: relative;
   width: 100%;
@@ -73,4 +73,13 @@ const SectionAboutStory = styled.section`
   padding: ${({ theme }) => theme.padding.small};
 `;
 
-export { SectionAboutContainer, HeaderAbout, TitleAboutFirst, TitleAboutSecond, WatfordTime,ImgContainer,Img, SectionAboutStory };
+export {
+  SectionAboutContainer,
+  HeaderAbout,
+  TitleAboutFirst,
+  TitleAboutSecond,
+  WatfordTime,
+  ImgContainer,
+  Img,
+  SectionAboutStory,
+};
