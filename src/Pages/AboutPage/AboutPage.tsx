@@ -39,7 +39,7 @@ const AboutPage = () => {
   return (
     <>
       <Canvas
-        style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: 1 }}
+        style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: -1 }}
         gl={{ alpha: true }}
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position: [0, 0, 600] }}

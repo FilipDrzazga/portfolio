@@ -8,7 +8,7 @@ interface TitleProps {
 const Svg = styled.svg<TitleProps>`
   position: absolute;
   content: "";
-  top: -100px;
+  top: -99px;
   left: 0;
   width: ${({ $width }) => $width}px;
   height: 100px;
