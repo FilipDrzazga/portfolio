@@ -56,15 +56,7 @@ const ShaderImageMaterial = ({
   };
 
   const updateShaderUniforms = useCallback(
-<<<<<<< HEAD
-<<<<<<< HEAD
     (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number) => {
-=======
-    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
->>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
-=======
-    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
->>>>>>> 2bf75e7c
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
@@ -74,7 +66,6 @@ const ShaderImageMaterial = ({
       shaderUniforms.u_mouse.value.copy(mousePosRef.current);
       shaderUniforms.u_decay.value = THREE.MathUtils.lerp(shaderUniforms.u_decay.value, isMouseOver ? 0.0 : 1.0, delta * 2);
       shaderUniforms.u_progress.value = Math.min(shaderUniforms.u_progress.value + delta / effectDuration, 3.0);
-
       const targetY = scrollYValue * 0.95 + calculatedMeshPosition.topMeshPosition;
       const targetX = calculatedMeshPosition.leftMeshPosition;
 
@@ -84,15 +75,7 @@ const ShaderImageMaterial = ({
   );
 
   useFrame((state, delta) => {
-<<<<<<< HEAD
-<<<<<<< HEAD
     updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get());
-=======
-    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
->>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
-=======
-    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
->>>>>>> 2bf75e7c
   });
 
   useEffect(() => {
@@ -105,7 +88,7 @@ const ShaderImageMaterial = ({
   }, []);
 
   return (
-    <mesh ref={meshRef} onPointerMove={handleMouseMove}>
+    <mesh rotation-y={-0.2} ref={meshRef} onPointerMove={handleMouseMove}>
       <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>

@@ -12,6 +12,7 @@ import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 import myImg from "../../Images/mobile_man_face.jpg";
+import { OrbitControls } from "@react-three/drei";
 
 const AboutPage = () => {
   const scrollSectionAboutContainerRef = useRef<HTMLDivElement>(null);
@@ -41,6 +42,7 @@ const AboutPage = () => {
         dpr={[1, Math.min(window.devicePixelRatio, 2)]}
         camera={{ fov: fovPosition, position: [0, 0, 600] }}
       >
+        <OrbitControls />
         <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
       </Canvas>
       <S.SectionAboutContainer ref={scrollSectionAboutContainerRef}>
