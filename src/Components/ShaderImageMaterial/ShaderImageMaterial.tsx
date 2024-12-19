@@ -56,7 +56,7 @@ const ShaderImageMaterial = ({
   };
 
   const updateShaderUniforms = useCallback(
-    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number) => {
+    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
@@ -64,22 +64,19 @@ const ShaderImageMaterial = ({
 
       shaderUniforms.u_time.value = clockTime;
       shaderUniforms.u_mouse.value.copy(mousePosRef.current);
-
       shaderUniforms.u_decay.value = THREE.MathUtils.lerp(shaderUniforms.u_decay.value, isMouseOver ? 0.0 : 1.0, delta * 2);
-
       shaderUniforms.u_progress.value = Math.min(shaderUniforms.u_progress.value + delta / effectDuration, 3.0);
 
-      meshRef.current.position.set(
-        calculatedMeshPosition!.leftMeshPosition,
-        THREE.MathUtils.lerp(calculatedMeshPosition!.topMeshPosition, scrollYValue + calculatedMeshPosition!.topMeshPosition, 1),
-        0
-      );
+      const targetY = scrollYValue * 0.95 + calculatedMeshPosition.topMeshPosition;
+      const targetX = calculatedMeshPosition.leftMeshPosition;
+
+      meshRef.current.position.set(targetX, targetY, 0);
     },
-    [calculatedMeshPosition, effectDuration]
+    [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
   );
 
   useFrame((state, delta) => {
-    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get());
+    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
   });
 
   useEffect(() => {
