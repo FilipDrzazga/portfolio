@@ -57,10 +57,14 @@ const ShaderImageMaterial = ({
 
   const updateShaderUniforms = useCallback(
 <<<<<<< HEAD
+<<<<<<< HEAD
     (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number) => {
 =======
     (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
 >>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
+=======
+    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
+>>>>>>> 2bf75e7c
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
@@ -81,10 +85,14 @@ const ShaderImageMaterial = ({
 
   useFrame((state, delta) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get());
 =======
     updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
 >>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
+=======
+    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
+>>>>>>> 2bf75e7c
   });
 
   useEffect(() => {
