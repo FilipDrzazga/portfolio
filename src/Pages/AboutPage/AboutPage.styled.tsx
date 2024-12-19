@@ -4,7 +4,7 @@ const SectionAboutContainer = styled.section`
   position: relative;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 93vh;
   display: flex;
   flex-direction: column;
@@ -17,9 +17,7 @@ const HeaderAbout = styled.header`
   margin-top: 7rem;
   display: flex;
   flex-direction: column;
-  z-index: 999;
 `;
-20;
 const TitleAboutFirst = styled.h2`
   width: 100%;
   font-size: 2.5rem;
@@ -67,7 +65,7 @@ const Img = styled.img`
 `;
 const SectionAboutStory = styled.section`
   position: relative;
-  width: 100%;
+  max-width: 100%;
   height: 200vh;
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.padding.small};

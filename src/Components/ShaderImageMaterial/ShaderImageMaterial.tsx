@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import { type MotionValue } from "framer-motion";
 import * as THREE from "three";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
@@ -19,10 +19,6 @@ const ShaderImageMaterial = ({
   imageRect: { geometryWidth, geometryHeight, topMeshPos, leftMeshPos },
   scrollY,
 }: ShaderImageMaterialProps) => {
-  const [isMouseOver, setIsMouseOver] = useState(false);
-  const [isEffectDistortion, setIsEffectDistortion] = useState(false);
-
-  const scrollYProgressRef = useRef<number>(0);
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
 
@@ -38,6 +34,7 @@ const ShaderImageMaterial = ({
         leftMeshPosition: leftMeshPos - window.innerWidth / 2 + geometryWidth / 2,
       };
     }
+    return { topMeshPosition: 0, leftMeshPosition: 0 };
   }, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
 
   const uniforms = useMemo(
@@ -54,69 +51,53 @@ const ShaderImageMaterial = ({
 
   const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
     if (event.uv) {
-      mousePosRef.current = event.uv;
+      mousePosRef.current.copy(event.uv);
     }
   };
 
-  const handleMouseLeave = () => {
-    setIsMouseOver(false);
-  };
+  const updateShaderUniforms = useCallback(
+<<<<<<< HEAD
+    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number) => {
+=======
+    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number, camera: THREE.Camera) => {
+>>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
+      if (!meshRef.current) return;
 
-  const handleMouseEnter = () => {
-    setIsMouseOver(true);
-  };
+      const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
+      const { uniforms: shaderUniforms } = shaderMaterial;
+
+      shaderUniforms.u_time.value = clockTime;
+      shaderUniforms.u_mouse.value.copy(mousePosRef.current);
+      shaderUniforms.u_decay.value = THREE.MathUtils.lerp(shaderUniforms.u_decay.value, isMouseOver ? 0.0 : 1.0, delta * 2);
+      shaderUniforms.u_progress.value = Math.min(shaderUniforms.u_progress.value + delta / effectDuration, 3.0);
+
+      const targetY = scrollYValue * 0.95 + calculatedMeshPosition.topMeshPosition;
+      const targetX = calculatedMeshPosition.leftMeshPosition;
+
+      meshRef.current.position.set(targetX, targetY, 0);
+    },
+    [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
+  );
 
   useFrame((state, delta) => {
-    scrollYProgressRef.current = scrollY.get();
-
-    if (meshRef.current && calculatedMeshPosition) {
-      meshRef.current.position.x = calculatedMeshPosition!.leftMeshPosition;
-      meshRef.current.position.y = THREE.MathUtils.lerp(
-        calculatedMeshPosition!.topMeshPosition,
-        scrollYProgressRef.current + calculatedMeshPosition!.topMeshPosition,
-        1
-      );
-
-      const shaderMaterialUniforms = (meshRef.current.material as THREE.ShaderMaterial).uniforms;
-
-      shaderMaterialUniforms.u_time.value = state.clock.getElapsedTime();
-      shaderMaterialUniforms.u_mouse.value = mousePosRef.current;
-
-      shaderMaterialUniforms.u_decay.value = THREE.MathUtils.lerp(
-        shaderMaterialUniforms.u_decay.value,
-        isMouseOver ? 0.0 : 1.0,
-        delta * 2
-      );
-
-      if (isEffectDistortion) {
-        shaderMaterialUniforms.u_progress.value += delta / effectDuration;
-
-        if (shaderMaterialUniforms.u_progress.value > 3.0) {
-          shaderMaterialUniforms.u_progress.value = -0.5;
-          setIsEffectDistortion(false);
-        }
-      }
-    }
+<<<<<<< HEAD
+    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get());
+=======
+    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get(), state.camera);
+>>>>>>> 2bf75e7c379e60df898975f69327a0d9ab21d4fe
   });
 
   useEffect(() => {
-    if (meshRef.current) {
-      setIsEffectDistortion(true);
-    }
     const interval = setInterval(() => {
-      setIsEffectDistortion(true);
+      const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
+      shaderMaterial.uniforms.u_progress.value = -0.5;
     }, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <mesh
-      ref={meshRef}
-      onPointerEnter={handleMouseEnter}
-      onPointerMove={handleMouseMove}
-      onPointerLeave={handleMouseLeave}
-    >
+    <mesh ref={meshRef} onPointerMove={handleMouseMove}>
       <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>

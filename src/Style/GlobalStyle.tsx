@@ -12,8 +12,10 @@ const GlobalStyle = createGlobalStyle`
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+// outline: 1px solid #f00 !important;
 };
 body {
+max-width: 100vw;
   background-color: ${({ theme }) => theme.colors.primary};
 };
 @font-face {

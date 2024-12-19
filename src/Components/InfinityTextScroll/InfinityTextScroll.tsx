@@ -4,7 +4,7 @@ import { useScroll, useVelocity, useMotionValue, useTransform, useAnimationFrame
 import * as S from "./InfinityTextScroll.styled";
 
 const InfinityTextScroll = () => {
-  const directionFactor = useRef<number>(1);
+  const directionFactor = useRef(1);
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -19,17 +19,20 @@ const InfinityTextScroll = () => {
   const x = useTransform(baseX, (v) => `${wrap(0, -100, v)}%`);
 
   useAnimationFrame((_, delta) => {
-    let moveBy = directionFactor.current * 10 * (delta / 1000);
+    const deltaInSeconds = delta / 1000;
 
-    if (velocityFactor.get() < 0) {
+    const velocity = velocityFactor.get();
+    const baseXValue = baseX.get();
+
+    if (velocity < 0 && directionFactor.current !== -1) {
       directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
+    } else if (velocity > 0 && directionFactor.current !== 1) {
       directionFactor.current = 1;
     }
 
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    const moveBy = directionFactor.current * 10 * deltaInSeconds + directionFactor.current * velocity * 10 * deltaInSeconds;
 
-    baseX.set(baseX.get() + moveBy);
+    baseX.set(baseXValue + moveBy);
   });
 
   return (
