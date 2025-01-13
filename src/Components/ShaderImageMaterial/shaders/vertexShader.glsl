@@ -10,9 +10,9 @@ void main() {
   float wave = 20.0*sin(newPos.x *0.02 + u_time * 0.5);
 
   newPos.z += wave;
-  newPos.x += sin((length(uv - 0.9) - u_time * 0.4) * 0.9 * PI2);
+  newPos.x += sin((length(uv - 0.5) - u_time * 0.4) * 0.9 * PI2);
 
-  // modelPosition.z += sin((length(uv - 0.5) - u_time * 0.5) * 0.9 * PI2) * 0.05;
+  //modelPosition.z += sin((length(uv - 0.5) - u_time * 0.5) * 0.9 * PI2) * 0.05;
   vec4 modelPosition = modelMatrix * vec4(newPos, 1.0);
 
   vec4 viewPosition = viewMatrix * modelPosition;
