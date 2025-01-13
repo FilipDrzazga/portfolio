@@ -6,6 +6,7 @@ import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
 
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
+import ShaderAboutStoryTransition from '../../Components/ShaderAboutStoryTransition/ShaderAboutStoryTransition';
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
 import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
@@ -15,16 +16,18 @@ import myImg from "../../Images/mobile_man_face.jpg";
 import { OrbitControls } from "@react-three/drei";
 
 const AboutPage = () => {
-  const scrollSectionAboutContainerRef = useRef<HTMLDivElement>(null);
-  const scrollSectionAboutStory = useRef<HTMLDivElement>(null);
+  const sectionAboutContainerRef = useRef<HTMLDivElement>(null);
+  const sectionAboutStory = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+
   const imgRect = useRect(imgRef);
+  const positionRect = useRect(sectionAboutStory);
 
   const watfordTime = useWatfordTime();
 
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll({
-    target: scrollSectionAboutStory,
+    target: sectionAboutStory,
     offset: ["start end", "end end"],
   });
 
@@ -44,8 +47,9 @@ const AboutPage = () => {
       >
         <OrbitControls />
         <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
+        <ShaderAboutStoryTransition positionRect={positionRect} scrollY={scrollY}/>
       </Canvas>
-      <S.SectionAboutContainer ref={scrollSectionAboutContainerRef}>
+      <S.SectionAboutContainer ref={sectionAboutContainerRef}>
         <S.HeaderAbout>
           <S.TitleAboutFirst>
             Creative<span> Developer</span>
@@ -60,7 +64,7 @@ const AboutPage = () => {
         </S.HeaderAbout>
         <InfinityTextScroll />
       </S.SectionAboutContainer>
-      <S.SectionAboutStory ref={scrollSectionAboutStory}>
+      <S.SectionAboutStory ref={sectionAboutStory}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>

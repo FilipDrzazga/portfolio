@@ -82,7 +82,7 @@ const ShaderImageMaterial = ({
     const interval = setInterval(() => {
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
       shaderMaterial.uniforms.u_progress.value = -0.5;
-    }, 10000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, []);
