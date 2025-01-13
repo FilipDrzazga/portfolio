@@ -3,6 +3,9 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { type MotionValue } from "framer-motion";
 
+import fragmentShader from "./shaders/fragmentShader.glsl?raw";
+import vertexShader from "./shaders/vertexShader.glsl?raw";
+
 interface ShaderAboutStoryTransitionProps {
    readonly positionRect:{ [key: string]: number | undefined };
    readonly scrollY: MotionValue<number>;
@@ -20,6 +23,15 @@ const calculatedMeshPosition = useMemo(() => {
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
 }, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
+
+  const uniforms = useMemo(
+    () => ({
+      u_progress: { value: 0 },
+      u_scrollY:{value:0},
+      u_time: { value: 0 },
+    }),
+    []
+  );
 
   const updateShaderUniforms = useCallback(
     (scrollYValue: number) => {
@@ -40,7 +52,7 @@ useFrame((state, delta) => {
     return(
         <mesh ref={meshRef}>
             <planeGeometry args={[geometryWidth,geometryHeight,32,32]}/>
-            <shaderMaterial wireframe/>
+            <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms}/>
         </mesh>
     );
 };

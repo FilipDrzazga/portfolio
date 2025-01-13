@@ -66,7 +66,7 @@ const ShaderImageMaterial = ({
       shaderUniforms.u_mouse.value.copy(mousePosRef.current);
       shaderUniforms.u_decay.value = THREE.MathUtils.lerp(shaderUniforms.u_decay.value, isMouseOver ? 0.0 : 1.0, delta * 2);
       shaderUniforms.u_progress.value = Math.min(shaderUniforms.u_progress.value + delta / effectDuration, 3.0);
-      const targetY = scrollYValue * 0.95 + calculatedMeshPosition.topMeshPosition;
+      const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
       const targetX = calculatedMeshPosition.leftMeshPosition;
 
       meshRef.current.position.set(targetX, targetY, 0);
