@@ -34,9 +34,13 @@ const calculatedMeshPosition = useMemo(() => {
   );
 
   const updateShaderUniforms = useCallback(
-    (scrollYValue: number) => {
+    (clockTime: number, scrollYValue: number) => {
       if (!meshRef.current) return;
 
+      const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
+    const { uniforms: shaderUniforms } = shaderMaterial;
+
+      shaderUniforms.u_time.value = clockTime;
       const targetY = scrollYValue  + calculatedMeshPosition.topMeshPosition;
       const targetX = calculatedMeshPosition.leftMeshPosition;
 
@@ -46,7 +50,7 @@ const calculatedMeshPosition = useMemo(() => {
   );
 
 useFrame((state, delta) => {
-    updateShaderUniforms(scrollY.get());
+    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get());
 });
 
     return(
