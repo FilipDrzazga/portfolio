@@ -77,9 +77,12 @@ float cnoise(vec3 P){
 }
 
 void main() {
+  float area = smoothstep(0.1,0.9,vUv.y) * 8.0 - 0.5;
 
-    float noise = cnoise(vec3(vUv));
-    vec3 color = vec3(noise * u_time);
+  float noise = 0.5 * (cnoise(vec3(vUv * 5.0 ,u_time)) + 1.0);
+  float n = 1.0 - smoothstep(0.5,0.51,noise + area);
+    
+  vec3 color = vec3(n);
 
 
   gl_FragColor = vec4(color, 1.0);
