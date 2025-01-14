@@ -1,8 +1,8 @@
 varying vec2 vUv;
 
 uniform float u_time;
-
-
+uniform vec3 u_blackColor;
+uniform vec3 u_whiteColor;
 
 vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);}
 vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}
@@ -80,10 +80,13 @@ void main() {
   float area = smoothstep(0.1,0.9,vUv.y) * 8.0 - 0.5;
 
   float noise = 0.5 * (cnoise(vec3(vUv * 5.0 ,u_time)) + 1.0);
-  float n = 1.0 - smoothstep(0.5,0.51,noise + area);
-    
-  vec3 color = vec3(n);
+  // float n = 1.0 - smoothstep(0.5,0.51,noise + area);
+  float n2 = 1.0 - step(0.5,noise + area);
+
+     
+  vec3 color = vec3(n2);
+  vec3 color2 = n2 > 0.5 ? u_whiteColor : u_blackColor;
 
 
-  gl_FragColor = vec4(color, 1.0);
+  gl_FragColor = vec4(color2, 1.0);
 }

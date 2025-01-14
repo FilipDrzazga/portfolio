@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useCallback } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { type MotionValue } from "framer-motion";
@@ -7,28 +7,33 @@ import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
 interface ShaderAboutStoryTransitionProps {
-   readonly positionRect:{ [key: string]: number | undefined };
-   readonly scrollY: MotionValue<number>;
+  readonly positionRect: { [key: string]: number | undefined };
+  readonly scrollY: MotionValue<number>;
 }
 
-const ShaderAboutStoryTransition = ({positionRect:{ geometryWidth, geometryHeight, topMeshPos, leftMeshPos },scrollY}:ShaderAboutStoryTransitionProps)=>{
-const meshRef = useRef<THREE.Mesh>(null!);
+const ShaderAboutStoryTransition = ({
+  positionRect: { geometryWidth, geometryHeight, topMeshPos, leftMeshPos },
+  scrollY,
+}: ShaderAboutStoryTransitionProps) => {
+  const meshRef = useRef<THREE.Mesh>(null!);
 
-const calculatedMeshPosition = useMemo(() => {
+  const calculatedMeshPosition = useMemo(() => {
     if (topMeshPos && leftMeshPos !== undefined && leftMeshPos !== null && geometryHeight && geometryWidth) {
-    return {
+      return {
         topMeshPosition: -topMeshPos + window.innerHeight / 2 - geometryHeight / 2,
         leftMeshPosition: leftMeshPos - window.innerWidth / 2 + geometryWidth / 2,
-    };
+      };
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
-}, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
+  }, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
 
   const uniforms = useMemo(
     () => ({
       u_progress: { value: 0 },
-      u_scrollY:{value:0},
+      u_scrollY: { value: 0 },
       u_time: { value: 0 },
+      u_blackColor: { value: new THREE.Color("#121212") },
+      u_whiteColor: { value: new THREE.Color("#E9E9E9") },
     }),
     []
   );
@@ -38,10 +43,10 @@ const calculatedMeshPosition = useMemo(() => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
-    const { uniforms: shaderUniforms } = shaderMaterial;
+      const { uniforms: shaderUniforms } = shaderMaterial;
 
       shaderUniforms.u_time.value = clockTime;
-      const targetY = scrollYValue  + calculatedMeshPosition.topMeshPosition;
+      const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
       const targetX = calculatedMeshPosition.leftMeshPosition;
 
       meshRef.current.position.set(targetX, targetY, 0);
@@ -49,16 +54,16 @@ const calculatedMeshPosition = useMemo(() => {
     [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
   );
 
-useFrame((state, delta) => {
+  useFrame((state) => {
     updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get());
-});
+  });
 
-    return(
-        <mesh ref={meshRef}>
-            <planeGeometry args={[geometryWidth,geometryHeight,32,32]}/>
-            <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms}/>
-        </mesh>
-    );
+  return (
+    <mesh ref={meshRef}>
+      <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
+      <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
+    </mesh>
+  );
 };
 
 export default ShaderAboutStoryTransition;
