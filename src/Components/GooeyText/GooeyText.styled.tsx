@@ -7,7 +7,6 @@ interface Props {
 
 const SectionGooeyTextContainer = styled.section<Props>`
   position: sticky;
-  margin-top: 20vh;
   top: ${({ $height }) => `calc(45% - ${$height! / 2}px)`};
   display: flex;
   flex-wrap: wrap;
@@ -17,14 +16,21 @@ const SectionGooeyTextContainer = styled.section<Props>`
   color: ${({ theme }) => theme.colors.primary};
 `;
 const Svg = styled.svg`
+  display:none;
   width: 100%;
   height: 30vh;
 `
-const SvgText = styled.span<Props>`
+const SpanFiltered = styled.span<Props>`
   filter: ${({$filter})=>$filter};
   font-size: 1.8rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
+  &[data-specialchar="true"] {
+    margin-top: -0.35rem;
+    font-size: 2rem;
+    font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+  }
 `
 
-export {SectionGooeyTextContainer, Svg, SvgText};
+export {SectionGooeyTextContainer, Svg, SpanFiltered};

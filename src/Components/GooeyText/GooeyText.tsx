@@ -56,18 +56,13 @@ const GooeyText = ({scrollYProgress}:GooeyTextProps) => {
             <defs>
                 <filter id='gooey-text'>
                     <motion.feGaussianBlur in="SourceGraphic" stdDeviation={stdDeviation} result="blur" />
-                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -7" result="goo" />
+                    <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -8" result="goo" />
                 </filter>
             </defs>
-            {/* {Object.entries(wordsObj).map(([key,charrArr],id)=>{
-                return (
-                    <S.SvgText key={key} filter="url(#gooey-text)" x={id * 10} y='2rem'>{charrArr}</S.SvgText>
-                )
-            })} */}
         </S.Svg>
         {Object.entries(wordsObj).map(([key,charrArr],id)=>{
                 return (
-                    <S.SvgText key={key} $filter="url(#gooey-text)">{charrArr}</S.SvgText>
+                    <S.SpanFiltered data-specialchar={key.includes("special") ? "true" : "false"} key={key} $filter="url(#gooey-text)">{charrArr}</S.SpanFiltered>
                 )
             })}
     </S.SectionGooeyTextContainer>
