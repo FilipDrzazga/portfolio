@@ -1,6 +1,7 @@
 import {useState,useEffect, useRef} from 'react';
 import { motion, useTransform,useMotionValueEvent, type MotionValue} from "motion/react";
 import * as S from './GooeyText.styled';
+import { keyframes } from 'styled-components';
 
 const text1 = "A".split("");
 const text1special = "self-taught".split("");
@@ -51,15 +52,24 @@ const GooeyText = ({scrollYProgress}:GooeyTextProps) => {
 
     return(
     <S.SectionGooeyTextContainer $height={sectionContainerHeight} ref={sectionContainerRef}>
-        <svg style={{ width:'100%', height:'30vh'}} xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <S.Svg xmlns="http://www.w3.org/2000/svg" version="1.1">
             <defs>
                 <filter id='gooey-text'>
                     <motion.feGaussianBlur in="SourceGraphic" stdDeviation={stdDeviation} result="blur" />
                     <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 15 -7" result="goo" />
                 </filter>
             </defs>
-            <text filter="url(#gooey-text)" x='0' y='2rem' fontFamily="Lato-Regular" fontSize='2rem' fill="white" >Custom Font With Filter</text>
-        </svg>
+            {/* {Object.entries(wordsObj).map(([key,charrArr],id)=>{
+                return (
+                    <S.SvgText key={key} filter="url(#gooey-text)" x={id * 10} y='2rem'>{charrArr}</S.SvgText>
+                )
+            })} */}
+        </S.Svg>
+        {Object.entries(wordsObj).map(([key,charrArr],id)=>{
+                return (
+                    <S.SvgText key={key} $filter="url(#gooey-text)">{charrArr}</S.SvgText>
+                )
+            })}
     </S.SectionGooeyTextContainer>
     )
 };
