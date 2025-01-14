@@ -67,7 +67,7 @@ const AboutPage = () => {
       </S.SectionAboutContainer>
       <S.SectionAboutStory ref={sectionAboutStory}>
         <BounceSVG scrollYProgress={scrollYProgress} />
-        <GooeyText/>
+        <GooeyText scrollYProgress={scrollYProgress}/>
         {/* <BlurRevealText scrollYProgress={scrollYProgress} /> */}
       </S.SectionAboutStory>
     </>
