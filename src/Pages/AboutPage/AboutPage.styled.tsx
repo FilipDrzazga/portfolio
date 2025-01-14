@@ -68,7 +68,7 @@ const SectionAboutStory = styled.section`
   max-width: 100%;
   height: 200vh;
   background-color:transparent;
-  // background-color: ${({ theme }) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.padding.small};
 `;
 

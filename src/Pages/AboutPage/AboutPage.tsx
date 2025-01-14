@@ -6,14 +6,15 @@ import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
 
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
-import ShaderAboutStoryTransition from '../../Components/ShaderAboutStoryTransition/ShaderAboutStoryTransition';
+// import ShaderAboutStoryTransition from '../../Components/ShaderAboutStoryTransition/ShaderAboutStoryTransition';
 import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
-import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
+// import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 import myImg from "../../Images/mobile_man_face.jpg";
 import { OrbitControls } from "@react-three/drei";
+import GooeyText from "../../Components/GooeyText/GooeyText";
 
 const AboutPage = () => {
   const sectionAboutContainerRef = useRef<HTMLDivElement>(null);
@@ -21,7 +22,7 @@ const AboutPage = () => {
   const imgRef = useRef<HTMLImageElement>(null);
 
   const imgRect = useRect(imgRef);
-  const positionRect = useRect(sectionAboutStory);
+  // const positionRect = useRect(sectionAboutStory);
 
   const watfordTime = useWatfordTime();
 
@@ -47,7 +48,7 @@ const AboutPage = () => {
       >
         <OrbitControls />
         <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
-        <ShaderAboutStoryTransition positionRect={positionRect} scrollY={scrollY}/>
+        {/* <ShaderAboutStoryTransition positionRect={positionRect} scrollY={scrollY}/> */}
       </Canvas>
       <S.SectionAboutContainer ref={sectionAboutContainerRef}>
         <S.HeaderAbout>
@@ -66,7 +67,8 @@ const AboutPage = () => {
       </S.SectionAboutContainer>
       <S.SectionAboutStory ref={sectionAboutStory}>
         <BounceSVG scrollYProgress={scrollYProgress} />
-        <BlurRevealText scrollYProgress={scrollYProgress} />
+        <GooeyText/>
+        {/* <BlurRevealText scrollYProgress={scrollYProgress} /> */}
       </S.SectionAboutStory>
     </>
   );
