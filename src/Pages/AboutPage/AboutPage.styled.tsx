@@ -67,10 +67,14 @@ const SectionAboutStory = styled.section`
   position: relative;
   max-width: 100%;
   height: 200vh;
-  background-color:transparent;
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.padding.small};
 `;
+const SectionExperience = styled.section`
+  width:100%;
+  height200vh;
+
+`
 
 export {
   SectionAboutContainer,
@@ -81,4 +85,5 @@ export {
   ImgContainer,
   Img,
   SectionAboutStory,
+  SectionExperience
 };
