@@ -1,21 +1,9 @@
-import { useEffect } from 'react';
+import { spring } from 'motion';
 import * as S from './GooeyBloobs.styled';
-import { useMotionValue } from 'motion/react';
 
 const bloobsArr = [1,2,3,4,5,6,7,8,9,10,11];
 
 const GooeyBloobs = ()=>{
-    const xPos = useMotionValue(0);
-    const yPos = useMotionValue(0);
-
-    useEffect(()=>{
-        const interval = setInterval(()=>{
-            xPos.set(Math.random() * 50 -25);
-            yPos.set(Math.random() * 50 -25);
-        },1000)
-
-        return ()=> clearInterval(interval);
-    },[]);
 
     return(
         <S.BloobsContainer>
@@ -28,11 +16,11 @@ const GooeyBloobs = ()=>{
                     </filter>
                 </defs>
             </svg>
-            {/* <S.bloob animate={{x:[200,-200],transition:{duration:2,repeat:Infinity,repeatType:"reverse"}}}></S.bloob>
-            <S.bloob></S.bloob> */}
             {bloobsArr.map((bloob,id)=>{
+                const xPos = Math.random() * 80 - 40;
+                const yPos = Math.random() * 80 - 40;
                 return(
-                    <S.bloob key={id} animate={{x:xPos.get(),y:yPos.get()}} transition={{duration:2,repeat:Infinity,repeatType:'reverse'}}></S.bloob>
+                    <S.bloob key={id} animate={{x:xPos,y:yPos}} transition={{duration:3,repeat:Infinity,repeatType:'reverse',repeatDelay:id * 0.1,type:'spring', stiffness:10,damping:10}} ></S.bloob>
                 )
             })}
         </S.BloobsContainer>
