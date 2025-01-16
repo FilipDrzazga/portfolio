@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from "motion/react";
 
-const BloobsContainer = styled.div`
+const BloobsContainer = styled(motion.div)`
   width:100%;
   height:85%;
   filter:url('#goo');
