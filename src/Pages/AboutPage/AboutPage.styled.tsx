@@ -107,26 +107,6 @@ const SectionTitleExperience = styled.h2`
     margin-top: -1rem; 
   }
 `
-const BloobsContainer = styled.div`
-  width:100%;
-  height:85%;
-  filter:url('#goo');
-`
-const bloob = styled(motion.div)`
-  position:absolute;
-  background:#e97b7a;
-  left:50%;
-  top:50%;
-  width:100px;
-  height:100px;
-  line-height:100px;
-  text-align:center;
-  color:white;
-  font-size:40px;
-  border-radius:100%;
-  margin-top:-50px;
-  margin-left:-50px;
-`
 
 
 export {
@@ -142,6 +122,4 @@ export {
   SectionExperience,
   HeaderExperience,
   SectionTitleExperience,
-  BloobsContainer,
-  bloob
 };
