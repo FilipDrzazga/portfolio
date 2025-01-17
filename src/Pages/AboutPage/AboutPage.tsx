@@ -73,13 +73,13 @@ const AboutPage = () => {
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
-      <S.SectionTransition ref={sectionTransition} style={{backgroundColor:backgroundColor}} ></S.SectionTransition>
-      <S.SectionExperience>
+      {/* <S.SectionTransition ref={sectionTransition} style={{backgroundColor:backgroundColor}} ></S.SectionTransition> */}
+      {/* <S.SectionExperience>
         <S.HeaderExperience>
           <S.SectionTitleExperience>Usually <span>tools</span><br/>in use.</S.SectionTitleExperience>
         </S.HeaderExperience>
         <GooeyBloobs/>
-      </S.SectionExperience>
+      </S.SectionExperience> */}
     </>
   );
 };

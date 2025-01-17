@@ -119,7 +119,7 @@ const SpanCharacters = ({ children, ...props }: SpanCharactersProps) => {
   const { progress, range, keyValue } = props;
 
   const opacity = useTransform(progress, range, [0, 1]);
-  const blur = useTransform(progress, range, ["blur(40px)", "blur(0px)"]);
+  const blur = useTransform(progress, range, ["blur(2px)", "blur(0px)"]);
   const scale = useTransform(progress, range, [0, 1]);
 
   return (

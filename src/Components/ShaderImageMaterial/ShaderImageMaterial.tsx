@@ -88,7 +88,7 @@ const ShaderImageMaterial = ({
   }, []);
 
   return (
-    <mesh rotation-y={-0.2} ref={meshRef} onPointerMove={handleMouseMove}>
+    <mesh ref={meshRef} onPointerMove={handleMouseMove}>
       <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
