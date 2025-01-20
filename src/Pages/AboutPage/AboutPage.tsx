@@ -5,20 +5,20 @@ import { useScroll, useTransform } from "motion/react";
 import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
 
+import ScrollToExplore from "../../Components/ScrollToExplore/ScrollToExplore";
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
-import InfinityTextScroll from "../../Components/InfinityTextScroll/InfinityTextScroll";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
 import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 import myImg from "../../Images/mobile_man_face.jpg";
 import { OrbitControls } from "@react-three/drei";
-import GooeyBloobs from "../../Components/GooeyBloobs/GooeyBloobs";
+// import GooeyBloobs from "../../Components/GooeyBloobs/GooeyBloobs";
 
 const AboutPage = () => {
   const sectionAboutContainerRef = useRef<HTMLDivElement>(null);
   const sectionAboutStory = useRef<HTMLDivElement>(null);
-  const sectionTransition = useRef<HTMLDivElement>(null);
+  // const sectionTransition = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   const imgRect = useRect(imgRef);
@@ -30,10 +30,10 @@ const AboutPage = () => {
     target: sectionAboutStory,
     offset: ["start end", "end end"],
   });
-  const { scrollYProgress: sectionTransitionScrollYProgress } = useScroll({
-    target: sectionTransition,
-    offset: ["start end", "end end"],
-  });
+  // const { scrollYProgress: sectionTransitionScrollYProgress } = useScroll({
+  //   target: sectionTransition,
+  //   offset: ["start end", "end end"],
+  // });
 
   const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
@@ -41,7 +41,7 @@ const AboutPage = () => {
     return newFovPosition;
   }, []);
 
-  const backgroundColor = useTransform(sectionTransitionScrollYProgress, [0, 0.48, 0.8], ["#121212", "#121212", "#E9E9E9"]);
+  // const backgroundColor = useTransform(sectionTransitionScrollYProgress, [0, 0.48, 0.8], ["#121212", "#121212", "#E9E9E9"]);
 
   return (
     <>
@@ -67,33 +67,12 @@ const AboutPage = () => {
             <S.Img src={myImg} alt="Photo of mine face"></S.Img>
           </S.ImgContainer>
         </S.HeaderAbout>
-        <InfinityTextScroll />
+        <ScrollToExplore />
       </S.SectionAboutContainer>
       <S.SectionAboutStory ref={sectionAboutStory}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
-<<<<<<< HEAD
-      <S.SectionTransition ref={sectionTransition} style={{ backgroundColor: backgroundColor }}></S.SectionTransition>
-      <S.SectionExperience>
-=======
-      {/* <S.SectionTransition ref={sectionTransition} style={{backgroundColor:backgroundColor}} ></S.SectionTransition> */}
-      {/* <S.SectionExperience>
->>>>>>> f49cbebf1014019ddd97514193de960e9b556392
-        <S.HeaderExperience>
-          <S.SectionTitleExperience>
-            Usually <span>tools</span>
-            <br />
-            in use.
-          </S.SectionTitleExperience>
-        </S.HeaderExperience>
-<<<<<<< HEAD
-        <GooeyBloobs />
-      </S.SectionExperience>
-=======
-        <GooeyBloobs/>
-      </S.SectionExperience> */}
->>>>>>> f49cbebf1014019ddd97514193de960e9b556392
     </>
   );
 };

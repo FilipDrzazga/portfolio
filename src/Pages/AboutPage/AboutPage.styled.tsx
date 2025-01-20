@@ -23,7 +23,7 @@ const TitleAboutFirst = styled.h2`
   width: 100%;
   font-size: 2.5rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-weight: 300;
   letter-spacing: -0.15rem;
   word-spacing: -0.15rem;
   color: ${({ theme }) => theme.colors.secondary};
@@ -72,42 +72,41 @@ const SectionAboutStory = styled.section`
   padding: ${({ theme }) => theme.padding.small};
 `;
 const SectionTransition = styled(motion.section)`
-  width:100%;
-  height:200vh;
-`
+  width: 100%;
+  height: 200vh;
+`;
 const SectionExperience = styled.section`
-width:100%;
-height:100vh;
-padding: ${({ theme }) => theme.padding.small};
-`
+  width: 100%;
+  height: 100vh;
+  padding: ${({ theme }) => theme.padding.small};
+`;
 const HeaderExperience = styled.header`
-width:100%;
-height:15%;
-color:${({theme})=>theme.colors.secondary};
-`
+  width: 100%;
+  height: 15%;
+  color: ${({ theme }) => theme.colors.secondary};
+`;
 const SectionTitleExperience = styled.h2`
-  width:100%;
+  width: 100%;
   margin-top: -0.3rem;
-  font-size: ${({theme})=>theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.large};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   letter-spacing: -0.15rem;
   word-spacing: 0.15rem;
-  line-height:-3rem;
-  span{
-    font-size: ${({theme})=>theme.fontSize.xl};
+  line-height: -3rem;
+  span {
+    font-size: ${({ theme }) => theme.fontSize.xl};
     font-family: ${({ theme }) => theme.fontFamily.playfairBold};
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     letter-spacing: -0.15rem;
     word-spacing: -0.15rem;
   }
-  br{
+  br {
     display: block;
     content: "";
-    margin-top: -1rem; 
+    margin-top: -1rem;
   }
-`
-
+`;
 
 export {
   SectionAboutContainer,
