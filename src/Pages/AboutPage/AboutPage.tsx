@@ -30,7 +30,7 @@ const AboutPage = () => {
     target: sectionAboutStory,
     offset: ["start end", "end end"],
   });
-  const { scrollYProgress:SectionTransitionScrollYProgress } = useScroll({
+  const { scrollYProgress: sectionTransitionScrollYProgress } = useScroll({
     target: sectionTransition,
     offset: ["start end", "end end"],
   });
@@ -41,7 +41,7 @@ const AboutPage = () => {
     return newFovPosition;
   }, []);
 
-  const backgroundColor = useTransform(SectionTransitionScrollYProgress,[0,0.48,0.8],["#121212","#121212","#E9E9E9"]);
+  const backgroundColor = useTransform(sectionTransitionScrollYProgress, [0, 0.48, 0.8], ["#121212", "#121212", "#E9E9E9"]);
 
   return (
     <>
@@ -73,12 +73,16 @@ const AboutPage = () => {
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
-      <S.SectionTransition ref={sectionTransition} style={{backgroundColor:backgroundColor}} ></S.SectionTransition>
+      <S.SectionTransition ref={sectionTransition} style={{ backgroundColor: backgroundColor }}></S.SectionTransition>
       <S.SectionExperience>
         <S.HeaderExperience>
-          <S.SectionTitleExperience>Usually <span>tools</span><br/>in use.</S.SectionTitleExperience>
+          <S.SectionTitleExperience>
+            Usually <span>tools</span>
+            <br />
+            in use.
+          </S.SectionTitleExperience>
         </S.HeaderExperience>
-        <GooeyBloobs/>
+        <GooeyBloobs />
       </S.SectionExperience>
     </>
   );

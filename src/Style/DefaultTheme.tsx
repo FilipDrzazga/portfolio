@@ -29,6 +29,7 @@ declare module "styled-components" {
       bold: number;
     };
     fontFamily: {
+      Montserrat: string;
       latoLight: string;
       latoRegular: string;
       latoBold: string;
@@ -65,6 +66,7 @@ const lightTheme: DefaultTheme = {
     bold: 700,
   },
   fontFamily: {
+    Montserrat: "Montserrat",
     latoLight: "Lato-Light",
     latoRegular: "Lato-Regular",
     latoBold: "Lato-Bold",
@@ -97,6 +99,7 @@ const darkTheme = {
     bold: 700,
   },
   fontFamily: {
+    Montserrat: "Montserrat",
     latoLight: "Lato-Light",
     latoRegular: "Lato-Regular",
     latoBold: "Lato-Bold",
