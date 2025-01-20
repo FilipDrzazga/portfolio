@@ -73,8 +73,13 @@ const AboutPage = () => {
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
+<<<<<<< HEAD
       <S.SectionTransition ref={sectionTransition} style={{ backgroundColor: backgroundColor }}></S.SectionTransition>
       <S.SectionExperience>
+=======
+      {/* <S.SectionTransition ref={sectionTransition} style={{backgroundColor:backgroundColor}} ></S.SectionTransition> */}
+      {/* <S.SectionExperience>
+>>>>>>> f49cbebf1014019ddd97514193de960e9b556392
         <S.HeaderExperience>
           <S.SectionTitleExperience>
             Usually <span>tools</span>
@@ -82,8 +87,13 @@ const AboutPage = () => {
             in use.
           </S.SectionTitleExperience>
         </S.HeaderExperience>
+<<<<<<< HEAD
         <GooeyBloobs />
       </S.SectionExperience>
+=======
+        <GooeyBloobs/>
+      </S.SectionExperience> */}
+>>>>>>> f49cbebf1014019ddd97514193de960e9b556392
     </>
   );
 };
