@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-const SectionAboutContainer = styled.section`
+const SectionAboutHero = styled.section`
   position: relative;
-  top: 0;
-  left: 0;
   width: 100%;
-  min-height: 93vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -50,7 +48,7 @@ const WatfordTime = styled.span`
 `;
 const ImgContainer = styled.div`
   position: absolute;
-  top: 8%;
+  top: 11%;
   right: ${({ theme }) => theme.padding.small};
   content: "";
   width: 60%;
@@ -64,7 +62,7 @@ const Img = styled.img`
   object-fit: cover;
   opacity: 0;
 `;
-const SectionAboutStory = styled.section`
+const SectionAboutStory = styled(motion.section)`
   position: relative;
   max-width: 100%;
   height: 200vh;
@@ -109,7 +107,7 @@ const SectionTitleExperience = styled.h2`
 `;
 
 export {
-  SectionAboutContainer,
+  SectionAboutHero,
   HeaderAbout,
   TitleAboutFirst,
   TitleAboutSecond,

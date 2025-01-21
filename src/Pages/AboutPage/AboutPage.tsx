@@ -1,6 +1,6 @@
-import { useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useScroll, useTransform, useInView } from "motion/react";
+import { useScroll, useTransform } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
@@ -17,14 +17,15 @@ import { OrbitControls } from '@react-three/drei';
 // import GooeyBloobs from "../../Components/GooeyBloobs/GooeyBloobs";
 
 const AboutPage = () => {
-  const sectionAboutContainerRef = useRef<HTMLDivElement>(null);
+  const SectionAboutHeroRef = useRef<HTMLDivElement>(null);
   const sectionAboutStoryRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   // const sectionTransition = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const imgRect = useRect(imgRef);
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   const watfordTime = useWatfordTime();
-  const isInView = useInView(sectionAboutStoryRef,{amount:0.5});
 
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll({
@@ -44,9 +45,27 @@ const AboutPage = () => {
 
   // const backgroundColor = useTransform(sectionTransitionScrollYProgress, [0, 0.48, 0.8], ["#121212", "#121212", "#E9E9E9"]);
 
+  useEffect(() => {
+    const callback = (entries: any[])=>{
+      entries.forEach((entry: any) => {
+        console.log(entry);
+        setIsIntersecting(entry.isIntersecting);
+      });
+    };
+    const options = {
+      threshold: 0.5,
+      rootMargin: "100px 0px 0px 200px" 
+    }
+    const observer = new IntersectionObserver(callback,options);
+
+    observer.observe(sectionAboutStoryRef.current!);
+    observer.observe(ref.current!)
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-    <Navigation isInView={isInView} />
       <Canvas
         style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: -1 }}
         gl={{ alpha: true }}
@@ -56,7 +75,8 @@ const AboutPage = () => {
         <OrbitControls />
         <ShaderImageMaterial imageRect={imgRect} scrollY={scrollY} />
       </Canvas>
-      <S.SectionAboutContainer ref={sectionAboutContainerRef}>
+    <Navigation isInView={false} />
+      <S.SectionAboutHero ref={SectionAboutHeroRef}>
         <S.HeaderAbout>
           <S.TitleAboutFirst>
             Creative<span> Developer</span>
@@ -70,11 +90,14 @@ const AboutPage = () => {
           </S.ImgContainer>
         </S.HeaderAbout>
         <ScrollToExplore/>
-      </S.SectionAboutContainer>
+      </S.SectionAboutHero>
       <S.SectionAboutStory ref={sectionAboutStoryRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>
+      <section ref={ref} style={{width:'100%', height:'200vh'}}>
+
+      </section>
     </>
   );
 };

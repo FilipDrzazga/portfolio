@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-interface Props {
-  $isInView:boolean;
-}
-
-const SectionNavigation = styled.section<Props>`
+const SectionNavigation = styled.section`
   position: fixed;
   width: 100%;
   height: 7vh;

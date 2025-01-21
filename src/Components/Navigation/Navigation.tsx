@@ -28,7 +28,7 @@ const Navigation = ({isInView}:NavigationProps) => {
   const [isSelected, setIsSelected] = useState(tabs[0]);
 
   return (
-    <S.SectionNavigation $isInView={isInView}>
+    <S.SectionNavigation>
       <S.HeaderNavigation>
         <S.TitleNavigation variants={navigationVariants} initial='initial' animate={isInView ? 'animate':'initial'}>FILIPDRZAZGA</S.TitleNavigation>
         <S.NavNavigation>
