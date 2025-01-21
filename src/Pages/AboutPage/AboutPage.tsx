@@ -1,10 +1,11 @@
 import { useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useScroll, useTransform } from "motion/react";
+import { useScroll, useTransform, useInView } from "motion/react";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
 
+import Navigation from "../../Components/Navigation/Navigation";
 import ScrollToExplore from "../../Components/ScrollToExplore/ScrollToExplore";
 import ShaderImageMaterial from "../../Components/ShaderImageMaterial/ShaderImageMaterial";
 import BounceSVG from "../../Components/BounceSVG/BounceSVG";
@@ -12,22 +13,22 @@ import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 import myImg from "../../Images/mobile_man_face.jpg";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls } from '@react-three/drei';
 // import GooeyBloobs from "../../Components/GooeyBloobs/GooeyBloobs";
 
 const AboutPage = () => {
   const sectionAboutContainerRef = useRef<HTMLDivElement>(null);
-  const sectionAboutStory = useRef<HTMLDivElement>(null);
+  const sectionAboutStoryRef = useRef<HTMLDivElement>(null);
   // const sectionTransition = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-
   const imgRect = useRect(imgRef);
 
   const watfordTime = useWatfordTime();
+  const isInView = useInView(sectionAboutStoryRef,{amount:0.5});
 
   const { scrollY } = useScroll();
   const { scrollYProgress } = useScroll({
-    target: sectionAboutStory,
+    target: sectionAboutStoryRef,
     offset: ["start end", "end end"],
   });
   // const { scrollYProgress: sectionTransitionScrollYProgress } = useScroll({
@@ -45,6 +46,7 @@ const AboutPage = () => {
 
   return (
     <>
+    <Navigation isInView={isInView} />
       <Canvas
         style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: -1 }}
         gl={{ alpha: true }}
@@ -67,9 +69,9 @@ const AboutPage = () => {
             <S.Img src={myImg} alt="Photo of mine face"></S.Img>
           </S.ImgContainer>
         </S.HeaderAbout>
-        <ScrollToExplore />
+        <ScrollToExplore/>
       </S.SectionAboutContainer>
-      <S.SectionAboutStory ref={sectionAboutStory}>
+      <S.SectionAboutStory ref={sectionAboutStoryRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
       </S.SectionAboutStory>

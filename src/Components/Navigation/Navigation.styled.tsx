@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-const SectionNavigation = styled.section`
+interface Props {
+  $isInView:boolean;
+}
+
+const SectionNavigation = styled.section<Props>`
   position: fixed;
   width: 100%;
   height: 7vh;
@@ -17,7 +21,7 @@ const HeaderNavigation = styled.header`
   height: 100%;
   display: flex;
 `;
-const TitleNavigation = styled.h1`
+const TitleNavigation = styled(motion.h1)`
   width: 50%;
   height: 100%;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
@@ -43,7 +47,7 @@ const LiNavigation = styled.li`
   align-items: center;
   list-style: none;
 `;
-const ANavigation = styled.a`
+const ANavigation = styled(motion.a)`
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   font-size: ${({ theme }) => theme.fontSize.small};
