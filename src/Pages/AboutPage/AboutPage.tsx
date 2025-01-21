@@ -1,6 +1,7 @@
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useScroll, useTransform } from "motion/react";
+import { useScroll } from "motion/react";
+import { OrbitControls } from "@react-three/drei";
 
 import useWatfordTime from "../../hooks/useWatfordTime";
 import useRect from "../../hooks/useRect";
@@ -14,13 +15,10 @@ import BlurRevealText from "../../Components/BlurRevealText/BlurRevealText";
 
 import * as S from "./AboutPage.styled";
 import myImg from "../../Images/mobile_man_face.jpg";
-import { OrbitControls } from "@react-three/drei";
-// import GooeyBloobs from "../../Components/GooeyBloobs/GooeyBloobs";
 
 const AboutPage = () => {
   const SectionAboutHeroRef = useRef<HTMLDivElement>(null);
   const sectionAboutStoryRef = useRef<HTMLDivElement>(null);
-  // const sectionTransition = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const imgRect = useRect(imgRef);
 
@@ -32,18 +30,12 @@ const AboutPage = () => {
     target: sectionAboutStoryRef,
     offset: ["start end", "end end"],
   });
-  // const { scrollYProgress: sectionTransitionScrollYProgress } = useScroll({
-  //   target: sectionTransition,
-  //   offset: ["start end", "end end"],
-  // });
 
   const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
     const newFovPosition = 2 * Math.atan(window.innerHeight / 2 / cameraZPosition) * (180 / Math.PI);
     return newFovPosition;
   }, []);
-
-  // const backgroundColor = useTransform(sectionTransitionScrollYProgress, [0, 0.48, 0.8], ["#121212", "#121212", "#E9E9E9"]);
 
   return (
     <>
