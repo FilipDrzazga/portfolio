@@ -1,8 +1,9 @@
-import { useEffect, useRef, useMemo, useCallback } from "react";
-import { type MotionValue } from "framer-motion";
+import { useEffect, useRef, useMemo, useCallback, useContext } from "react";
 import * as THREE from "three";
 import { useFrame, type ThreeEvent } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
+import { PageContext } from "../../context/PageContext";
+import { useScroll } from "framer-motion";
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
@@ -10,14 +11,12 @@ import vertexShader from "./shaders/vertexShader.glsl?raw";
 import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
-interface ShaderImageMaterialProps {
-  readonly imageRect: DOMRect;
-  readonly scrollY: MotionValue<number>;
-}
-
-const ShaderImageMaterial = ({ imageRect: { width, height, top, left }, scrollY }: ShaderImageMaterialProps) => {
+const ShaderImageMaterial = () => {
+  const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
+
+  const { scrollY } = useScroll();
 
   const imageTexture = useTexture(image);
   const displacementTexture = useTexture(displacement);
@@ -25,14 +24,14 @@ const ShaderImageMaterial = ({ imageRect: { width, height, top, left }, scrollY 
   const effectDuration = 3.0;
 
   const calculatedMeshPosition = useMemo(() => {
-    if (top && left && height && width) {
+    if (ctxPage?.rect?.top && ctxPage.rect.left && ctxPage.rect.height && ctxPage.rect.width) {
       return {
-        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
-        leftMeshPosition: left - window.innerWidth / 2 + width / 2,
+        topMeshPosition: -ctxPage?.rect?.top + window.innerHeight / 2 - ctxPage.rect.height / 2,
+        leftMeshPosition: ctxPage.rect.left - window.innerWidth / 2 + ctxPage.rect.width / 2,
       };
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [top, left, height, width]);
+  }, [ctxPage?.rect?.top, ctxPage?.rect?.left, ctxPage?.rect?.height, ctxPage?.rect?.width]);
 
   const uniforms = useMemo(
     () => ({
@@ -86,7 +85,7 @@ const ShaderImageMaterial = ({ imageRect: { width, height, top, left }, scrollY 
 
   return (
     <mesh ref={meshRef} onPointerMove={handleMouseMove}>
-      <planeGeometry args={[width, height, 32, 32]} />
+      <planeGeometry args={[ctxPage?.rect?.width, ctxPage?.rect?.height, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );

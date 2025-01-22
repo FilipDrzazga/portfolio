@@ -1,18 +1,10 @@
-import { useMemo, useContext } from "react";
+import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { MotionValue } from "framer-motion";
 
 import ShaderImageMaterial from "../../ShaderImageMaterial/ShaderImageMaterial";
-import { PageContext } from "../../../context/PageContext";
 
-interface SceneProps {
-  scrollY: MotionValue<number>;
-}
-
-const Scene = ({ scrollY }: SceneProps) => {
-  const ctxPage = useContext(PageContext);
-
+const Scene = () => {
   const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
     const newFovPosition = 2 * Math.atan(window.innerHeight / 2 / cameraZPosition) * (180 / Math.PI);
@@ -27,7 +19,7 @@ const Scene = ({ scrollY }: SceneProps) => {
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
       <OrbitControls />
-      <ShaderImageMaterial imageRect={ctxPage?.rect || new DOMRect()} scrollY={scrollY} />
+      <ShaderImageMaterial />
     </Canvas>
   );
 };
