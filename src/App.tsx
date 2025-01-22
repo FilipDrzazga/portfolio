@@ -1,4 +1,5 @@
 // import { useState } from "react";
+import PageContextProvider from "./context/PageContext";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "./Style/GlobalStyle";
 import { lightTheme, darkTheme } from "./Style/DefaultTheme";
@@ -15,10 +16,12 @@ export default function App() {
 
   return (
     // <ThemeProvider theme={theme === "lightTheme" ? lightTheme : darkTheme}> Originalline
-    <ThemeProvider theme={lightTheme}>
-      <GlobalStyle />
-      {/* <LandingPage /> */}
-      <AboutPage />
-    </ThemeProvider>
+    <PageContextProvider>
+      <ThemeProvider theme={lightTheme}>
+        <GlobalStyle />
+        {/* <LandingPage /> */}
+        <AboutPage />
+      </ThemeProvider>
+    </PageContextProvider>
   );
 }

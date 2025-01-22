@@ -110,7 +110,7 @@ const AboutMeSection = styled.section`
   height: 250vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 5rem;
   background-color: ${({ theme }) => theme.colors.secondary};
@@ -126,16 +126,16 @@ const AboutMeImg = styled.img`
   object-fit: cover;
 `;
 const AboutMeTxtContainer = styled.div`
-width: 100%;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin-top:3rem;
-gap:2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  gap: 2rem;
 `;
 const AboutMeHeader = styled.header`
-  width:100%;
+  width: 100%;
 `;
 const AboutMeTitle = styled.h2`
   width: 100%;
@@ -147,22 +147,21 @@ const AboutMeTitle = styled.h2`
   color: ${({ theme }) => theme.colors.primary};
 `;
 const AboutMeDetailsContainer = styled.div`
-  width:80%;
-  align-self:flex-end;
-
-`
+  width: 80%;
+  align-self: flex-end;
+`;
 const AboutMeTxt = styled.p`
-  width:100%;
-  margin-top:3rem;
+  width: 100%;
+  margin-top: 3rem;
   font-size: 1rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.primary};
-  line-height:1.5rem;
-  text-align:start;
+  line-height: 1.5rem;
+  text-align: start;
 `;
 const AboutMeSpan = styled.span`
-  color:${({theme})=>theme.colors.accent};
+  color: ${({ theme }) => theme.colors.accent};
 `;
 
 export {
@@ -186,5 +185,5 @@ export {
   AboutMeTitle,
   AboutMeDetailsContainer,
   AboutMeTxt,
-  AboutMeSpan
+  AboutMeSpan,
 };
