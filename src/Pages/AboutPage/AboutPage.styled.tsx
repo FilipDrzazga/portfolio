@@ -107,12 +107,12 @@ const SectionTitleExperience = styled.h2`
 `;
 const AboutMeSection = styled.section`
   width: 100%;
-  height: 200vh;
+  height: 250vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
+  gap: 5rem;
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.padding.small};
 `;
@@ -125,30 +125,14 @@ const AboutMeImg = styled.img`
   max-width: 100%;
   object-fit: cover;
 `;
-const AboutMeImgTxtContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.3rem;
-`;
-const AboutMeImgTxt = styled.span`
-  width: 100%;
-  text-align: right;
-  font-size: 0.7rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  color: ${({ theme }) => theme.colors.primary};
-`;
 const AboutMeTxtContainer = styled.div`
-  width: 100%;
-  disaply: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:5rem;
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top:3rem;
+gap:2rem;
 `;
 const AboutMeHeader = styled.header`
   width:100%;
@@ -163,10 +147,22 @@ const AboutMeTitle = styled.h2`
   color: ${({ theme }) => theme.colors.primary};
 `;
 const AboutMeDetailsContainer = styled.div`
-  width:100%;
+  width:80%;
+  align-self:flex-end;
+
 `
 const AboutMeTxt = styled.p`
   width:100%;
+  margin-top:3rem;
+  font-size: 1rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  color: ${({ theme }) => theme.colors.primary};
+  line-height:1.5rem;
+  text-align:start;
+`;
+const AboutMeSpan = styled.span`
+  color:${({theme})=>theme.colors.accent};
 `;
 
 export {
@@ -185,11 +181,10 @@ export {
   AboutMeSection,
   AboutMeImgContainer,
   AboutMeImg,
-  AboutMeImgTxt,
-  AboutMeImgTxtContainer,
   AboutMeTxtContainer,
   AboutMeHeader,
   AboutMeTitle,
   AboutMeDetailsContainer,
-  AboutMeTxt
+  AboutMeTxt,
+  AboutMeSpan
 };

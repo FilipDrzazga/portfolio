@@ -75,10 +75,6 @@ const AboutPage = () => {
       <S.AboutMeSection ref={sectionAboutDescriptionRef}>
         <S.AboutMeImgContainer>
           <S.AboutMeImg src={myImg} alt="My photo"></S.AboutMeImg>
-          <S.AboutMeImgTxtContainer>
-            <S.AboutMeImgTxt>INTERACTIVE FRONT-END DEVELOPER</S.AboutMeImgTxt>
-            <S.AboutMeImgTxt>BASED IN WATFORD(UK) AND WORKING GLOBALLY.</S.AboutMeImgTxt>
-          </S.AboutMeImgTxtContainer>
         </S.AboutMeImgContainer>
         <S.AboutMeTxtContainer>
           <S.AboutMeHeader>
@@ -88,16 +84,17 @@ const AboutPage = () => {
           </S.AboutMeHeader>
           <S.AboutMeDetailsContainer>
             <S.AboutMeTxt>
-              I’m a self-taught front-end developer currently based in Watford. For the past 4 years, I’ve been diving deep into the
+              I’m a self-taught front-end developer currently based in Watford. For the past four years, I’ve been diving deep into the
               world of web development, mastering JavaScript, React, and a range of other libraries essential for creating dynamic
               and functional websites or applications.
-            </S.AboutMeTxt>
-          </S.AboutMeDetailsContainer>
-          <S.AboutMeDetailsContainer>
+            </S.AboutMeTxt>     
               <S.AboutMeTxt>
                 In my free time, I’m always eager to learn more and push my skills further in this ever-evolving field. Whether it’s
                 exploring new technologies or refining my existing knowledge, I’m passionate about building digital experiences that
                 are both intuitive and engaging.
+              </S.AboutMeTxt>
+              <S.AboutMeTxt>
+                For enquiries, collaboration requests or job opportunities, don't hesitate to <S.AboutMeSpan>get in touch!</S.AboutMeSpan>
               </S.AboutMeTxt>
           </S.AboutMeDetailsContainer>
         </S.AboutMeTxtContainer>

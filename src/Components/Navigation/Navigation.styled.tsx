@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 const SectionNavigation = styled.section`
   position: fixed;
   width: 100%;
-  height: 7vh;
+  height: 10vh;
   padding: ${({ theme }) => theme.padding.small};
   background-color: transparent;
   backdrop-filter: blur(5px);
@@ -35,6 +35,7 @@ const UlNavigation = styled.ul`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items:flex-start;
 `;
 const LiNavigation = styled.li`
   position: relative;
