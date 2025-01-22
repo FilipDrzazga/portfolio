@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-const SectionAboutHero = styled.section`
+const HeroSection = styled.section`
   position: relative;
   width: 100%;
   min-height: 100vh;
@@ -12,12 +12,12 @@ const SectionAboutHero = styled.section`
   overflow: hidden;
   z-index: 999;
 `;
-const HeaderAbout = styled.header`
+const HeroHeader = styled.header`
   margin-top: 7rem;
   display: flex;
   flex-direction: column;
 `;
-const TitleAboutFirst = styled.h2`
+const HeroTitleFirst = styled.h2`
   width: 100%;
   font-size: 2.5rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
@@ -34,10 +34,10 @@ const TitleAboutFirst = styled.h2`
     color: ${({ theme }) => theme.colors.secondary};
   }
 `;
-const TitleAboutSecond = styled(TitleAboutFirst)`
+const HeroTitleSecond = styled(HeroTitleFirst)`
   margin-top: -1rem;
 `;
-const WatfordTime = styled.span`
+const HeroWatfordTime = styled.span`
   margin-top: -0.2rem;
   padding-left: 0.3rem;
   font-size: ${({ theme }) => theme.fontSize.small};
@@ -56,13 +56,13 @@ const HeroImgContainer = styled.div`
   z-index: -1;
   overflow: hidden;
 `;
-const Img = styled.img`
+const HeroImg = styled.img`
   width: auto;
   max-width: 100%;
   object-fit: cover;
   opacity: 0;
 `;
-const SectionAboutStory = styled(motion.section)`
+const AboutMeIntroSection = styled(motion.section)`
   position: relative;
   max-width: 100%;
   height: 200vh;
@@ -105,7 +105,7 @@ const SectionTitleExperience = styled.h2`
     margin-top: -1rem;
   }
 `;
-const SectionAboutDescription = styled.section`
+const AboutMeSection = styled.section`
   width: 100%;
   height: 200vh;
   display: flex;
@@ -116,16 +116,16 @@ const SectionAboutDescription = styled.section`
   background-color: ${({ theme }) => theme.colors.secondary};
   padding: ${({ theme }) => theme.padding.small};
 `;
-const ImgDescriptionContainer = styled.div`
+const AboutMeImgContainer = styled.div`
   width: 100%;
   height: auto;
 `;
-const ImgDescription = styled.img`
+const AboutMeImg = styled.img`
   width: auto;
   max-width: 100%;
   object-fit: cover;
 `;
-const SpanImgDescriptionContainer = styled.div`
+const AboutMeImgTxtContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -134,7 +134,7 @@ const SpanImgDescriptionContainer = styled.div`
   align-items: center;
   margin-top: 0.3rem;
 `;
-const SpanImgDescription = styled.span`
+const AboutMeImgTxt = styled.span`
   width: 100%;
   text-align: right;
   font-size: 0.7rem;
@@ -142,14 +142,18 @@ const SpanImgDescription = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.primary};
 `;
-const DescriptionContainer = styled.div`
+const AboutMeTxtContainer = styled.div`
   width: 100%;
   disaply: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap:5rem;
 `;
-const DescriptionTitle = styled.h2`
+const AboutMeHeader = styled.header`
+  width:100%;
+`;
+const AboutMeTitle = styled.h2`
   width: 100%;
   text-align: justify;
   text-align-last: right;
@@ -158,25 +162,34 @@ const DescriptionTitle = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.primary};
 `;
+const AboutMeDetailsContainer = styled.div`
+  width:100%;
+`
+const AboutMeTxt = styled.p`
+  width:100%;
+`;
 
 export {
-  SectionAboutHero,
-  HeaderAbout,
-  TitleAboutFirst,
-  TitleAboutSecond,
-  WatfordTime,
+  HeroSection,
+  HeroHeader,
+  HeroTitleFirst,
+  HeroTitleSecond,
+  HeroWatfordTime,
   HeroImgContainer,
-  Img,
-  SectionAboutStory,
+  HeroImg,
+  AboutMeIntroSection,
   SectionTransition,
   SectionExperience,
   HeaderExperience,
   SectionTitleExperience,
-  SectionAboutDescription,
-  ImgDescriptionContainer,
-  ImgDescription,
-  SpanImgDescription,
-  SpanImgDescriptionContainer,
-  DescriptionContainer,
-  DescriptionTitle,
+  AboutMeSection,
+  AboutMeImgContainer,
+  AboutMeImg,
+  AboutMeImgTxt,
+  AboutMeImgTxtContainer,
+  AboutMeTxtContainer,
+  AboutMeHeader,
+  AboutMeTitle,
+  AboutMeDetailsContainer,
+  AboutMeTxt
 };

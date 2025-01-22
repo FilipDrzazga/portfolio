@@ -53,51 +53,55 @@ const AboutPage = () => {
       <Navigation
         isInView={isIntersectingAboutStorySection ? isIntersectingAboutStorySection : isIntersectingAboutDescriptionSection}
       />
-      <S.SectionAboutHero ref={sectionAboutHeroRef}>
-        <S.HeaderAbout>
-          <S.TitleAboutFirst>
+      <S.HeroSection ref={sectionAboutHeroRef}>
+        <S.HeroHeader>
+          <S.HeroTitleFirst>
             Creative<span> Developer</span>
-          </S.TitleAboutFirst>
-          <S.TitleAboutSecond>
+          </S.HeroTitleFirst>
+          <S.HeroTitleSecond>
             <span>Based in</span> Watford.
-          </S.TitleAboutSecond>
-          <S.WatfordTime>{watfordTime}</S.WatfordTime>
+          </S.HeroTitleSecond>
+          <S.HeroWatfordTime>{watfordTime}</S.HeroWatfordTime>
           <S.HeroImgContainer ref={imgRef}>
-            <S.Img src={myImg} alt="Photo of mine face"></S.Img>
+            <S.HeroImg src={myImg} alt="Photo of mine face"></S.HeroImg>
           </S.HeroImgContainer>
-        </S.HeaderAbout>
+        </S.HeroHeader>
         <ScrollToExplore />
-      </S.SectionAboutHero>
-      <S.SectionAboutStory ref={sectionAboutStoryRef}>
+      </S.HeroSection>
+      <S.AboutMeIntroSection ref={sectionAboutStoryRef}>
         <BounceSVG scrollYProgress={scrollYProgress} />
         <BlurRevealText scrollYProgress={scrollYProgress} />
-      </S.SectionAboutStory>
-      <S.SectionAboutDescription ref={sectionAboutDescriptionRef}>
-        <S.ImgDescriptionContainer>
-          <S.ImgDescription src={myImg} alt="My photo"></S.ImgDescription>
-          {/* <S.SpanImgDescriptionContainer>
-            <S.SpanImgDescription>INTERACTIVE FRONT-END DEVELOPER</S.SpanImgDescription>
-            <S.SpanImgDescription>BASED IN WATFORD(UK) AND WORKING GLOBALLY.</S.SpanImgDescription>
-          </S.SpanImgDescriptionContainer> */}
-        </S.ImgDescriptionContainer>
-        <S.DescriptionContainer>
-          <S.DescriptionTitle>
-            Animation enthusiast constantly honing skills to create smooth, engaging experiences that leave everyone satisfied.
-          </S.DescriptionTitle>
-          <p>
-            I’m a self-taught front-end developer currently based in Watford. For the past 4 years, I’ve been diving deep into the
-            world of web development, mastering JavaScript, React, and a range of other libraries essential for creating dynamic
-            and functional websites or applications.
-          </p>
-        </S.DescriptionContainer>
-        <div>
-          <p>
-            In my free time, I’m always eager to learn more and push my skills further in this ever-evolving field. Whether it’s
-            exploring new technologies or refining my existing knowledge, I’m passionate about building digital experiences that
-            are both intuitive and engaging.
-          </p>
-        </div>
-      </S.SectionAboutDescription>
+      </S.AboutMeIntroSection>
+      <S.AboutMeSection ref={sectionAboutDescriptionRef}>
+        <S.AboutMeImgContainer>
+          <S.AboutMeImg src={myImg} alt="My photo"></S.AboutMeImg>
+          <S.AboutMeImgTxtContainer>
+            <S.AboutMeImgTxt>INTERACTIVE FRONT-END DEVELOPER</S.AboutMeImgTxt>
+            <S.AboutMeImgTxt>BASED IN WATFORD(UK) AND WORKING GLOBALLY.</S.AboutMeImgTxt>
+          </S.AboutMeImgTxtContainer>
+        </S.AboutMeImgContainer>
+        <S.AboutMeTxtContainer>
+          <S.AboutMeHeader>
+            <S.AboutMeTitle>
+              Animation enthusiast constantly honing skills to create smooth, engaging experiences that leave everyone satisfied.
+            </S.AboutMeTitle>
+          </S.AboutMeHeader>
+          <S.AboutMeDetailsContainer>
+            <S.AboutMeTxt>
+              I’m a self-taught front-end developer currently based in Watford. For the past 4 years, I’ve been diving deep into the
+              world of web development, mastering JavaScript, React, and a range of other libraries essential for creating dynamic
+              and functional websites or applications.
+            </S.AboutMeTxt>
+          </S.AboutMeDetailsContainer>
+          <S.AboutMeDetailsContainer>
+              <S.AboutMeTxt>
+                In my free time, I’m always eager to learn more and push my skills further in this ever-evolving field. Whether it’s
+                exploring new technologies or refining my existing knowledge, I’m passionate about building digital experiences that
+                are both intuitive and engaging.
+              </S.AboutMeTxt>
+          </S.AboutMeDetailsContainer>
+        </S.AboutMeTxtContainer>
+      </S.AboutMeSection>
     </>
   );
 };
