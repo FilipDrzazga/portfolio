@@ -11,14 +11,11 @@ import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 interface ShaderImageMaterialProps {
-  readonly imageRect: { [key: string]: number | undefined };
+  readonly imageRect: DOMRect;
   readonly scrollY: MotionValue<number>;
 }
 
-const ShaderImageMaterial = ({
-  imageRect: { geometryWidth, geometryHeight, topMeshPos, leftMeshPos },
-  scrollY,
-}: ShaderImageMaterialProps) => {
+const ShaderImageMaterial = ({ imageRect: { width, height, top, left }, scrollY }: ShaderImageMaterialProps) => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
 
@@ -28,14 +25,14 @@ const ShaderImageMaterial = ({
   const effectDuration = 3.0;
 
   const calculatedMeshPosition = useMemo(() => {
-    if (topMeshPos && leftMeshPos && geometryHeight && geometryWidth) {
+    if (top && left && height && width) {
       return {
-        topMeshPosition: -topMeshPos + window.innerHeight / 2 - geometryHeight / 2,
-        leftMeshPosition: leftMeshPos - window.innerWidth / 2 + geometryWidth / 2,
+        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
+        leftMeshPosition: left - window.innerWidth / 2 + width / 2,
       };
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [topMeshPos, leftMeshPos, geometryHeight, geometryWidth]);
+  }, [top, left, height, width]);
 
   const uniforms = useMemo(
     () => ({
@@ -89,7 +86,7 @@ const ShaderImageMaterial = ({
 
   return (
     <mesh ref={meshRef} onPointerMove={handleMouseMove}>
-      <planeGeometry args={[geometryWidth, geometryHeight, 32, 32]} />
+      <planeGeometry args={[width, height, 32, 32]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );
