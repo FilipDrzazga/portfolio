@@ -19,7 +19,7 @@ const useIntersection = (ref: React.RefObject<HTMLDivElement>) => {
             setIsIntersecting(true);
           } else {
             // console.log("Scrolling down element leave viewport");
-            setIsIntersecting(false);
+            setIsIntersecting(true);
           }
         } else if (currentY > previousY && isIntersecting) {
           if (currentRatio < previousRatio) {

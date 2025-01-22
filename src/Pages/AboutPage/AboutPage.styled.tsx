@@ -46,7 +46,7 @@ const WatfordTime = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
-const ImgContainer = styled.div`
+const HeroImgContainer = styled.div`
   position: absolute;
   top: 11%;
   right: ${({ theme }) => theme.padding.small};
@@ -105,6 +105,59 @@ const SectionTitleExperience = styled.h2`
     margin-top: -1rem;
   }
 `;
+const SectionAboutDescription = styled.section`
+  width: 100%;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  background-color: ${({ theme }) => theme.colors.secondary};
+  padding: ${({ theme }) => theme.padding.small};
+`;
+const ImgDescriptionContainer = styled.div`
+  width: 100%;
+  height: auto;
+`;
+const ImgDescription = styled.img`
+  width: auto;
+  max-width: 100%;
+  object-fit: cover;
+`;
+const SpanImgDescriptionContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.3rem;
+`;
+const SpanImgDescription = styled.span`
+  width: 100%;
+  text-align: right;
+  font-size: 0.7rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  color: ${({ theme }) => theme.colors.primary};
+`;
+const DescriptionContainer = styled.div`
+  width: 100%;
+  disaply: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const DescriptionTitle = styled.h2`
+  width: 100%;
+  text-align: justify;
+  text-align-last: right;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  color: ${({ theme }) => theme.colors.primary};
+`;
 
 export {
   SectionAboutHero,
@@ -112,11 +165,18 @@ export {
   TitleAboutFirst,
   TitleAboutSecond,
   WatfordTime,
-  ImgContainer,
+  HeroImgContainer,
   Img,
   SectionAboutStory,
   SectionTransition,
   SectionExperience,
   HeaderExperience,
   SectionTitleExperience,
+  SectionAboutDescription,
+  ImgDescriptionContainer,
+  ImgDescription,
+  SpanImgDescription,
+  SpanImgDescriptionContainer,
+  DescriptionContainer,
+  DescriptionTitle,
 };
