@@ -9,7 +9,7 @@ const AboutMeSection = styled.section`
   align-items: center;
   gap: 5rem;
   // background-color: ${({ theme }) => theme.colors.secondary};
-  background-color:transparent
+  background-color:transparent;
   padding: ${({ theme }) => theme.padding.small};
 `;
 const AboutMeImgContainer = styled.div`

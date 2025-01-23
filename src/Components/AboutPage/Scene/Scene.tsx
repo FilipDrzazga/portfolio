@@ -1,11 +1,22 @@
-import { useMemo } from "react";
+import { useState, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useMotionValueEvent, useScroll} from "framer-motion";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from '../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial';
 
 const Scene = () => {
+  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState<string>('#E9E9E9');
+  const {scrollY} = useScroll();
+
+  useMotionValueEvent(scrollY,'change',(latest)=>{
+    if(latest >= 1000){
+      setCanvasBackgroundColor("#121212");
+    }else{
+      setCanvasBackgroundColor('#E9E9E9');
+    }
+  });
+
   const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
     const newFovPosition = 2 * Math.atan(window.innerHeight / 2 / cameraZPosition) * (180 / Math.PI);
@@ -15,11 +26,11 @@ const Scene = () => {
   return (
     <Canvas
       style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: -1 }}
-      gl={{ alpha: true }}
+      gl={{ antialias: true, alpha: true}}
       dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
-      <OrbitControls />
+      <color attach='background' args={[canvasBackgroundColor]}/>
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial/>
     </Canvas>
