@@ -26,7 +26,7 @@ const ShaderAboutMeImageMaterial = ()=>{
           };
         }
         return { topMeshPosition: 0, leftMeshPosition: 0 };
-      }, [ctxPage?.aboutMeImgRect?.top, ctxPage?.aboutMeImgRect?.left, ctxPage?.aboutMeImgRect?.height, ctxPage?.aboutMeImgRect?.width]);
+      }, [ctxPage?.aboutMeImgRect?.top, ctxPage?.aboutMeImgRect?.left, ctxPage?.aboutMeImgRect?.height! > 18, ctxPage?.aboutMeImgRect?.width]);
 
         const uniforms = useMemo(
           () => ({

@@ -52,7 +52,7 @@ const lightTheme: DefaultTheme = {
     large: "4rem",
   },
   fontSize: {
-    small: "0.8rem",
+    small: "0.9rem",
     medium: "1.2rem",
     large: "2rem",
     xl: "3rem",

@@ -51,7 +51,7 @@ const AboutMeDetailsContainer = styled.div`
 const AboutMeTxt = styled.p`
   width: 100%;
   margin-top: 3rem;
-  font-size: 1rem;
+  font-size: ${({theme})=>theme.fontSize.small};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.primary};
