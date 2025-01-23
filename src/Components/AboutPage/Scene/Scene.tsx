@@ -2,7 +2,8 @@ import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 
-import ShaderImageMaterial from "../../ShaderImageMaterial/ShaderImageMaterial";
+import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
+import ShaderAboutMeImageMaterial from '../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial';
 
 const Scene = () => {
   const fovPosition = useMemo(() => {
@@ -19,7 +20,8 @@ const Scene = () => {
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
       <OrbitControls />
-      <ShaderImageMaterial />
+      <ShaderHeroImageMaterial />
+      <ShaderAboutMeImageMaterial/>
     </Canvas>
   );
 };

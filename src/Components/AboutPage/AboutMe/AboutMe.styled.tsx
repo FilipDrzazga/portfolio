@@ -8,17 +8,20 @@ const AboutMeSection = styled.section`
   justify-content: center;
   align-items: center;
   gap: 5rem;
-  background-color: ${({ theme }) => theme.colors.secondary};
+  // background-color: ${({ theme }) => theme.colors.secondary};
+  background-color:transparent
   padding: ${({ theme }) => theme.padding.small};
 `;
 const AboutMeImgContainer = styled.div`
-  width: 100%;
+  width: 90%;
   height: auto;
+  overflow: hidden;
 `;
 const AboutMeImg = styled.img`
   width: auto;
   max-width: 100%;
   object-fit: cover;
+  opacity:0;
 `;
 const AboutMeTxtContainer = styled.div`
   width: 100%;

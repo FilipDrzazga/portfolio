@@ -5,25 +5,35 @@ interface PageContextProviderProps {
 }
 
 interface ContextValue {
-  rect: DOMRect | null;
+  heroImgRect: DOMRect | null;
+  aboutMeImgRect:DOMRect | null;
   isIntersecting: boolean;
-  getBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getHeroImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getAboutMeImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
   getIntersectionElement: (value: boolean) => void;
 }
 
 export const PageContext = createContext<ContextValue | null>(null);
 
 const PageContextProvider = ({ children }: PageContextProviderProps) => {
-  const [rect, setRect] = useState<DOMRect | null>(null);
+  const [heroImgRect, setHeroImgRect] = useState<DOMRect | null>(null);
+  const [aboutMeImgRect, setAboutMeImgRect] = useState<DOMRect | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   const ctx: ContextValue = {
-    rect,
+    heroImgRect,
+    aboutMeImgRect,
     isIntersecting,
-    getBoundingClientRect: (elementRef) => {
+    getHeroImgBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
-        setRect(elementRef.current.getBoundingClientRect());
+        setHeroImgRect(elementRef.current.getBoundingClientRect());
       }
+    },
+    getAboutMeImgBoundingClientRect: (elementRef) => {
+      if (elementRef.current) {
+        setAboutMeImgRect(elementRef.current.getBoundingClientRect());
+      }
+      console.log(aboutMeImgRect)
     },
     getIntersectionElement: (value) => {
       setIsIntersecting(value);

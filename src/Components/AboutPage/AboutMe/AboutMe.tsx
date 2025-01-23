@@ -9,18 +9,20 @@ const AboutMe = () => {
   const ctxPage = useContext(PageContext);
 
   const aboutMeSectionRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const aboutMeIntersection = useIntersection(aboutMeSectionRef);
 
   useEffect(() => {
     if (ctxPage) {
+      ctxPage.getAboutMeImgBoundingClientRect(imgRef);
       ctxPage.getIntersectionElement(aboutMeIntersection);
     }
   }, [aboutMeIntersection]);
 
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>
-      <S.AboutMeImgContainer>
+      <S.AboutMeImgContainer ref={imgRef}>
         <S.AboutMeImg src={myImg} alt="My photo"></S.AboutMeImg>
       </S.AboutMeImgContainer>
       <S.AboutMeTxtContainer>

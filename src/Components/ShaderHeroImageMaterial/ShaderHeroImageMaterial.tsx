@@ -11,7 +11,7 @@ import vertexShader from "./shaders/vertexShader.glsl?raw";
 import image from "../../Images/mobile_man_face.jpg";
 import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
-const ShaderImageMaterial = () => {
+const ShaderHeroImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
   const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
@@ -24,14 +24,14 @@ const ShaderImageMaterial = () => {
   const effectDuration = 3.0;
 
   const calculatedMeshPosition = useMemo(() => {
-    if (ctxPage?.rect?.top && ctxPage.rect.left && ctxPage.rect.height && ctxPage.rect.width) {
+    if (ctxPage?.heroImgRect?.top && ctxPage.heroImgRect.left && ctxPage.heroImgRect.height && ctxPage.heroImgRect.width) {
       return {
-        topMeshPosition: -ctxPage?.rect?.top + window.innerHeight / 2 - ctxPage.rect.height / 2,
-        leftMeshPosition: ctxPage.rect.left - window.innerWidth / 2 + ctxPage.rect.width / 2,
+        topMeshPosition: -ctxPage?.heroImgRect?.top + window.innerHeight / 2 - ctxPage.heroImgRect.height / 2,
+        leftMeshPosition: ctxPage.heroImgRect.left - window.innerWidth / 2 + ctxPage.heroImgRect.width / 2,
       };
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [ctxPage?.rect?.top, ctxPage?.rect?.left, ctxPage?.rect?.height, ctxPage?.rect?.width]);
+  }, [ctxPage?.heroImgRect?.top, ctxPage?.heroImgRect?.left, ctxPage?.heroImgRect?.height, ctxPage?.heroImgRect?.width]);
 
   const uniforms = useMemo(
     () => ({
@@ -85,10 +85,10 @@ const ShaderImageMaterial = () => {
 
   return (
     <mesh ref={meshRef} onPointerMove={handleMouseMove}>
-      <planeGeometry args={[ctxPage?.rect?.width, ctxPage?.rect?.height, 32, 32]} />
+      <planeGeometry args={[ctxPage?.heroImgRect?.width, ctxPage?.heroImgRect?.height, 1,1]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );
 };
 
-export default ShaderImageMaterial;
+export default ShaderHeroImageMaterial;

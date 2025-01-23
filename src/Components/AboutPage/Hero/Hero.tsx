@@ -17,7 +17,7 @@ const Hero = () => {
 
   useEffect(() => {
     if (ctxPage) {
-      ctxPage.getBoundingClientRect(imgRef);
+      ctxPage.getHeroImgBoundingClientRect(imgRef);
     }
   }, []);
 
