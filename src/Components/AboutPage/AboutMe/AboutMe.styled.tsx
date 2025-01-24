@@ -13,8 +13,8 @@ const AboutMeSection = styled.section`
   padding: ${({ theme }) => theme.padding.small};
 `;
 const AboutMeImgContainer = styled.div`
-  width: 90%;
-  height: auto;
+  width:100%;
+  height: 80vh;
   overflow: hidden;
 `;
 const AboutMeImg = styled.img`

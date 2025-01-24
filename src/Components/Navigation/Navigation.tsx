@@ -23,7 +23,6 @@ const navigationVariants = {
 const Navigation = () => {
   const ctxPage = useContext(PageContext);
   const [isSelected, setIsSelected] = useState(tabs[0]);
-  console.log(ctxPage?.isIntersecting);
 
   return (
     <S.SectionNavigation>

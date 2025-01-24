@@ -18,7 +18,7 @@ const AboutMe = () => {
       ctxPage.getAboutMeImgBoundingClientRect(imgRef);
       ctxPage.getIntersectionElement(aboutMeIntersection);
     }
-  }, [aboutMeIntersection]);
+  }, [aboutMeIntersection, imgRef]);
 
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>

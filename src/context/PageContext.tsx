@@ -32,8 +32,7 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
     getAboutMeImgBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
         setAboutMeImgRect(elementRef.current.getBoundingClientRect());
-      }
-      console.log(aboutMeImgRect)
+      } 
     },
     getIntersectionElement: (value) => {
       setIsIntersecting(value);

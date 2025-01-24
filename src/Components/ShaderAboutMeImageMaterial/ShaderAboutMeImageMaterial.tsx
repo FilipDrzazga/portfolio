@@ -20,17 +20,18 @@ const ShaderAboutMeImageMaterial = ()=>{
 
       const calculatedMeshPosition = useMemo(() => {
         if (ctxPage?.aboutMeImgRect?.top && ctxPage.aboutMeImgRect.left && ctxPage.aboutMeImgRect.height && ctxPage.aboutMeImgRect.width) {
+          console.log(ctxPage?.aboutMeImgRect?.height)
           return {
             topMeshPosition: -ctxPage?.aboutMeImgRect?.top + window.innerHeight / 2 - ctxPage.aboutMeImgRect.height / 2,
             leftMeshPosition: ctxPage.aboutMeImgRect.left - window.innerWidth / 2 + ctxPage.aboutMeImgRect.width / 2,
           };
         }
         return { topMeshPosition: 0, leftMeshPosition: 0 };
-      }, [ctxPage?.aboutMeImgRect?.top, ctxPage?.aboutMeImgRect?.left, ctxPage?.aboutMeImgRect?.height! > 18, ctxPage?.aboutMeImgRect?.width]);
+      }, [ctxPage?.aboutMeImgRect?.top, ctxPage?.aboutMeImgRect?.left, ctxPage?.aboutMeImgRect?.height! , ctxPage?.aboutMeImgRect?.width]);
 
         const uniforms = useMemo(
           () => ({
-            u_imageTexture: { value: imageTexture },
+            u_imageTexture: { value: imageTexture},
           }),
           [imageTexture]
         );
