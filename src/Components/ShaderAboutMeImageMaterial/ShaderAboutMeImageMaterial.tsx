@@ -17,18 +17,18 @@ const ShaderAboutMeImageMaterial = ()=>{
 
     const uniformsOptions = {
       gridSize: {
-        value: 1.0,
+        value: 20.0,
         min: 0.0,
         max: 100.0,
         step: 1.0,},
         squareSize:{
-          value: 1.0,
+          value: 5.0,
           min: 0.0,
           max: 10.0,
           step: 0.1,
         },
         displacementStrength:{
-          value: 0.0,
+          value: 0.2,
           min: 0.0,
           max: 10.0,
           step: 0.1,
@@ -42,7 +42,6 @@ const ShaderAboutMeImageMaterial = ()=>{
 
       const calculatedMeshPosition = useMemo(() => {
         if (ctxPage?.aboutMeImgRect?.top && ctxPage.aboutMeImgRect.left && ctxPage.aboutMeImgRect.height && ctxPage.aboutMeImgRect.width) {
-          console.log(ctxPage?.aboutMeImgRect?.height)
           return {
             topMeshPosition: -ctxPage?.aboutMeImgRect?.top + window.innerHeight / 2 - ctxPage.aboutMeImgRect.height / 2,
             leftMeshPosition: ctxPage.aboutMeImgRect.left - window.innerWidth / 2 + ctxPage.aboutMeImgRect.width / 2,

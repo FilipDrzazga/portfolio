@@ -1,21 +1,17 @@
 import styled from "styled-components";
-import { motion } from "motion/react";
 
-const SectionTransition = styled(motion.section)`
-  width: 100%;
-  height: 200vh;
-`;
-const SectionExperience = styled.section`
+const ExperienceSection = styled.section`
   width: 100%;
   height: 100vh;
   padding: ${({ theme }) => theme.padding.small};
+  background-color: transparent;
 `;
-const HeaderExperience = styled.header`
+const ExperienceHeader = styled.header`
   width: 100%;
   height: 15%;
   color: ${({ theme }) => theme.colors.secondary};
 `;
-const SectionTitleExperience = styled.h2`
+const ExperienceTitle = styled.h2`
   width: 100%;
   margin-top: -0.3rem;
   font-size: ${({ theme }) => theme.fontSize.large};
@@ -38,4 +34,4 @@ const SectionTitleExperience = styled.h2`
   }
 `;
 
-export { SectionTransition, SectionExperience, HeaderExperience, SectionTitleExperience };
+export { ExperienceSection, ExperienceHeader, ExperienceTitle };

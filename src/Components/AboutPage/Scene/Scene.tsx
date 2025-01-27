@@ -4,6 +4,7 @@ import { useMotionValueEvent, useScroll} from "framer-motion";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from '../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial';
+import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
 
 const Scene = () => {
   const [canvasBackgroundColor, setCanvasBackgroundColor] = useState<string>('#E9E9E9');
@@ -33,6 +34,7 @@ const Scene = () => {
       <color attach='background' args={[canvasBackgroundColor]}/>
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial/>
+      <ShaderExperiencePixelTransition/>
     </Canvas>
   );
 };

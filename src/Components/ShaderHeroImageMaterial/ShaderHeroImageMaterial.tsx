@@ -17,18 +17,18 @@ const ShaderHeroImageMaterial = () => {
 
   const uniformsOptions = {
     gridSize: {
-      value: 1.0,
+      value: 20.0,
       min: 0.0,
       max: 100.0,
       step: 1.0,},
       squareSize:{
-        value: 1.0,
+        value: 5.0,
         min: 0.0,
         max: 10.0,
         step: 0.1,
       },
       displacementStrength:{
-        value: 0.0,
+        value: 0.2,
         min: 0.0,
         max: 10.0,
         step: 0.1,

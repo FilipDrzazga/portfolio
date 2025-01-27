@@ -10,7 +10,7 @@ import myImg from "../../../Images/mobile_man_face.jpg";
 const Hero = () => {
   const ctxPage = useContext(PageContext);
 
-  const sectionAboutHeroRef = useRef<HTMLDivElement>(null);
+  const heroSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
   const watfordTime = useWatfordTime();
@@ -22,7 +22,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <S.HeroSection ref={sectionAboutHeroRef}>
+    <S.HeroSection ref={heroSectionRef}>
       <S.HeroHeader>
         <S.HeroTitleFirst>
           Creative<span> Developer</span>
