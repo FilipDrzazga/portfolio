@@ -1,20 +1,20 @@
 import { useState, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useMotionValueEvent, useScroll} from "framer-motion";
+import { useMotionValueEvent, useScroll } from "framer-motion";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
-import ShaderAboutMeImageMaterial from '../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial';
+import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
 import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
 
 const Scene = () => {
-  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState<string>('#E9E9E9');
-  const {scrollY} = useScroll();
+  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState<string>("#E9E9E9");
+  const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY,'change',(latest)=>{
-    if(latest >= 1000){
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest >= 1000) {
       setCanvasBackgroundColor("#121212");
-    }else{
-      setCanvasBackgroundColor('#E9E9E9');
+    } else {
+      setCanvasBackgroundColor("#E9E9E9");
     }
   });
 
@@ -27,14 +27,14 @@ const Scene = () => {
   return (
     <Canvas
       style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100vh", zIndex: -1 }}
-      gl={{ antialias: true, alpha: true}}
+      gl={{ antialias: true, alpha: true }}
       dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
-      <color attach='background' args={[canvasBackgroundColor]}/>
+      <color attach="background" args={[canvasBackgroundColor]} />
       <ShaderHeroImageMaterial />
-      <ShaderAboutMeImageMaterial/>
-      <ShaderExperiencePixelTransition/>
+      <ShaderAboutMeImageMaterial />
+      <ShaderExperiencePixelTransition />
     </Canvas>
   );
 };

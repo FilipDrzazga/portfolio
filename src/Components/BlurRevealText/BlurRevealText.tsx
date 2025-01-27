@@ -51,12 +51,12 @@ const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
       {Object.entries(wordsObj).map(([key, charArr], id) => {
         let start;
         let end;
-        if(charArr.includes('A') && id === 0){
+        if (charArr.includes("A") && id === 0) {
           start = id;
-           end = start + (1 * 0.01);
-        }else{
-           start = id / 20
-           end = start + (1 * 0.08);
+          end = start + 1 * 0.01;
+        } else {
+          start = id / 20;
+          end = start + 1 * 0.08;
         }
         return (
           <CharactersContainer
@@ -95,8 +95,8 @@ const CharactersContainer = ({ children, ...props }: CharactersContainerProps) =
   return (
     <S.CharactersContainer {...props}>
       {charArr.map((char, id) => {
-        const start = range[0] + (step * id);
-        const end = range[0] + step * (id + 20)
+        const start = range[0] + step * id;
+        const end = range[0] + step * (id + 20);
         return (
           <SpanCharacters key={id} keyValue={keyValue} range={[start, end]} progress={progress}>
             {char}

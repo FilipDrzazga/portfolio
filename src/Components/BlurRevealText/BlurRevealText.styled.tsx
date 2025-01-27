@@ -8,8 +8,8 @@ interface Props {
 const DivStoryContainer = styled(motion.div)<Props>`
   position: sticky;
   top: ${({ $height }) => `calc(45% - ${$height / 2}px)`};
-  margin-top:100px;
-  margin-bottom:300px;
+  margin-top: 100px;
+  margin-bottom: 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

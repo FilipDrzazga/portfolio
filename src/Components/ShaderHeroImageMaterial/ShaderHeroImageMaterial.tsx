@@ -1,10 +1,10 @@
 import { useRef, useMemo, useCallback, useContext } from "react";
 import * as THREE from "three";
-import { useFrame} from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { PageContext } from "../../context/PageContext";
 import { useScroll } from "framer-motion";
-import { useControls } from 'leva'
+import { useControls } from "leva";
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
@@ -20,19 +20,20 @@ const ShaderHeroImageMaterial = () => {
       value: 20.0,
       min: 0.0,
       max: 100.0,
-      step: 1.0,},
-      squareSize:{
-        value: 5.0,
-        min: 0.0,
-        max: 10.0,
-        step: 0.1,
-      },
-      displacementStrength:{
-        value: 0.2,
-        min: 0.0,
-        max: 10.0,
-        step: 0.1,
-      },
+      step: 1.0,
+    },
+    squareSize: {
+      value: 5.0,
+      min: 0.0,
+      max: 10.0,
+      step: 0.1,
+    },
+    displacementStrength: {
+      value: 0.2,
+      min: 0.0,
+      max: 10.0,
+      step: 0.1,
+    },
   };
 
   const { scrollY } = useScroll();
@@ -41,29 +42,31 @@ const ShaderHeroImageMaterial = () => {
   const imageTexture = useTexture(image);
 
   const calculatedMeshPosition = useMemo(() => {
-    if (ctxPage?.heroImgRect?.top && ctxPage.heroImgRect.left && ctxPage.heroImgRect.height && ctxPage.heroImgRect.width) {
+    const { top, left, height, width } = ctxPage?.heroImgRect || {};
+
+    if (top && left && height && width) {
       return {
-        topMeshPosition: -ctxPage?.heroImgRect?.top + window.innerHeight / 2 - ctxPage.heroImgRect.height / 2,
-        leftMeshPosition: ctxPage.heroImgRect.left - window.innerWidth / 2 + ctxPage.heroImgRect.width / 2,
+        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
+        leftMeshPosition: left - window.innerWidth / 2 + width / 2,
       };
     }
     return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [ctxPage?.heroImgRect?.top, ctxPage?.heroImgRect?.left, ctxPage?.heroImgRect?.height, ctxPage?.heroImgRect?.width]);
+  }, [ctxPage?.heroImgRect]);
 
   const uniforms = useMemo(
     () => ({
       u_imageTexture: { value: imageTexture },
       u_mouse: { value: new THREE.Vector2() },
       u_time: { value: 0 },
-      u_gridSize:{value: 20.0},
-      u_squareSize:{value: 5.0},
-      u_displacementStrength:{value: 0.2},
+      u_gridSize: { value: 20.0 },
+      u_squareSize: { value: 5.0 },
+      u_displacementStrength: { value: 0.2 },
     }),
     [imageTexture]
   );
 
   const updateShaderUniforms = useCallback(
-    (clockTime: number, scrollYValue: number,gridSize:number, squareSize:number,displacementStrength:number) => {
+    (clockTime: number, scrollYValue: number, gridSize: number, squareSize: number, displacementStrength: number) => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
@@ -82,13 +85,13 @@ const ShaderHeroImageMaterial = () => {
     [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
   );
 
-  useFrame((state, delta) => {
-    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get(),gridSize,squareSize,displacementStrength);
+  useFrame((state) => {
+    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get(), gridSize, squareSize, displacementStrength);
   });
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[ctxPage?.heroImgRect?.width, ctxPage?.heroImgRect?.height, 1,1]} />
+      <planeGeometry args={[ctxPage?.heroImgRect?.width, ctxPage?.heroImgRect?.height, 1, 1]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
   );

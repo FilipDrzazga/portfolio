@@ -35,7 +35,7 @@ const UlNavigation = styled.ul`
   height: 100%;
   display: flex;
   justify-content: space-between;
-  align-items:flex-start;
+  align-items: flex-start;
 `;
 const LiNavigation = styled.li`
   position: relative;

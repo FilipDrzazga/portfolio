@@ -6,7 +6,7 @@ interface PageContextProviderProps {
 
 interface ContextValue {
   heroImgRect: DOMRect | null;
-  aboutMeImgRect:DOMRect | null;
+  aboutMeImgRect: DOMRect | null;
   experienceSectionRect: DOMRect | null;
   isIntersecting: boolean;
   getHeroImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
@@ -36,12 +36,12 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
     getAboutMeImgBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
         setAboutMeImgRect(elementRef.current.getBoundingClientRect());
-      } 
+      }
     },
     getExperienceSectionBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
         setExperienceSectionRect(elementRef.current.getBoundingClientRect());
-      } 
+      }
     },
     getIntersectionElement: (value) => {
       setIsIntersecting(value);

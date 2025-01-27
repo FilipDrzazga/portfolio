@@ -9,11 +9,11 @@ const AboutMeSection = styled.section`
   align-items: center;
   gap: 5rem;
   // background-color: ${({ theme }) => theme.colors.secondary};
-  background-color:transparent;
+  background-color: transparent;
   padding: ${({ theme }) => theme.padding.small};
 `;
 const AboutMeImgContainer = styled.div`
-  width:100%;
+  width: 100%;
   height: 80vh;
   overflow: hidden;
 `;
@@ -21,7 +21,7 @@ const AboutMeImg = styled.img`
   width: auto;
   max-width: 100%;
   object-fit: cover;
-  opacity:0;
+  opacity: 0;
 `;
 const AboutMeTxtContainer = styled.div`
   width: 100%;
@@ -51,7 +51,7 @@ const AboutMeDetailsContainer = styled.div`
 const AboutMeTxt = styled.p`
   width: 100%;
   margin-top: 3rem;
-  font-size: ${({theme})=>theme.fontSize.small};
+  font-size: ${({ theme }) => theme.fontSize.small};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.primary};

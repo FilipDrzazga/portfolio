@@ -8,13 +8,7 @@ const enterPath = `M 0 0 H ${window.innerWidth + 10} Q ${window.innerWidth / 2} 
 } -10 0`;
 const targetPath = `M 0 0 H ${window.innerWidth + 1000} Q ${window.innerWidth / 2} ${window.innerHeight - 520} -1000 0`;
 
-const pathColorArray = [
-  "rgb(224, 251, 226)",
-  "rgb(191, 246, 195)",
-  "rgb(176, 235, 180)",
-  "rgb(172, 225, 175)",
-  "white",
-];
+const pathColorArray = ["rgb(224, 251, 226)", "rgb(191, 246, 195)", "rgb(176, 235, 180)", "rgb(172, 225, 175)", "white"];
 
 const blockTransitionVariants = {
   initial: {
