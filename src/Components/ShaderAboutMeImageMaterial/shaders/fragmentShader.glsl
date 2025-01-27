@@ -1,70 +1,28 @@
 varying vec2 vUv;
 
 uniform sampler2D u_imageTexture;
-uniform float u_numSegments;
-uniform float u_inputOutputRatio;
-uniform float u_overlap;
-uniform float u_light_strength;
+uniform float u_gridSize;
+uniform float u_squareSize;
+uniform float u_displacementStrength;
 
 void main() {
 
-       // Define the custom uniforms as constants or use ShaderToy's UI for uniforms
-    float u_numSegments = u_numSegments; // Number of segments
-    float u_inputOutputRatio = u_inputOutputRatio; // Ratio between input and output segments
-    float u_overlap = u_overlap; // Overlap between segments
-    float u_light_strength = u_light_strength;
+    vec2 gridSize = vec2(u_gridSize);
+    vec2 squareSize = vec2(u_squareSize) / gridSize;
+    vec2 squareIndex = floor(vUv / squareSize);
+    vec2 squareCenter = (squareIndex + 0.5) * squareSize;
 
-    float segmentWidth = 1.0 / u_numSegments;
-    float inputSegmentWidth = segmentWidth * u_inputOutputRatio;
-    float overlapWidth = segmentWidth * u_overlap;
+    float randomSquare = sin(dot(squareIndex, vec2(12.9898, 78.233))) * 43758.5453;
+    vec2 randomSquareOffset = vec2(fract(sin(randomSquare)* 1000.0), fract(cos(randomSquare)* 1000.0)) - 0.5;
 
-    // Determine which segment we are in
-    float segmentIndex = floor(vUv.x / segmentWidth);
-    float segmentStart = segmentIndex * segmentWidth;
-    float segmentEnd = segmentStart + segmentWidth;
+    float displacementStrength = u_displacementStrength;
 
-    // Calculate the local uv within the segment
-    float localUVx = (vUv.x - segmentStart) / segmentWidth;
+    vec2 displacement = randomSquareOffset * displacementStrength;
 
-    // Apply log compression to the x coordinate within the segment
-    float compressedX = log(1.0 + localUVx * 9.0) / log(10.0);
+    vec2 displacedUV = vUv + displacement;
 
-    // Calculate the corresponding input UV
-    float inputSegmentStart = segmentIndex * (inputSegmentWidth - overlapWidth);
-    vec2 inputUV = vec2(inputSegmentStart + compressedX * inputSegmentWidth, vUv.y);
+    vec4 color = texture(u_imageTexture, displacedUV);
 
-    // Get the color from the input image
-    vec4 color = texture(u_imageTexture, inputUV);
+    gl_FragColor = vec4(color); 
 
-    // Apply the vertical gradient
-    float gradientMidpoint = 0.8;
-    float gradientStrength = smoothstep(gradientMidpoint, 1.0, vUv.y);
-    color = mix(color, vec4(0.0, 0.0, 0.0, 0.5), gradientStrength*0.5);
-    
-    // Apply the black gradient on the right side of each segment
-    float rightGradientStrength = smoothstep(0.8, 1.0, localUVx);
-    color = mix(color, vec4(0.0, 0.0, 0.0, rightGradientStrength), rightGradientStrength*u_light_strength);
-
-    // Apply the white gradient on the left side of each segment
-    float leftGradientStrength = smoothstep(0.1, 0.0, localUVx);
-    color = mix(color, vec4(1.0, 1.0, 1.0, leftGradientStrength), leftGradientStrength*u_light_strength);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    gl_FragColor = vec4(color);
 }

@@ -1,27 +1,44 @@
-import { useEffect, useRef, useMemo, useCallback, useContext } from "react";
+import { useRef, useMemo, useCallback, useContext } from "react";
 import * as THREE from "three";
-import { useFrame, type ThreeEvent } from "@react-three/fiber";
+import { useFrame} from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { PageContext } from "../../context/PageContext";
 import { useScroll } from "framer-motion";
+import { useControls } from 'leva'
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
 import image from "../../Images/mobile_man_face.jpg";
-import displacement from "../../Images/textures/melt 6 - 512x512.png";
 
 const ShaderHeroImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-  const mousePosRef = useRef<THREE.Vector2>(new THREE.Vector2(9999, 9999));
+
+  const uniformsOptions = {
+    gridSize: {
+      value: 1.0,
+      min: 0.0,
+      max: 100.0,
+      step: 1.0,},
+      squareSize:{
+        value: 1.0,
+        min: 0.0,
+        max: 10.0,
+        step: 0.1,
+      },
+      displacementStrength:{
+        value: 0.0,
+        min: 0.0,
+        max: 10.0,
+        step: 0.1,
+      },
+  };
 
   const { scrollY } = useScroll();
+  const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
 
   const imageTexture = useTexture(image);
-  const displacementTexture = useTexture(displacement);
-
-  const effectDuration = 3.0;
 
   const calculatedMeshPosition = useMemo(() => {
     if (ctxPage?.heroImgRect?.top && ctxPage.heroImgRect.left && ctxPage.heroImgRect.height && ctxPage.heroImgRect.width) {
@@ -36,32 +53,27 @@ const ShaderHeroImageMaterial = () => {
   const uniforms = useMemo(
     () => ({
       u_imageTexture: { value: imageTexture },
-      u_displacementTexture: { value: displacementTexture },
-      u_progress: { value: 0 },
       u_mouse: { value: new THREE.Vector2() },
       u_time: { value: 0 },
-      u_decay: { value: 1.0 },
+      u_gridSize:{value: 20.0},
+      u_squareSize:{value: 5.0},
+      u_displacementStrength:{value: 0.2},
     }),
-    [imageTexture, displacementTexture]
+    [imageTexture]
   );
 
-  const handleMouseMove = (event: ThreeEvent<PointerEvent>) => {
-    if (event.uv) {
-      mousePosRef.current.copy(event.uv);
-    }
-  };
-
   const updateShaderUniforms = useCallback(
-    (delta: number, clockTime: number, isMouseOver: boolean, scrollYValue: number) => {
+    (clockTime: number, scrollYValue: number,gridSize:number, squareSize:number,displacementStrength:number) => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
       const { uniforms: shaderUniforms } = shaderMaterial;
 
       shaderUniforms.u_time.value = clockTime;
-      shaderUniforms.u_mouse.value.copy(mousePosRef.current);
-      shaderUniforms.u_decay.value = THREE.MathUtils.lerp(shaderUniforms.u_decay.value, isMouseOver ? 0.0 : 1.0, delta * 2);
-      shaderUniforms.u_progress.value = Math.min(shaderUniforms.u_progress.value + delta / effectDuration, 3.0);
+      shaderUniforms.u_gridSize.value = gridSize;
+      shaderUniforms.u_squareSize.value = squareSize;
+      shaderUniforms.u_displacementStrength.value = displacementStrength;
+
       const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
       const targetX = calculatedMeshPosition.leftMeshPosition;
 
@@ -71,20 +83,11 @@ const ShaderHeroImageMaterial = () => {
   );
 
   useFrame((state, delta) => {
-    updateShaderUniforms(delta, state.clock.getElapsedTime(), false, scrollY.get());
+    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get(),gridSize,squareSize,displacementStrength);
   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
-      shaderMaterial.uniforms.u_progress.value = -0.5;
-    }, 20000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <mesh ref={meshRef} onPointerMove={handleMouseMove}>
+    <mesh ref={meshRef}>
       <planeGeometry args={[ctxPage?.heroImgRect?.width, ctxPage?.heroImgRect?.height, 1,1]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>

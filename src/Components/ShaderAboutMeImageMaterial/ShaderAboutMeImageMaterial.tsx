@@ -16,33 +16,27 @@ const ShaderAboutMeImageMaterial = ()=>{
     const meshRef = useRef<THREE.Mesh>(null!);
 
     const uniformsOptions = {
-      numSegments: {
-        value: 7.0,
+      gridSize: {
+        value: 1.0,
         min: 0.0,
         max: 100.0,
         step: 1.0,},
-        inputOutputRatio:{
+        squareSize:{
           value: 1.0,
           min: 0.0,
           max: 10.0,
           step: 0.1,
         },
-        overlap:{
+        displacementStrength:{
           value: 0.0,
           min: 0.0,
           max: 10.0,
           step: 0.1,
         },
-        light_strength:{
-          value: 0.1,
-          min: 0.0,
-          max: 10.0,
-          step: 0.1,
-        }
     };
 
     const { scrollY } = useScroll();
-    const { numSegments, inputOutputRatio, overlap, light_strength } = useControls(uniformsOptions);
+    const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
 
     const imageTexture = useTexture(image);
 
@@ -60,24 +54,23 @@ const ShaderAboutMeImageMaterial = ()=>{
         const uniforms = useMemo(
           () => ({
             u_imageTexture: { value: imageTexture},
-            u_numSegments:{value: 0.0},
-            u_inputOutputRatio:{value: 0.0},
-            u_overlap:{value: 0.0},
-            u_light_strength: { value: 0.0 },
+            u_gridSize:{value: 20.0},
+            u_squareSize:{value: 5.0},
+            u_displacementStrength:{value: 0.2},
           }),
           [imageTexture]
         );
 
         const updateShaderUniforms = useCallback(
-          (scrollYValue: number, numSegments:number, inputOutputRatio:number,overlap:number, light_strength:number) => {
+          (scrollYValue: number, gridSize:number, squareSize:number,displacementStrength:number) => {
             if (!meshRef.current) return;
             const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
             const { uniforms: shaderUniforms } = shaderMaterial;
       
-            shaderUniforms.u_numSegments.value = numSegments;
-            shaderUniforms.u_inputOutputRatio.value = inputOutputRatio;
-            shaderUniforms.u_overlap.value = overlap;
-            shaderUniforms.u_light_strength.value = light_strength;
+            shaderUniforms.u_gridSize.value = gridSize;
+            shaderUniforms.u_squareSize.value = squareSize;
+            shaderUniforms.u_displacementStrength.value = displacementStrength;
+
             const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
             const targetX = calculatedMeshPosition.leftMeshPosition;
       
@@ -87,7 +80,7 @@ const ShaderAboutMeImageMaterial = ()=>{
         );
 
         useFrame(() => {
-          updateShaderUniforms(scrollY.get(), numSegments, inputOutputRatio,overlap,light_strength);
+          updateShaderUniforms(scrollY.get(), gridSize, squareSize,displacementStrength);
         });
 
 
