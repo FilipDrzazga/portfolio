@@ -1,6 +1,5 @@
 import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
-import useIntersection from "../../../hooks/useIntersection";
 
 import * as S from "./AboutMe.styled";
 import myImg from "../../../Images/mobile_man_face.jpg";
@@ -11,14 +10,12 @@ const AboutMe = () => {
   const aboutMeSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
-  const aboutMeIntersection = useIntersection(aboutMeSectionRef);
-
   useEffect(() => {
     if (ctxPage) {
       ctxPage.getAboutMeImgBoundingClientRect(imgRef);
-      ctxPage.getIntersectionElement(aboutMeIntersection);
+      ctxPage.getAboutMeSectionBoundingClientRect(aboutMeSectionRef);
     }
-  }, [aboutMeIntersection, imgRef]);
+  }, [imgRef]);
 
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>

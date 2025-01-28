@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
 
-const AboutMeIntroSection = styled(motion.section)`
+const IntroSection = styled(motion.section)`
   position: relative;
   max-width: 100%;
   height: 200vh;
@@ -9,4 +9,4 @@ const AboutMeIntroSection = styled(motion.section)`
   padding: ${({ theme }) => theme.padding.small};
 `;
 
-export { AboutMeIntroSection };
+export { IntroSection };

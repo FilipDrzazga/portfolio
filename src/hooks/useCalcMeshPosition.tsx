@@ -14,10 +14,8 @@ const useCalcMeshPosition = (elementRect?:useCalcMeshPositionProps['elementRect'
     const { top, left, height, width } = elementRect;
 
     return {
-        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
-        leftMeshPosition: left - window.innerWidth / 2 + width / 2,
-        top,
-        left,
+        top: -top + window.innerHeight / 2 - height / 2,
+        left: left - window.innerWidth / 2 + width / 2,
         height,
         width
     };

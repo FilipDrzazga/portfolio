@@ -1,7 +1,9 @@
 import { useState, useContext } from "react";
 import { PageContext } from "../../context/PageContext";
+import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
 
 import * as S from "./Navigation.styled";
+import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 
 const tabs = ["about", "work", "contact"];
 
@@ -23,6 +25,24 @@ const navigationVariants = {
 const Navigation = () => {
   const ctxPage = useContext(PageContext);
   const [isSelected, setIsSelected] = useState(tabs[0]);
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const {top: introSectionTopPosition} = useCalcMeshPosition(ctxPage?.introSectionRect);
+  const {top: experienceSectionTopPosition} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
+
+  const { scrollY } = useScroll();
+  const start = Math.trunc(Math.abs(introSectionTopPosition!)) - window.innerHeight / 2;
+  const end = Math.trunc(Math.abs(experienceSectionTopPosition!));
+
+  useMotionValueEvent(scrollY,'change', (latestColor) => {
+    if(latestColor >= start && latestColor <= end) {
+      setIsIntersecting(true);
+    } else if(latestColor >= end) {
+      setIsIntersecting(false);
+    } else {
+      setIsIntersecting(false);
+    }
+  })
+
 
   return (
     <S.SectionNavigation>
@@ -30,7 +50,7 @@ const Navigation = () => {
         <S.TitleNavigation
           variants={navigationVariants}
           initial="initial"
-          animate={ctxPage?.isIntersecting ? "animate" : "initial"}
+          animate={isIntersecting ? "animate" : "initial"}
         >
           FILIPDRZAZGA
         </S.TitleNavigation>
@@ -41,7 +61,7 @@ const Navigation = () => {
                 <S.ANavigation
                   variants={navigationVariants}
                   initial="initial"
-                  animate={ctxPage?.isIntersecting ? "animate" : "initial"}
+                  animate={isIntersecting ? "animate" : "initial"}
                 >
                   {tab}
                 </S.ANavigation>

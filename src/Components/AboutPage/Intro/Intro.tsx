@@ -1,7 +1,6 @@
 import { useEffect, useRef, useContext } from "react";
-import { useScroll } from "motion/react";
 import { PageContext } from "../../../context/PageContext";
-import useIntersection from "../../../hooks/useIntersection";
+import { useScroll } from "motion/react";
 
 import BounceSVG from "../../BounceSVG/BounceSVG";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
@@ -10,27 +9,24 @@ import * as S from "./Intro.styled";
 
 const Intro = () => {
   const ctxPage = useContext(PageContext);
-
-  const aboutMeIntroSection = useRef<HTMLDivElement>(null);
-
-  const aboutMeIntroIntersection = useIntersection(aboutMeIntroSection);
+  const introSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (ctxPage) {
-      ctxPage.getIntersectionElement(aboutMeIntroIntersection);
+      ctxPage.getIntroSectionBoundingClientRect(introSectionRef);
     }
-  }, [aboutMeIntroIntersection]);
+  }, []);
 
   const { scrollYProgress } = useScroll({
-    target: aboutMeIntroSection,
+    target: introSectionRef,
     offset: ["start end", "end end"],
   });
 
   return (
-    <S.AboutMeIntroSection ref={aboutMeIntroSection}>
+    <S.IntroSection ref={introSectionRef}>
       <BounceSVG scrollYProgress={scrollYProgress} />
       <BlurRevealText scrollYProgress={scrollYProgress} />
-    </S.AboutMeIntroSection>
+    </S.IntroSection>
   );
 };
 

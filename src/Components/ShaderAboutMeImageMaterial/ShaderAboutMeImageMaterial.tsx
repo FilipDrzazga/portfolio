@@ -15,7 +15,7 @@ import image from "../../Images/mobile_man_face.jpg";
 const ShaderAboutMeImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-  const {topMeshPosition, leftMeshPosition, top, left, height, width} = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
+  const {top, left, height, width} = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
   
   
   const uniformsOptions = {
@@ -64,12 +64,12 @@ const ShaderAboutMeImageMaterial = () => {
       shaderUniforms.u_squareSize.value = squareSize;
       shaderUniforms.u_displacementStrength.value = displacementStrength;
 
-      const targetY = scrollYValue + topMeshPosition;
-      const targetX = leftMeshPosition;
+      const targetY = scrollYValue + top!;
+      const targetX = left!;
 
       meshRef.current.position.set(targetX, targetY, 0);
     },
-    [leftMeshPosition, topMeshPosition]
+    [left, top]
   );
 
   useFrame(() => {

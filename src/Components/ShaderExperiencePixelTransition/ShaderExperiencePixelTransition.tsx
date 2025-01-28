@@ -2,8 +2,7 @@ import { useMemo, useCallback, useRef, useContext } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { PageContext } from "../../context/PageContext";
-import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import { useControls } from "leva";
+import { useScroll, useTransform } from "framer-motion";
 import useCalcMeshPosition from '../../hooks/useCalcMeshPosition';
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
@@ -12,12 +11,12 @@ import vertexShader from "./shaders/vertexShader.glsl?raw";
 const ShaderExperiencePixelTransition = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-  const {topMeshPosition, leftMeshPosition, width, height} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
+  const {top, left, width, height} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
 
   const { scrollY } = useScroll();
 
-  const start = Math.trunc(Math.abs(topMeshPosition)) - window.innerHeight;
-  const end = Math.trunc(Math.abs(topMeshPosition));
+  const start = Math.trunc(Math.abs(top!)) - window.innerHeight;
+  const end = Math.trunc(Math.abs(top!));
   const progressTransition = useTransform(scrollY,[start,start + height! /2 ,end],[0, 0.5, 1]);
 
   const uniforms = useMemo(
@@ -37,12 +36,12 @@ const ShaderExperiencePixelTransition = () => {
 
       shaderUniforms.u_progress.value = progressTransition;
 
-      const targetY = scrollYValue + topMeshPosition;
-      const targetX = leftMeshPosition;
+      const targetY = scrollYValue + top!;
+      const targetX = left!;
 
       meshRef.current.position.set(targetX, targetY, 0);
     },
-    [leftMeshPosition, topMeshPosition]
+    [left, top]
   );
 
   useFrame(() => {
