@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { PageContext } from "../../context/PageContext";
-import { useMotionValueEvent, useScroll, useTransform } from "motion/react";
+import { useMotionValueEvent, useScroll } from "motion/react";
 
 import * as S from "./Navigation.styled";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
@@ -26,43 +26,34 @@ const Navigation = () => {
   const ctxPage = useContext(PageContext);
   const [isSelected, setIsSelected] = useState(tabs[0]);
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const {top: introSectionTopPosition} = useCalcMeshPosition(ctxPage?.introSectionRect);
-  const {top: experienceSectionTopPosition} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
+  const { top: introSectionTopPosition } = useCalcMeshPosition(ctxPage?.introSectionRect);
+  const { top: experienceSectionTopPosition } = useCalcMeshPosition(ctxPage?.experienceSectionRect);
 
   const { scrollY } = useScroll();
   const start = Math.trunc(Math.abs(introSectionTopPosition!)) - window.innerHeight / 2;
   const end = Math.trunc(Math.abs(experienceSectionTopPosition!));
 
-  useMotionValueEvent(scrollY,'change', (latestColor) => {
-    if(latestColor >= start && latestColor <= end) {
+  useMotionValueEvent(scrollY, "change", (latestColor) => {
+    if (latestColor >= start && latestColor <= end) {
       setIsIntersecting(true);
-    } else if(latestColor >= end) {
+    } else if (latestColor >= end) {
       setIsIntersecting(false);
     } else {
       setIsIntersecting(false);
     }
-  })
-
+  });
 
   return (
     <S.SectionNavigation>
       <S.HeaderNavigation>
-        <S.TitleNavigation
-          variants={navigationVariants}
-          initial="initial"
-          animate={isIntersecting ? "animate" : "initial"}
-        >
+        <S.TitleNavigation variants={navigationVariants} initial="initial" animate={isIntersecting ? "animate" : "initial"}>
           FILIPDRZAZGA
         </S.TitleNavigation>
         <S.NavNavigation>
           <S.UlNavigation>
             {tabs.map((tab, index) => (
               <S.LiNavigation key={index} onClick={() => setIsSelected(tab)}>
-                <S.ANavigation
-                  variants={navigationVariants}
-                  initial="initial"
-                  animate={isIntersecting ? "animate" : "initial"}
-                >
+                <S.ANavigation variants={navigationVariants} initial="initial" animate={isIntersecting ? "animate" : "initial"}>
                   {tab}
                 </S.ANavigation>
                 {tab === isSelected && <S.ANavigationUnderline key={index} layoutId="underline"></S.ANavigationUnderline>}

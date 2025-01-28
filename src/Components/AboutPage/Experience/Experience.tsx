@@ -1,6 +1,8 @@
 import { useRef, useEffect, useContext } from "react";
 import { PageContext } from "../../../context/PageContext";
 
+import GooeyBloobs from "../../GooeyBloobs/GooeyBloobs";
+
 import * as S from "./Experience.styled";
 
 const Experience = () => {
@@ -21,6 +23,7 @@ const Experience = () => {
           <br />
         </S.ExperienceTitle>
       </S.ExperienceHeader>
+      <GooeyBloobs />
     </S.ExperienceSection>
   );
 };

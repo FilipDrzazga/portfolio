@@ -1,20 +1,32 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
+import { PageContext } from "../../../context/PageContext";
 import { Canvas } from "@react-three/fiber";
 import { useMotionValueEvent, useScroll } from "framer-motion";
+import useCalcMeshPosition from "../../../hooks/useCalcMeshPosition";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
 import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
 
 const Scene = () => {
-  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState<string>("#E9E9E9");
-  const { scrollY } = useScroll();
+  const ctxPage = useContext(PageContext);
+  const { top: introSectionTopPosition } = useCalcMeshPosition(ctxPage?.introSectionRect);
+  const { top: experienceSectionTopPosition } = useCalcMeshPosition(ctxPage?.experienceSectionRect);
+  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState("#E9E9E9");
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest >= 1000) {
-      setCanvasBackgroundColor("#121212");
+  const { scrollY } = useScroll();
+  const start = Math.trunc(Math.abs(introSectionTopPosition!));
+  const end = Math.trunc(Math.abs(experienceSectionTopPosition!));
+  const white = "#E9E9E9";
+  const black = "#121212";
+
+  useMotionValueEvent(scrollY, "change", (scrollPosition) => {
+    if (scrollPosition >= start && scrollPosition < end) {
+      setCanvasBackgroundColor(black);
+    } else if (scrollPosition >= end) {
+      setCanvasBackgroundColor(white);
     } else {
-      setCanvasBackgroundColor("#E9E9E9");
+      setCanvasBackgroundColor(white);
     }
   });
 

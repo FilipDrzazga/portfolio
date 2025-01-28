@@ -10,11 +10,13 @@ interface ContextValue {
   aboutMeSectionRect: DOMRect | null;
   aboutMeImgRect: DOMRect | null;
   experienceSectionRect: DOMRect | null;
+  getInTouchSectionRect: DOMRect | null;
   getHeroImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
   getIntroSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
   getAboutMeSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
   getAboutMeImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
   getExperienceSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getGetInTouchSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
 }
 
 export const PageContext = createContext<ContextValue | null>(null);
@@ -25,6 +27,7 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
   const [aboutMeSectionRect, setAboutMeSectionRect] = useState<DOMRect | null>(null);
   const [aboutMeImgRect, setAboutMeImgRect] = useState<DOMRect | null>(null);
   const [experienceSectionRect, setExperienceSectionRect] = useState<DOMRect | null>(null);
+  const [getInTouchSectionRect, setGetInTouchSectionRect] = useState<DOMRect | null>(null);
 
   const ctx: ContextValue = {
     heroImgRect,
@@ -32,6 +35,7 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
     aboutMeSectionRect,
     aboutMeImgRect,
     experienceSectionRect,
+    getInTouchSectionRect,
     getHeroImgBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
         setHeroImgRect(elementRef.current.getBoundingClientRect());
@@ -55,6 +59,11 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
     getExperienceSectionBoundingClientRect: (elementRef) => {
       if (elementRef.current) {
         setExperienceSectionRect(elementRef.current.getBoundingClientRect());
+      }
+    },
+    getGetInTouchSectionBoundingClientRect: (elementRef) => {
+      if (elementRef.current) {
+        setGetInTouchSectionRect(elementRef.current.getBoundingClientRect());
       }
     },
   };
