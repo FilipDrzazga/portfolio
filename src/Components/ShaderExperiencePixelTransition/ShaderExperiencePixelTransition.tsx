@@ -2,7 +2,7 @@ import { useMemo, useCallback, useRef, useContext } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { PageContext } from "../../context/PageContext";
-import { useScroll } from "framer-motion";
+import { useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import { useControls } from "leva";
 import useCalcMeshPosition from '../../hooks/useCalcMeshPosition';
 
@@ -14,34 +14,28 @@ const ShaderExperiencePixelTransition = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
   const {topMeshPosition, leftMeshPosition, width, height} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
 
-  const uniformsOptions = {
-    progress: {
-      value: 0.0,
-      min: 0.0,
-      max: 1.0,
-      step: 0.01,
-    },
-  };
-
   const { scrollY } = useScroll();
-  const { progress } = useControls(uniformsOptions);
+
+  const start = Math.trunc(Math.abs(topMeshPosition)) - window.innerHeight;
+  const end = Math.trunc(Math.abs(topMeshPosition));
+  const progressTransition = useTransform(scrollY,[start,start + height! /2 ,end],[0, 0.5, 1]);
 
   const uniforms = useMemo(
     () => ({
       u_black: { value: 0.07058823529411765 },
       u_white: { value: 0.9137254901960784 },
-      u_progress: { value: progress },
+      u_progress: { value: progressTransition.get() },
     }),
     []
   );
 
   const updateShaderUniforms = useCallback(
-    (scrollYValue: number, progress: number) => {
+    (scrollYValue: number, progressTransition: number) => {
       if (!meshRef.current) return;
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
       const { uniforms: shaderUniforms } = shaderMaterial;
 
-      shaderUniforms.u_progress.value = progress;
+      shaderUniforms.u_progress.value = progressTransition;
 
       const targetY = scrollYValue + topMeshPosition;
       const targetX = leftMeshPosition;
@@ -52,7 +46,7 @@ const ShaderExperiencePixelTransition = () => {
   );
 
   useFrame(() => {
-    updateShaderUniforms(scrollY.get(), progress);
+    updateShaderUniforms(scrollY.get(), progressTransition.get());
   });
 
   return (
