@@ -5,6 +5,7 @@ import { useTexture } from "@react-three/drei";
 import { PageContext } from "../../context/PageContext";
 import { useScroll } from "framer-motion";
 import { useControls } from "leva";
+import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
@@ -14,7 +15,9 @@ import image from "../../Images/mobile_man_face.jpg";
 const ShaderAboutMeImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-
+  const {topMeshPosition, leftMeshPosition, top, left, height, width} = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
+  
+  
   const uniformsOptions = {
     gridSize: {
       value: 20.0,
@@ -35,23 +38,11 @@ const ShaderAboutMeImageMaterial = () => {
       step: 0.1,
     },
   };
-
+  
+  const imageTexture = useTexture(image);
   const { scrollY } = useScroll();
   const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
 
-  const imageTexture = useTexture(image);
-
-  const calculatedMeshPosition = useMemo(() => {
-    const { top, left, height, width } = ctxPage?.aboutMeImgRect || {};
-
-    if (top && left && height && width) {
-      return {
-        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
-        leftMeshPosition: left - window.innerWidth / 2 + width / 2,
-      };
-    }
-    return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [ctxPage?.aboutMeImgRect]);
 
   const uniforms = useMemo(
     () => ({
@@ -73,12 +64,12 @@ const ShaderAboutMeImageMaterial = () => {
       shaderUniforms.u_squareSize.value = squareSize;
       shaderUniforms.u_displacementStrength.value = displacementStrength;
 
-      const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
-      const targetX = calculatedMeshPosition.leftMeshPosition;
+      const targetY = scrollYValue + topMeshPosition;
+      const targetX = leftMeshPosition;
 
       meshRef.current.position.set(targetX, targetY, 0);
     },
-    [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
+    [leftMeshPosition, topMeshPosition]
   );
 
   useFrame(() => {
@@ -87,7 +78,7 @@ const ShaderAboutMeImageMaterial = () => {
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[ctxPage?.aboutMeImgRect?.width, ctxPage?.aboutMeImgRect?.height, 1, 1]}></planeGeometry>
+      <planeGeometry args={[width, height, 1, 1]}></planeGeometry>
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms}></shaderMaterial>
     </mesh>
   );

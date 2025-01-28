@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { PageContext } from "../../context/PageContext";
 import { useScroll } from "framer-motion";
 import { useControls } from "leva";
+import useCalcMeshPosition from '../../hooks/useCalcMeshPosition';
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
@@ -11,6 +12,7 @@ import vertexShader from "./shaders/vertexShader.glsl?raw";
 const ShaderExperiencePixelTransition = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
+  const {topMeshPosition, leftMeshPosition, width, height} = useCalcMeshPosition(ctxPage?.experienceSectionRect);
 
   const uniformsOptions = {
     progress: {
@@ -23,18 +25,6 @@ const ShaderExperiencePixelTransition = () => {
 
   const { scrollY } = useScroll();
   const { progress } = useControls(uniformsOptions);
-
-  const calculatedMeshPosition = useMemo(() => {
-    const { top, left, height, width } = ctxPage?.experienceSectionRect || {};
-
-    if (top && !left && height && width) {
-      return {
-        topMeshPosition: -top + window.innerHeight / 2 - height / 2,
-        leftMeshPosition: left! - window.innerWidth / 2 + width / 2,
-      };
-    }
-    return { topMeshPosition: 0, leftMeshPosition: 0 };
-  }, [ctxPage?.experienceSectionRect]);
 
   const uniforms = useMemo(
     () => ({
@@ -53,12 +43,12 @@ const ShaderExperiencePixelTransition = () => {
 
       shaderUniforms.u_progress.value = progress;
 
-      const targetY = scrollYValue + calculatedMeshPosition.topMeshPosition;
-      const targetX = calculatedMeshPosition.leftMeshPosition;
+      const targetY = scrollYValue + topMeshPosition;
+      const targetX = leftMeshPosition;
 
       meshRef.current.position.set(targetX, targetY, 0);
     },
-    [calculatedMeshPosition.leftMeshPosition, calculatedMeshPosition.topMeshPosition]
+    [leftMeshPosition, topMeshPosition]
   );
 
   useFrame(() => {
@@ -67,7 +57,7 @@ const ShaderExperiencePixelTransition = () => {
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[ctxPage?.experienceSectionRect?.width, ctxPage?.experienceSectionRect?.height, 1, 1]}></planeGeometry>
+      <planeGeometry args={[width, height, 1, 1]}></planeGeometry>
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms}></shaderMaterial>
     </mesh>
   );
