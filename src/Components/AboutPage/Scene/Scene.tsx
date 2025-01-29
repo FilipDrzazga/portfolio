@@ -7,6 +7,7 @@ import useCalcMeshPosition from "../../../hooks/useCalcMeshPosition";
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
 import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
+import ShaderGetInTouchGlassMaterial from "../../ShaderGetInTouchGlassMaterial/ShaderGetInTouchGlassMaterial";
 
 const Scene = () => {
   const ctxPage = useContext(PageContext);
@@ -47,6 +48,7 @@ const Scene = () => {
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial />
       <ShaderExperiencePixelTransition />
+      <ShaderGetInTouchGlassMaterial />
     </Canvas>
   );
 };
