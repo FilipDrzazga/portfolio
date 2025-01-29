@@ -24,6 +24,12 @@ const HeroTitleFirst = styled.h2`
   letter-spacing: -0.15rem;
   word-spacing: -0.15rem;
   color: ${({ theme }) => theme.colors.secondary};
+  font-size: 2.5rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-weight: 300;
+  letter-spacing: -0.15rem;
+  word-spacing: -0.15rem;
+  color: ${({ theme }) => theme.colors.secondary};
   span {
     font-size: 2.5rem;
     font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
