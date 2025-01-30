@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 const BloobsContainer = styled(motion.div)`
   width: 100%;
@@ -9,21 +9,28 @@ const BloobsContainer = styled(motion.div)`
   align-items: center;
   filter: url("#goo");
   overflow: hidden;
-`;
-const bloob = styled(motion.div)`
-  position: absolute;
-  background: ${({ theme }) => theme.colors.secondary};
-  left: 50%;
-  top: 50%;
-  width: 200px;
-  height: 200px;
-  line-height: 100px;
-  text-align: center;
-  color: white;
-  font-size: 40px;
-  border-radius: 100%;
-  margin-top: -150px;
-  margin-left: -100px;
+  position: relative;
 `;
 
-export { BloobsContainer, bloob };
+const Bloob = styled(motion.div)`
+  position: absolute;
+  background: ${({ theme }) => theme.colors.secondary};
+  // left: 50%;
+  // top: 0%;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  // transform: translate(-25%, -50%); // **Fix: Keeps them exactly centered**
+`;
+
+const BloobText = styled.span`
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+`;
+
+export { BloobsContainer, Bloob, BloobText };
