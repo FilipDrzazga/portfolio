@@ -15,8 +15,8 @@ const BloobsContainer = styled(motion.div)`
 const Bloob = styled(motion.div)`
   position: absolute;
   background: ${({ theme }) => theme.colors.secondary};
-  // left: 50%;
-  // top: 0%;
+  left: 50%;
+  top: 50%;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -24,7 +24,15 @@ const Bloob = styled(motion.div)`
   color: white;
   font-size: 20px;
   cursor: pointer;
-  // transform: translate(-25%, -50%); // **Fix: Keeps them exactly centered**
+  transform: translate(-50%, -50%);
+`;
+
+const FloatAnimation = styled(motion.div)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
 
 const BloobText = styled.span`
@@ -33,4 +41,4 @@ const BloobText = styled.span`
   color: white;
 `;
 
-export { BloobsContainer, Bloob, BloobText };
+export { BloobsContainer, Bloob, FloatAnimation, BloobText };

@@ -19,57 +19,50 @@ const GooeyBloobs = () => {
   const isSpread = centerBloob !== null;
 
   useEffect(() => {
-    // Update container size
-    const updateContainerSize = () => {
+    const updateContainerSizeAndPositions = () => {
       if (containerRef.current) {
         const { width, height } = containerRef.current.getBoundingClientRect();
         setContainerSize({ width, height });
+
+        const bloobSize = 100;
+        const padding = 50;
+        const positions: Position[] = [];
+        const usedPositions = new Set<string>();
+
+        const getRandomPosition = (): Position => {
+          const x = Math.random() * (width - bloobSize - padding * 2) - (width / 2 - padding);
+          const y = Math.random() * (height - bloobSize - padding * 2) - (height / 2 - padding);
+          return { x, y };
+        };
+
+        const addUniquePosition = (attempts = 0) => {
+          if (attempts > 20) return;
+          const position = getRandomPosition();
+          const key = `${Math.round(position.x)},${Math.round(position.y)}`;
+
+          if (!usedPositions.has(key)) {
+            usedPositions.add(key);
+            positions.push(position);
+          } else {
+            addUniquePosition(attempts + 1);
+          }
+        };
+
+        for (let i = 0; i < bloobsArr.length; i++) {
+          addUniquePosition();
+        }
+
+        setSpreadPositions(positions);
       }
     };
 
-    updateContainerSize();
-    window.addEventListener("resize", updateContainerSize);
-    return () => window.removeEventListener("resize", updateContainerSize);
+    updateContainerSizeAndPositions();
+    window.addEventListener("resize", updateContainerSizeAndPositions);
+    return () => window.removeEventListener("resize", updateContainerSizeAndPositions);
   }, []);
 
-  useEffect(() => {
-    if (containerSize.width > 0 && containerSize.height > 0) {
-      generateUniqueRandomPositions();
-    }
-  }, [containerSize]);
-
-  const generateUniqueRandomPositions = () => {
-    const positions: Position[] = [];
-    const bloobSize = 100;
-    const padding = 50;
-
-    for (let i = 0; i < bloobsArr.length; i++) {
-      let validPosition = false;
-      let x = 0,
-        y = 0;
-
-      while (!validPosition) {
-        x = Math.random() * (containerSize.width - bloobSize - padding * 2) - (containerSize.width / 2 - padding);
-        y = Math.random() * (containerSize.height - bloobSize - padding * 2) - (containerSize.height / 2 - padding);
-
-        // Ensure no overlap with previous positions
-        validPosition = positions.every(
-          (pos) => Math.sqrt((pos.x - x) ** 2 + (pos.y - y) ** 2) > bloobSize + padding
-        );
-      }
-
-      positions.push({ x, y });
-    }
-
-    setSpreadPositions(positions);
-  };
-
   const handleBloobClick = (id: number) => {
-    if (isSpread && id === centerBloob) {
-      setCenterBloob(null); // Reset to center position
-    } else {
-      setCenterBloob(id); // Set clicked bloob as new center
-    }
+    setCenterBloob((prev) => (prev === id ? null : id));
   };
 
   return (
@@ -86,9 +79,13 @@ const GooeyBloobs = () => {
 
       {bloobsArr.map((bloob, index) => {
         const isCenter = index === centerBloob;
-        const xPos = isSpread && !isCenter ? spreadPositions[index]?.x || 0 : 0;
-        const yPos = isSpread && !isCenter ? spreadPositions[index]?.y || 0 : 0;
-        const size = isCenter ? 30 : isSpread ? 100 : 200; // Increased spread size
+        const finalX = isSpread && !isCenter ? spreadPositions[index]?.x || 0 : 0;
+        const finalY = isSpread && !isCenter ? spreadPositions[index]?.y || 0 : 0;
+        const size = isCenter ? 30 : isSpread ? 100 : 200;
+
+        // Floating effect AFTER reaching position (random up/down movement)
+        const floatRange = 10; // Maximum ±10px movement
+        const floatDuration = 2 + Math.random(); // Randomized float duration
 
         return (
           <S.Bloob
@@ -96,19 +93,26 @@ const GooeyBloobs = () => {
             onClick={() => handleBloobClick(index)}
             initial={{ x: 0, y: 0, width: 200, height: 200 }}
             animate={{
-              x: xPos,
-              y: yPos,
+              x: finalX,
+              y: finalY,
               width: size,
               height: size,
-            }}
-            transition={{
-              duration: 1.5,
-              ease: "easeInOut",
-              type: "spring",
-              delay: index * 0.1, // Stagger movement
+              transition: { duration: 1.5, ease: "easeInOut", type: "spring" },
             }}
           >
-            {isSpread && <S.BloobText>{bloob}</S.BloobText>}
+            <S.FloatAnimation
+              animate={{
+                y: [0, floatRange, -floatRange, 0], // Moves up/down
+              }}
+              transition={{
+                duration: floatDuration,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            >
+              {isSpread && <S.BloobText>{bloob}</S.BloobText>}
+            </S.FloatAnimation>
           </S.Bloob>
         );
       })}
