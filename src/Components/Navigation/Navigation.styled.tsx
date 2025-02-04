@@ -37,7 +37,7 @@ const LiNavigation = styled.li`
   list-style: none;
 `;
 const ANavigation = styled(motion.a)`
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   font-size: 0.65rem;
   color: ${({ theme }) => theme.colors.secondary};
@@ -45,7 +45,6 @@ const ANavigation = styled(motion.a)`
 `;
 const ANavigationUnderline = styled(motion.div)`
   position: absolute;
-  // bottom: -0.2rem;
   left: 0;
   width: 100%;
   height: 1px;
@@ -53,12 +52,4 @@ const ANavigationUnderline = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export {
-  SectionNavigation,
-  HeaderNavigation,
-  NavNavigation,
-  UlNavigation,
-  LiNavigation,
-  ANavigation,
-  ANavigationUnderline,
-};
+export { SectionNavigation, HeaderNavigation, NavNavigation, UlNavigation, LiNavigation, ANavigation, ANavigationUnderline };

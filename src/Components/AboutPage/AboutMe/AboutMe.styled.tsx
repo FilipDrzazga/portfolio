@@ -37,11 +37,17 @@ const AboutMeHeader = styled.header`
 const AboutMeTitle = styled.h2`
   width: 100%;
   text-align: justify;
-  text-align-last: right;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  font-size: 1.8rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.secondary};
+  letter-spacing: -0.05rem;
+  span {
+    font-size: 2rem;
+    font-family: ${({ theme }) => theme.fontFamily.playfairBold};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    color: ${({ theme }) => theme.colors.secondary};
+  }
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 80%;
@@ -51,7 +57,7 @@ const AboutMeTxt = styled.p`
   width: 98%;
   margin-top: 3rem;
   font-size: 0.65rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.secondary};
   line-height: 1.5rem;

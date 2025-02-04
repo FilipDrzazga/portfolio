@@ -6,9 +6,9 @@ interface Props {
 }
 
 const ScrollToExploreContainer = styled(motion.div)`
-position: absolute;
-bottom: 15vh;
-left: 10%;
+  position: absolute;
+  bottom: 15vh;
+  left: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@ const SpanScroll = styled(motion.span)<Props>`
   position: relative;
   color: ${({ theme }) => theme.colors.secondary};
   font-size: 0.65rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   &:after {
     content: ${({ $char }) => `"${$char}"`};

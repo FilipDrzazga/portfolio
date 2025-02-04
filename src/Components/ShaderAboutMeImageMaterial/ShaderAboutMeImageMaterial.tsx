@@ -10,14 +10,13 @@ import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
-import image from "../../Images/mobile_man_face.jpg";
+import image from "../../images/hero_mobile_img_480w.webp";
 
 const ShaderAboutMeImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-  const {top, left, height, width} = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
-  
-  
+  const { top, left, height, width } = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
+
   const uniformsOptions = {
     gridSize: {
       value: 20.0,
@@ -38,11 +37,10 @@ const ShaderAboutMeImageMaterial = () => {
       step: 0.1,
     },
   };
-  
+
   const imageTexture = useTexture(image);
   const { scrollY } = useScroll();
   const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
-
 
   const uniforms = useMemo(
     () => ({

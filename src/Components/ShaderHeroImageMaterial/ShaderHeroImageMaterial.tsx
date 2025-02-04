@@ -5,17 +5,42 @@ import { useTexture } from "@react-three/drei";
 import { PageContext } from "../../context/PageContext";
 import { useScroll } from "framer-motion";
 import { useControls } from "leva";
+import { useMediaQuery } from "react-responsive";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
-import image from "../../Images/mobile_man_face.jpg";
+import image from "../../images/hero_mobile_img_480w.webp";
 
 const ShaderHeroImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
   const { top, left, width, height } = useCalcMeshPosition(ctxPage?.heroImgRect);
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1224px)",
+  });
+  const isMobile = useMediaQuery({ query: "(max-width: 1079px)" });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
+  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+
+  console.log(
+    "isMobile",
+    isMobile,
+    "isDesktopOrLaptop",
+    isDesktopOrLaptop,
+    "isBigScreen",
+    isBigScreen,
+    "isTabletOrMobile",
+    isTabletOrMobile,
+    "isPortrait",
+    isPortrait,
+    "isRetina",
+    isRetina
+  );
 
   const uniformsOptions = {
     gridSize: {
@@ -41,7 +66,6 @@ const ShaderHeroImageMaterial = () => {
   const imageTexture = useTexture(image);
   const { scrollY } = useScroll();
   const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
-
 
   const uniforms = useMemo(
     () => ({

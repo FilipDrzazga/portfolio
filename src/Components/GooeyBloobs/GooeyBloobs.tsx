@@ -12,16 +12,16 @@ interface BlobData {
 // for the other blobs.
 const initialCustomBlobs: BlobData[] = [
   { x: -100, y: -50, content: "Blob 1" },
-  { x: 100,  y: -50, content: "Blob 2" },
-  { x: -100, y: 50,  content: "Blob 3" },
-  { x: 100,  y: 50,  content: "Blob 4" },
-  { x: -150, y: 0,   content: "Blob 5" },
-  { x: 150,  y: 0,   content: "Blob 6" },
-  { x: 0,    y: -150,content: "Blob 7" },
-  { x: 0,    y: 150, content: "Blob 8" },
-  { x: -50,  y: -150,content: "Blob 9" },
-  { x: 50,   y: 150, content: "Blob 10" },
-  { x: 0,    y: 200, content: "Blob 11" },
+  { x: 100, y: -50, content: "Blob 2" },
+  { x: -100, y: 50, content: "Blob 3" },
+  { x: 100, y: 50, content: "Blob 4" },
+  { x: -150, y: 0, content: "Blob 5" },
+  { x: 150, y: 0, content: "Blob 6" },
+  { x: 0, y: -150, content: "Blob 7" },
+  { x: 0, y: 150, content: "Blob 8" },
+  { x: -50, y: -150, content: "Blob 9" },
+  { x: 50, y: 150, content: "Blob 10" },
+  { x: 0, y: 200, content: "Blob 11" },
 ];
 
 // A separate component for the special (toggle) blob.
@@ -98,12 +98,7 @@ const GooeyBloobs = () => {
         <defs>
           <filter id="goo">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix
-              in="blur"
-              type="matrix"
-              values="1 0 0 0 0   0 1 0 0 0   0 0 1 0 0   0 0 0 18 -7"
-              result="goo"
-            />
+            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0   0 1 0 0 0   0 0 1 0 0   0 0 0 18 -7" result="goo" />
             <feBlend in="SourceGraphic" in2="goo" />
           </filter>
         </defs>

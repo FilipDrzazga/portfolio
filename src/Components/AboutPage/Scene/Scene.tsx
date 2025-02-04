@@ -1,8 +1,5 @@
-import { useState, useMemo, useContext } from "react";
-import { PageContext } from "../../../context/PageContext";
+import { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import useCalcMeshPosition from "../../../hooks/useCalcMeshPosition";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
@@ -22,7 +19,7 @@ const Scene = () => {
       dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
-      <color attach="background" args={['#E9E9E9']} />
+      <color attach="background" args={["#E9E9E9"]} />
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial />
       <ShaderExperiencePixelTransition />
