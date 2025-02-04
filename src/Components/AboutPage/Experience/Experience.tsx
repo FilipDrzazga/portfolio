@@ -19,7 +19,9 @@ const Experience = () => {
     <S.ExperienceSection ref={experienceSectionRef}>
       <S.ExperienceHeader>
         <S.ExperienceTitle>
-          Usually<span>tools</span>in use.
+          Usually<span>tools</span>
+          <br />
+          in use.
           <br />
         </S.ExperienceTitle>
       </S.ExperienceHeader>
