@@ -9,10 +9,10 @@ const ScrollToExploreContainer = styled(motion.div)`
 position: absolute;
 bottom: 15vh;
 left: 10%;
-// transform: translateX(-50%);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   width: 80%;
   overflow: hidden;
 `;

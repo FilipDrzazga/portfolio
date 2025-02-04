@@ -1,6 +1,7 @@
 import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
 import ScrollToExplore from "../../ScrollToExplore/ScrollToExplore";
+import TextAnimation from "../../TextAnimation/TextAnimation";
 
 import useWatfordTime from "../../../hooks/useWatfordTime";
 
@@ -37,9 +38,9 @@ const Hero = () => {
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>
-        <span>PORTFOLIO 25'</span>
-        <S.HeroSocialBtn data-linkedin='linkedin'>LINKEDIN <HiArrowLongRight color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'50%', rotate:'315deg'}} /></S.HeroSocialBtn>
-        <S.HeroSocialBtn data-github='github'>GITHUB <HiArrowLongRight  color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'40%', rotate:'315deg'}} /></S.HeroSocialBtn>
+        <TextAnimation text="PORTFOLIO 25'"/>
+        <S.HeroSocialBtn data-linkedin='linkedin'><TextAnimation text="LINKEDIN"/><HiArrowLongRight color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'50%', rotate:'315deg'}} /></S.HeroSocialBtn>
+        <S.HeroSocialBtn data-github='github'><TextAnimation text="GITHUB"/><HiArrowLongRight  color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'40%', rotate:'315deg'}} /></S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
       <ScrollToExplore />
     </S.HeroSection>
