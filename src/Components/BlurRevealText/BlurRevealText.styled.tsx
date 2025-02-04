@@ -15,7 +15,7 @@ const DivStoryContainer = styled(motion.div)<Props>`
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 const CharactersContainer = styled(motion.div)`
   margin-bottom: -0.5rem;

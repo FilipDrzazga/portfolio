@@ -16,19 +16,11 @@ const HeaderNavigation = styled.header`
   width: 100%;
   height: 100%;
   display: flex;
-`;
-const TitleNavigation = styled(motion.h1)`
-  width: 50%;
-  height: 100%;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 0.7rem;
-  letter-spacing: -0.01rem;
-  color: ${({ theme }) => theme.colors.secondary};
+  justify-content: flex-end;
 `;
 const NavNavigation = styled.nav`
-  width: 50%;
-  height: 100%;
+  width: 100%;
+  height: 100%;about
 `;
 const UlNavigation = styled.ul`
   width: 100%;
@@ -47,24 +39,23 @@ const LiNavigation = styled.li`
 const ANavigation = styled(motion.a)`
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: 0.65rem;
   color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
 `;
 const ANavigationUnderline = styled(motion.div)`
   position: absolute;
-  bottom: -0.2rem;
+  // bottom: -0.2rem;
   left: 0;
   width: 100%;
-  height: 0.2rem;
+  height: 1px;
   border-radius: 0.1rem;
-  background-color: ${({ theme }) => theme.colors.accent};
+  background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export {
   SectionNavigation,
   HeaderNavigation,
-  TitleNavigation,
   NavNavigation,
   UlNavigation,
   LiNavigation,

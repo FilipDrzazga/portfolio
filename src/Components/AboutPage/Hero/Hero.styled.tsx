@@ -12,7 +12,7 @@ const HeroSection = styled.section`
   z-index: 999;
 `;
 const HeroHeader = styled.header`
-  margin-top: 7rem;
+  margin-top: -4rem;  justify-self: center;
   display: flex;
   flex-direction: column;
 `;
@@ -51,9 +51,9 @@ const HeroWatfordTime = styled.span`
   color: ${({ theme }) => theme.colors.secondary};
   letter-spacing: -0.05rem;
 `;
-const HeroImgContainer = styled.div`
+const HeroImgContainer =  styled.div`
   position: absolute;
-  top: 11%;
+  top: calc(100vh - 85%);
   right: ${({ theme }) => theme.padding.small};
   content: "";
   width: 60%;
@@ -67,5 +67,38 @@ const HeroImg = styled.img`
   object-fit: cover;
   opacity: 0;
 `;
+const HeroSocialLinksContainer = styled.div`
+display:flex;
+flex-direction:column;
+margin-top: -2rem;
+gap:0.4rem;
+width: 100%;
+& [data-linkedin="linkedin"] {
+    margin-top: 1.8rem;
+  }
+  & [data-github="github"] {
+    // margin-top: -0.8rem;
+  }
+span{
+    font-size: 0.65rem;
+    font-family: ${({ theme }) => theme.fontFamily.latoLight};
+    font-weight: ${({ theme }) => theme.fontWeight.light};
+    color: ${({ theme }) => theme.colors.secondary};
+}
+`;
+const HeroSocialBtn = styled.button`
+position:relative;
+    width: 30%;
+    height: 0.8rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outeline: none;
+    font-size: 0.65rem;
+    font-family: ${({ theme }) => theme.fontFamily.latoLight};
+    font-weight: ${({ theme }) => theme.fontWeight.light};
+    color: ${({ theme }) => theme.colors.secondary};
+    text-align: left;
+`;
 
-export { HeroSection, HeroHeader, HeroTitleFirst, HeroTitleSecond, HeroWatfordTime, HeroImgContainer, HeroImg };
+export { HeroSection, HeroHeader, HeroTitleFirst, HeroTitleSecond, HeroWatfordTime, HeroImgContainer, HeroImg, HeroSocialLinksContainer,HeroSocialBtn };

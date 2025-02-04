@@ -6,6 +6,7 @@ import useWatfordTime from "../../../hooks/useWatfordTime";
 
 import * as S from "./Hero.styled";
 import myImg from "../../../Images/mobile_man_face.jpg";
+import { HiArrowLongRight } from "react-icons/hi2";
 
 const Hero = () => {
   const ctxPage = useContext(PageContext);
@@ -35,6 +36,11 @@ const Hero = () => {
           <S.HeroImg src={myImg} alt="Photo of mine face"></S.HeroImg>
         </S.HeroImgContainer>
       </S.HeroHeader>
+      <S.HeroSocialLinksContainer>
+        <span>PORTFOLIO 25'</span>
+        <S.HeroSocialBtn data-linkedin='linkedin'>LINKEDIN <HiArrowLongRight color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'50%', rotate:'315deg'}} /></S.HeroSocialBtn>
+        <S.HeroSocialBtn data-github='github'>GITHUB <HiArrowLongRight  color="#121212" style={{position:'absolute', bottom:'0.1rem', left:'40%', rotate:'315deg'}} /></S.HeroSocialBtn>
+      </S.HeroSocialLinksContainer>
       <ScrollToExplore />
     </S.HeroSection>
   );

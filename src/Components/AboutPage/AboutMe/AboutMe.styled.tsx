@@ -8,7 +8,6 @@ const AboutMeSection = styled.section`
   justify-content: center;
   align-items: center;
   gap: 5rem;
-  // background-color: ${({ theme }) => theme.colors.secondary};
   background-color: transparent;
   padding: ${({ theme }) => theme.padding.small};
 `;
@@ -42,21 +41,22 @@ const AboutMeTitle = styled.h2`
   font-size: ${({ theme }) => theme.fontSize.large};
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 80%;
   align-self: flex-end;
 `;
 const AboutMeTxt = styled.p`
-  width: 100%;
+  width: 98%;
   margin-top: 3rem;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
   line-height: 1.5rem;
   text-align: start;
+  text-wrap: pretty;
 `;
 const AboutMeSpan = styled.span`
   color: ${({ theme }) => theme.colors.accent};

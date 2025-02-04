@@ -1,122 +1,127 @@
 import { useState, useEffect, useRef } from "react";
 import * as S from "./GooeyBloobs.styled";
 
-interface Position {
+// Define an interface for each blob’s custom data.
+interface BlobData {
   x: number;
   y: number;
+  content: string;
 }
 
-const bloobsArr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+// Instead of a separate array of numbers, we now define an array of BlobData
+// for the other blobs.
+const initialCustomBlobs: BlobData[] = [
+  { x: -100, y: -50, content: "Blob 1" },
+  { x: 100,  y: -50, content: "Blob 2" },
+  { x: -100, y: 50,  content: "Blob 3" },
+  { x: 100,  y: 50,  content: "Blob 4" },
+  { x: -150, y: 0,   content: "Blob 5" },
+  { x: 150,  y: 0,   content: "Blob 6" },
+  { x: 0,    y: -150,content: "Blob 7" },
+  { x: 0,    y: 150, content: "Blob 8" },
+  { x: -50,  y: -150,content: "Blob 9" },
+  { x: 50,   y: 150, content: "Blob 10" },
+  { x: 0,    y: 200, content: "Blob 11" },
+];
+
+// A separate component for the special (toggle) blob.
+const SpecialBlob = ({ spread, onClick }: { spread: boolean; onClick: () => void }) => {
+  // When not spread, size is 75. When spread, size is 37.5.
+  const [specialSize, setSpecialSize] = useState(spread ? 37.5 : 75);
+
+  // Update local state when the spread prop changes.
+  useEffect(() => {
+    setSpecialSize(spread ? 37.5 : 75);
+  }, [spread]);
+
+  const target = { x: 0, y: 0, width: specialSize, height: specialSize };
+
+  return (
+    <S.Bloob onClick={onClick} animate={target} transition={{ duration: 1.5, ease: "easeInOut", type: "spring" }}>
+      <S.BloobText>☰</S.BloobText>
+    </S.Bloob>
+  );
+};
 
 const GooeyBloobs = () => {
-  const [centerBloob, setCenterBloob] = useState<number | null>(null);
+  // When spread is false, all other blobs remain centered (with larger size).
+  // When spread is true, they move to the positions defined in customBlobs.
+  const [spread, setSpread] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerSize, setContainerSize] = useState<{ width: number; height: number }>({
     width: 0,
     height: 0,
   });
-  const [spreadPositions, setSpreadPositions] = useState<Position[]>([]);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const isSpread = centerBloob !== null;
+  // Instead of random positions, we now use our custom blob data.
+  const [customBlobs, setCustomBlobs] = useState<BlobData[]>(initialCustomBlobs);
 
+  // Update container size on mount/resize.
   useEffect(() => {
-    const updateContainerSizeAndPositions = () => {
+    const updateSize = () => {
       if (containerRef.current) {
         const { width, height } = containerRef.current.getBoundingClientRect();
         setContainerSize({ width, height });
-
-        const bloobSize = 100;
-        const padding = 50;
-        const positions: Position[] = [];
-        const usedPositions = new Set<string>();
-
-        const getRandomPosition = (): Position => {
-          const x = Math.random() * (width - bloobSize - padding * 2) - (width / 2 - padding);
-          const y = Math.random() * (height - bloobSize - padding * 2) - (height / 2 - padding);
-          return { x, y };
-        };
-
-        const addUniquePosition = (attempts = 0) => {
-          if (attempts > 20) return;
-          const position = getRandomPosition();
-          const key = `${Math.round(position.x)},${Math.round(position.y)}`;
-
-          if (!usedPositions.has(key)) {
-            usedPositions.add(key);
-            positions.push(position);
-          } else {
-            addUniquePosition(attempts + 1);
-          }
-        };
-
-        for (let i = 0; i < bloobsArr.length; i++) {
-          addUniquePosition();
-        }
-
-        setSpreadPositions(positions);
       }
     };
-
-    updateContainerSizeAndPositions();
-    window.addEventListener("resize", updateContainerSizeAndPositions);
-    return () => window.removeEventListener("resize", updateContainerSizeAndPositions);
+    updateSize();
+    window.addEventListener("resize", updateSize);
+    return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  const handleBloobClick = (id: number) => {
-    setCenterBloob((prev) => (prev === id ? null : id));
+  // Toggle spread state when the special blob is clicked.
+  const handleToggle = () => {
+    setSpread((prev) => !prev);
+  };
+
+  // For other blobs:
+  // - When not spread: they are centered (x: 0, y: 0) with larger size.
+  // - When spread: they use the positions defined in customBlobs and size 75.
+  const getOtherBlobTarget = (blob: BlobData) => {
+    return spread
+      ? {
+          x: blob.x,
+          y: blob.y,
+          width: 75,
+          height: 75,
+        }
+      : {
+          x: 0,
+          y: 0,
+          width: 150,
+          height: 150,
+        };
   };
 
   return (
-    <S.BloobsContainer ref={containerRef}>
+    <>
       <svg style={{ display: "none" }} xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
           <filter id="goo">
             <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-            <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            <feColorMatrix
+              in="blur"
+              type="matrix"
+              values="1 0 0 0 0   0 1 0 0 0   0 0 1 0 0   0 0 0 18 -7"
+              result="goo"
+            />
             <feBlend in="SourceGraphic" in2="goo" />
           </filter>
         </defs>
       </svg>
-
-      {bloobsArr.map((bloob, index) => {
-        const isCenter = index === centerBloob;
-        const finalX = isSpread && !isCenter ? spreadPositions[index]?.x || 0 : 0;
-        const finalY = isSpread && !isCenter ? spreadPositions[index]?.y || 0 : 0;
-        const size = isCenter ? 30 : isSpread ? 100 : 200;
-
-        // Floating effect AFTER reaching position (random up/down movement)
-        const floatRange = 10; // Maximum ±10px movement
-        const floatDuration = 2 + Math.random(); // Randomized float duration
-
-        return (
-          <S.Bloob
-            key={index}
-            onClick={() => handleBloobClick(index)}
-            initial={{ x: 0, y: 0, width: 200, height: 200 }}
-            animate={{
-              x: finalX,
-              y: finalY,
-              width: size,
-              height: size,
-              transition: { duration: 1.5, ease: "easeInOut", type: "spring" },
-            }}
-          >
-            <S.FloatAnimation
-              animate={{
-                y: [0, floatRange, -floatRange, 0], // Moves up/down
-              }}
-              transition={{
-                duration: floatDuration,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut",
-              }}
-            >
-              {isSpread && <S.BloobText>{bloob}</S.BloobText>}
-            </S.FloatAnimation>
-          </S.Bloob>
-        );
-      })}
-    </S.BloobsContainer>
+      <S.BloobsContainer ref={containerRef}>
+        {/* Render Other Blobs */}
+        {customBlobs.map((blob, index) => {
+          const target = getOtherBlobTarget(blob);
+          return (
+            <S.Bloob key={index} animate={target} transition={{ duration: 1.5, ease: "easeInOut", type: "spring" }}>
+              {spread && <S.BloobText>{blob.content}</S.BloobText>}
+            </S.Bloob>
+          );
+        })}
+        {/* Render Special Toggle Blob */}
+        <SpecialBlob spread={spread} onClick={handleToggle} />
+      </S.BloobsContainer>
+    </>
   );
 };
 

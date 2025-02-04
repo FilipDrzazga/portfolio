@@ -30,18 +30,12 @@ const AboutMe = () => {
         </S.AboutMeHeader>
         <S.AboutMeDetailsContainer>
           <S.AboutMeTxt>
-            I’m a self-taught front-end developer currently based in Watford. For the past four years, I’ve been diving deep into
-            the world of web development, mastering JavaScript, React, and a range of other libraries essential for creating
-            dynamic and functional websites or applications.
+          I’M A SELF-TAUGHT FRONT-END DEVELOPER CURRENTLY BASED IN WATFORD.<br/> FOR THE PAST FOUR YEARS, I’VE BEEN DIVING DEEP INTO THE WORLD OF WEB DEVELOPMENT,<br/> MASTERING JAVASCRIPT, REACT, AND A RANGE OF OTHER LIBRARIES ESSENTIAL FOR CREATING DYNAMIC AND FUNCTIONAL WEBSITES OR APPLICATIONS.
           </S.AboutMeTxt>
           <S.AboutMeTxt>
-            In my free time, I’m always eager to learn more and push my skills further in this ever-evolving field. Whether it’s
-            exploring new technologies or refining my existing knowledge, I’m passionate about building digital experiences that
-            are both intuitive and engaging.
-          </S.AboutMeTxt>
-          <S.AboutMeTxt>
-            For enquiries, collaboration requests or job opportunities, don't hesitate to{" "}
-            <S.AboutMeSpan>get in touch!</S.AboutMeSpan>
+            IN MY FREE TIME,  I'M ALWAYS EAGER TO LEARN MORE AND PUSH MY SKILLS FURTHER IN THIS EVER-EVOLVING FIELD. WHETHER IT'S
+            EXPLORING NEW TECHNOLOGIES OR REFINING MY EXISTING KNOWLEDGE,<br/>I'M PASSIONATE ABOUT BUILDING DIGITAL EXPERIENCES THAT
+            ARE BOTH INTUITIVE AND ENGAGING.
           </S.AboutMeTxt>
         </S.AboutMeDetailsContainer>
       </S.AboutMeTxtContainer>

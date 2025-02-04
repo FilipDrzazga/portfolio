@@ -6,16 +6,20 @@ interface Props {
 }
 
 const ScrollToExploreContainer = styled(motion.div)`
+position: absolute;
+bottom: 15vh;
+left: 10%;
+// transform: translateX(-50%);
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 80%;
   overflow: hidden;
 `;
 const SpanScroll = styled(motion.span)<Props>`
   position: relative;
   color: ${({ theme }) => theme.colors.secondary};
-  font-size: ${({ theme }) => theme.fontSize.small};
+  font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   &:after {

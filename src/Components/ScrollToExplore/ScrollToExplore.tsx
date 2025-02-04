@@ -1,3 +1,5 @@
+import { useScroll, useTransform } from "motion/react";
+
 import * as S from "./ScrollToExplore.styled";
 
 const text = "SCROLL TO EXPLORE";
@@ -8,8 +10,11 @@ const charactersVariants = {
 };
 
 const ScrollToExplore = () => {
+  const {scrollY} = useScroll();
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const y = useTransform(scrollY, [0, 300], [0, 100]);
   return (
-    <S.ScrollToExploreContainer>
+    <S.ScrollToExploreContainer style={{opacity, y}}>
       {textArr.map((char, id) => {
         return (
           <S.SpanScroll custom={id} variants={charactersVariants} animate="animate" key={id} $char={char}>

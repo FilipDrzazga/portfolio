@@ -7,30 +7,8 @@ import useCalcMeshPosition from "../../../hooks/useCalcMeshPosition";
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
 import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
-import ShaderGetInTouchGlassMaterial from "../../ShaderGetInTouchGlassMaterial/ShaderGetInTouchGlassMaterial";
 
 const Scene = () => {
-  const ctxPage = useContext(PageContext);
-  const { top: introSectionTopPosition } = useCalcMeshPosition(ctxPage?.introSectionRect);
-  const { top: experienceSectionTopPosition } = useCalcMeshPosition(ctxPage?.experienceSectionRect);
-  const [canvasBackgroundColor, setCanvasBackgroundColor] = useState("#E9E9E9");
-
-  const { scrollY } = useScroll();
-  const start = Math.trunc(Math.abs(introSectionTopPosition!));
-  const end = Math.trunc(Math.abs(experienceSectionTopPosition!));
-  const white = "#E9E9E9";
-  const black = "#121212";
-
-  useMotionValueEvent(scrollY, "change", (scrollPosition) => {
-    if (scrollPosition >= start && scrollPosition < end) {
-      setCanvasBackgroundColor(black);
-    } else if (scrollPosition >= end) {
-      setCanvasBackgroundColor(white);
-    } else {
-      setCanvasBackgroundColor(white);
-    }
-  });
-
   const fovPosition = useMemo(() => {
     const cameraZPosition = 600;
     const newFovPosition = 2 * Math.atan(window.innerHeight / 2 / cameraZPosition) * (180 / Math.PI);
@@ -44,11 +22,10 @@ const Scene = () => {
       dpr={[1, Math.min(window.devicePixelRatio, 2)]}
       camera={{ fov: fovPosition, position: [0, 0, 600] }}
     >
-      <color attach="background" args={[canvasBackgroundColor]} />
+      <color attach="background" args={['#E9E9E9']} />
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial />
       <ShaderExperiencePixelTransition />
-      <ShaderGetInTouchGlassMaterial />
     </Canvas>
   );
 };

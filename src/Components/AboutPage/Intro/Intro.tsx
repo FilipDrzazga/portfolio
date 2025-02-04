@@ -2,7 +2,6 @@ import { useEffect, useRef, useContext } from "react";
 import { PageContext } from "../../../context/PageContext";
 import { useScroll } from "motion/react";
 
-import BounceSVG from "../../BounceSVG/BounceSVG";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 
 import * as S from "./Intro.styled";
@@ -24,7 +23,6 @@ const Intro = () => {
 
   return (
     <S.IntroSection ref={introSectionRef}>
-      <BounceSVG scrollYProgress={scrollYProgress} />
       <BlurRevealText scrollYProgress={scrollYProgress} />
     </S.IntroSection>
   );
