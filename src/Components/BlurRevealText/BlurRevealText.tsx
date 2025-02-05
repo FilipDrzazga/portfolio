@@ -1,35 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import { type MotionValue, useTransform } from "motion/react";
+import { type MotionValue, useMotionValueEvent, useTransform } from "motion/react";
 
 import * as S from "./BlurRevealText.styled";
 
-const text1 = "A".split("");
-const text1special = "self-taught".split("");
-const text2 = "and emerging".split("");
-const text3 = "creator,".split("");
-const text2special = "always".split("");
-const text4 = "trying to push".split("");
-const text5 = "the boundaries".split("");
-const text6 = "to bring".split("");
-const text3special = "cuzy".split("");
-const text7 = "ideas to".split("");
-const text4special = "web/app".split("");
-const text8 = "development.".split("");
-
-const wordsObj = {
-  char1: text1,
-  special1: text1special,
-  char2: text2,
-  char3: text3,
-  special2: text2special,
-  char4: text4,
-  char5: text5,
-  cart6: text6,
-  special3: text3special,
-  char7: text7,
-  special410: text4special,
-  char8: text8,
-};
+const wordsArr = ["A", "self-taught", "and", "emerging", "creator,", "always", "trying", "to", "push", "the", "boundaries", "to", "bring", "cuzy", "ideas", "to", "web/app", "development."];
 
 interface BlurRevealTextProps {
   readonly scrollYProgress: MotionValue<number>;
@@ -46,89 +20,70 @@ const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
     }
   }, []);
 
+    // Global scroll progress goes from 0 to 1.
+    const totalProgress = 1;
+
+    // WORD LEVEL
+    const wordStagger = 0.3; // when to start the next word (20% delay)
+    const numWords = wordsArr.length;
+    // Each word's duration such that the last word ends at 1:
+    const D_word = totalProgress / (1 + (numWords - 1) * wordStagger);
+  
+    // LETTER LEVEL (stagger inside each word)
+    const letterStagger = 0.1; // 20% delay for each letter inside the word
+
   return (
-    <S.DivStoryContainer $height={divStoryContainerHeight} ref={DivStoryContainerRef}>
-      {Object.entries(wordsObj).map(([key, charArr], id) => {
-        let start;
-        let end;
-        if (charArr.includes("A") && id === 0) {
-          start = id;
-          end = start + 1 * 0.01;
-        } else {
-          start = id / 20;
-          end = start + 1 * 0.08;
-        }
+    <S.DivStoryContainer ref={DivStoryContainerRef} $height={divStoryContainerHeight}>
+     {wordsArr.map((word, i) => {
+  // Compute word-level timing:
+  const wordStart = i * wordStagger * D_word;
+  const wordEnd = wordStart + D_word;
+  const letters = word.split("");
+  const numLetters = letters.length;
+  // Compute each letter's duration within this word's window:
+  const D_letter = D_word / (1 + (numLetters - 1) * letterStagger);
+
         return (
-          <CharactersContainer
-            key={id}
-            keyValue={key}
-            data-specialcontainer={key.includes("special") ? "true" : "false"}
-            range={[start, end]}
-            progress={scrollYProgress}
-            charArr={charArr}
-          >
-            {charArr}
-          </CharactersContainer>
+          <S.CharactersContainer key={i}>
+            {letters.map((letter, j) => {
+   // Compute letter-level timing:
+   const letterStart = wordStart + j * letterStagger * D_letter;
+   const letterEnd = letterStart + D_letter;
+
+              // Animate the filter property from blur(10px) to blur(0px)
+              const blur = useTransform(
+                scrollYProgress,
+                [letterStart, letterEnd],
+                ["blur(10px)", "blur(0px)"]
+              );
+              const opacity = useTransform(
+                scrollYProgress,
+                [letterStart, letterEnd],
+                ["0", "1"]
+              );              
+
+              return (
+                <S.SpanCharacters
+                  key={j}
+                  style={{
+                    filter: blur,
+                    display: "inline-block", // ensure proper transform rendering
+                    marginRight: "2px",
+                    opacity,
+                    // scale
+                  }}
+                >
+                  {letter}
+                </S.SpanCharacters>
+              );
+            })}
+          </S.CharactersContainer>
         );
       })}
     </S.DivStoryContainer>
-  );
+  )
 };
 
 export default BlurRevealText;
 
-// ///////////////////////////////////////////////////////////////////////////
-interface CharactersContainerProps {
-  readonly children: React.ReactNode;
-  readonly range: number[];
-  readonly progress: MotionValue<number>;
-  readonly charArr: string[];
-  readonly "data-specialcontainer"?: string;
-  readonly keyValue: string;
-}
-
-const CharactersContainer = ({ children, ...props }: CharactersContainerProps) => {
-  const { progress, range, charArr, keyValue } = props;
-  const amount = range[1] - range[0];
-  const step = amount / (Array.isArray(children) ? children.length : 0);
-
-  return (
-    <S.CharactersContainer {...props}>
-      {charArr.map((char, id) => {
-        const start = range[0] + step * id;
-        const end = range[0] + step * (id + 20);
-        return (
-          <SpanCharacters key={id} keyValue={keyValue} range={[start, end]} progress={progress}>
-            {char}
-          </SpanCharacters>
-        );
-      })}
-    </S.CharactersContainer>
-  );
-};
-
-// ///////////////////////////////////////////////////////////////////////////
-interface SpanCharactersProps {
-  readonly children: React.ReactNode;
-  readonly range: number[];
-  readonly progress: MotionValue<number>;
-  readonly keyValue: string;
-}
-
-const SpanCharacters = ({ children, ...props }: SpanCharactersProps) => {
-  const { progress, range, keyValue } = props;
-
-  const opacity = useTransform(progress, range, [0, 1]);
-  const blur = useTransform(progress, range, ["blur(2px)", "blur(0px)"]);
-  const scale = useTransform(progress, range, [0, 1]);
-
-  return (
-    <S.SpanCharacters
-      style={{ opacity, filter: blur, scale }}
-      data-specialchar={keyValue.includes("special") ? "true" : "false"}
-      {...props}
-    >
-      {children}
-    </S.SpanCharacters>
-  );
-};
+ 

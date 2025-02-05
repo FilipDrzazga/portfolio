@@ -25,7 +25,7 @@ const ShaderAboutMeImageMaterial = () => {
       step: 1.0,
     },
     squareSize: {
-      value: 5.0,
+      value: 4.0,
       min: 0.0,
       max: 10.0,
       step: 0.1,
