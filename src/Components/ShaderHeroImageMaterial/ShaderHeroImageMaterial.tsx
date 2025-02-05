@@ -11,36 +11,25 @@ import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
-import image from "../../images/hero_mobile_img_480w.webp";
+import mobileImg from "../../images/hero_mobile_img_480w.webp";
+import tabletImg from "../../images/hero_tablet_img_768w.webp";
+import screenImg from "../../images/hero_desktop_img_1920w.webp";
 
 const ShaderHeroImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
   const { top, left, width, height } = useCalcMeshPosition(ctxPage?.heroImgRect);
 
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1224px)",
-  });
-  const isMobile = useMediaQuery({ query: "(max-width: 1079px)" });
-  const isBigScreen = useMediaQuery({ query: "(min-width: 1824px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isPortrait = useMediaQuery({ query: "(orientation: portrait)" });
-  const isRetina = useMediaQuery({ query: "(min-resolution: 2dppx)" });
+  const isMobile = useMediaQuery({ maxWidth: 768, orientation: "portrait" });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1024 });
+  const isScreen = useMediaQuery({ minWidth: 1025 });
 
-  console.log(
-    "isMobile",
-    isMobile,
-    "isDesktopOrLaptop",
-    isDesktopOrLaptop,
-    "isBigScreen",
-    isBigScreen,
-    "isTabletOrMobile",
-    isTabletOrMobile,
-    "isPortrait",
-    isPortrait,
-    "isRetina",
-    isRetina
-  );
+  const texturePath = useMemo(() => {
+    if (isMobile) return mobileImg;
+    if (isTablet) return tabletImg;
+    if (isScreen) return screenImg;
+    return tabletImg;
+  }, [isMobile, isTablet, isScreen]);
 
   const uniformsOptions = {
     gridSize: {
@@ -63,7 +52,7 @@ const ShaderHeroImageMaterial = () => {
     },
   };
 
-  const imageTexture = useTexture(image);
+  const imageTexture = useTexture(texturePath);
   const { scrollY } = useScroll();
   const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
 

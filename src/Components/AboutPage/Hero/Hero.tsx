@@ -34,7 +34,7 @@ const Hero = () => {
         </S.HeroTitleSecond>
         <S.HeroWatfordTime>{watfordTime}</S.HeroWatfordTime>
         <S.HeroImgContainer ref={imgRef}>
-          <S.HeroImg src={image} alt="Photo of mine face"></S.HeroImg>
+          <S.HeroImg src={image} alt="My photo"></S.HeroImg>
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>

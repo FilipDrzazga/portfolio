@@ -10,12 +10,26 @@ import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 import fragmentShader from "./shaders/fragmentShader.glsl?raw";
 import vertexShader from "./shaders/vertexShader.glsl?raw";
 
-import image from "../../images/hero_mobile_img_480w.webp";
+import mobileImg from "../../images/aboutme_mobile_img_480w.webp";
+import tabletImg from "../../images/aboutme_tablet_img_768w.webp";
+import screenImg from "../../images/aboutme_desktop_img_1920w.webp";
+import { useMediaQuery } from "react-responsive";
 
 const ShaderAboutMeImageMaterial = () => {
   const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
   const { top, left, height, width } = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
+
+  const isMobile = useMediaQuery({ maxWidth: 768, orientation: "portrait" });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1024 });
+  const isScreen = useMediaQuery({ minWidth: 1025 });
+
+  const texturePath = useMemo(() => {
+    if (isMobile) return mobileImg;
+    if (isTablet) return tabletImg;
+    if (isScreen) return screenImg;
+    return tabletImg;
+  }, [isMobile, isTablet, isScreen]);
 
   const uniformsOptions = {
     gridSize: {
@@ -38,7 +52,7 @@ const ShaderAboutMeImageMaterial = () => {
     },
   };
 
-  const imageTexture = useTexture(image);
+  const imageTexture = useTexture(texturePath);
   const { scrollY } = useScroll();
   const { gridSize, squareSize, displacementStrength } = useControls(uniformsOptions);
 

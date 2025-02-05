@@ -4,7 +4,7 @@ import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import { useScroll } from "motion/react";
 
 import * as S from "./AboutMe.styled";
-import image from "../../../images/hero_mobile_img_480w.webp";
+import image from "../../../images/aboutme_mobile_img_480w.webp";
 
 const AboutMe = () => {
   const ctxPage = useContext(PageContext);
