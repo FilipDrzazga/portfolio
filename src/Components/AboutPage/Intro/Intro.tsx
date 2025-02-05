@@ -23,7 +23,10 @@ const Intro = () => {
 
   return (
     <S.IntroSection ref={introSectionRef}>
-      <BlurRevealText scrollYProgress={scrollYProgress} />
+      <BlurRevealText
+        scrollYProgress={scrollYProgress}
+        text="I'm a self-taught coder, enthusiastic about dynamic areas of motion and animations. Focusing on the smallest details to ensure everything is flawless."
+      />
     </S.IntroSection>
   );
 };

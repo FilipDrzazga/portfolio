@@ -20,48 +20,20 @@ const GetInTouchHeader = styled.header`
   width: 90%;
   height: 90%;
 `;
-const GetInTouchTitle = styled.h2`
-  width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: 300;
-  letter-spacing: -0.1rem;
-  color: ${({ theme }) => theme.colors.secondary};
-  line-height: 2rem;
-  span {
-    font-size: ${({ theme }) => theme.fontSize.large};
-    font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
-    font-weight: ${({ theme }) => theme.fontWeight.medium};
-    color: ${({ theme }) => theme.colors.secondary};
-    letter-spacing: -0.1rem;
-  }
-`;
-const GetInTouchButtonContainer = styled.div`
-  width: 100%;
-`;
-const GetInTouchButton = styled.button`
-  font-size: 1rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  color: ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.secondary};
-  padding: 0.7rem 1.5rem;
-  border: 1px solid black;
-  border-radius: 50px;
-  cursor: pointer;
-`;
 const GetInTouchFooter = styled.footer`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  width: 90%;
+  width: 100%;
   height: 10%;
 `;
 const GetInTouchFooterText = styled.span`
-  font-size: 0.8rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-size: 0.5rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.secondary};
+  opacity: 0.5;
 `;
 const GooeyCircles = styled.div`
   position: absolute;
@@ -80,14 +52,4 @@ const Circle = styled(motion.div)`
   filter: blur(40px);
 `;
 
-export {
-  GetInTouchSection,
-  GetInTouchHeader,
-  GetInTouchTitle,
-  GetInTouchButtonContainer,
-  GetInTouchButton,
-  GetInTouchFooter,
-  GetInTouchFooterText,
-  GooeyCircles,
-  Circle,
-};
+export { GetInTouchSection, GetInTouchHeader, GetInTouchFooter, GetInTouchFooterText, GooeyCircles, Circle };

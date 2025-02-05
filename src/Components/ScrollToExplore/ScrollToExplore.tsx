@@ -9,7 +9,7 @@ const textArr = text.split("");
 const ScrollToExplore = () => {
   const [scope, animate] = useAnimate();
   const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 200], [1, 0]);
   const y = useTransform(scrollY, [0, 300], [0, 100]);
 
   useEffect(() => {

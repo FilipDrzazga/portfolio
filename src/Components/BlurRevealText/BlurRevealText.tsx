@@ -1,34 +1,14 @@
 import { useRef, useEffect, useState } from "react";
 import { type MotionValue, useTransform } from "motion/react";
-
 import * as S from "./BlurRevealText.styled";
-
-const wordsArr = [
-  "A",
-  "self-taught",
-  "and",
-  "emerging",
-  "creator,",
-  "always",
-  "trying",
-  "to",
-  "push",
-  "the",
-  "boundaries",
-  "to",
-  "bring",
-  "cuzy",
-  "ideas",
-  "to",
-  "web/app",
-  "development.",
-];
 
 interface BlurRevealTextProps {
   readonly scrollYProgress: MotionValue<number>;
+  readonly text: string;
+  readonly accelerated?: boolean;
 }
 
-const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
+const BlurRevealText = ({ scrollYProgress, text, accelerated = false }: BlurRevealTextProps) => {
   const wordContainerRef = useRef<HTMLDivElement>(null);
   const [wordContainerHeight, setWordContainerHeight] = useState(0);
 
@@ -38,6 +18,11 @@ const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
       setWordContainerHeight(height);
     }
   }, []);
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const progress = accelerated ? useTransform(scrollYProgress, [0, 0.5, 0.9], [0, 0.1, 1]) : scrollYProgress;
+
+  const wordsArr = text.trim().split(/\s+/);
 
   const totalProgress = 1;
   const wordStagger = 0.3;
@@ -60,20 +45,12 @@ const BlurRevealText = ({ scrollYProgress }: BlurRevealTextProps) => {
               const letterEnd = letterStart + durationLetter;
 
               // eslint-disable-next-line react-hooks/rules-of-hooks
-              const blur = useTransform(scrollYProgress, [letterStart, letterEnd], ["blur(10px)", "blur(0px)"]);
+              const blur = useTransform(progress, [letterStart, letterEnd], ["blur(10px)", "blur(0px)"]);
               // eslint-disable-next-line react-hooks/rules-of-hooks
-              const opacity = useTransform(scrollYProgress, [letterStart, letterEnd], ["0", "1"]);
+              const opacity = useTransform(progress, [letterStart, letterEnd], ["0", "1"]);
 
               return (
-                <S.Characters
-                  key={j}
-                  style={{
-                    filter: blur,
-                    display: "inline-block",
-                    marginRight: "2px",
-                    opacity,
-                  }}
-                >
+                <S.Characters key={j} style={{ filter: blur, opacity }}>
                   {char}
                 </S.Characters>
               );

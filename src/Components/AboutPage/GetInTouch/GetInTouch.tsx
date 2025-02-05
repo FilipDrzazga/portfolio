@@ -2,10 +2,17 @@ import { useEffect, useRef, useContext } from "react";
 import { PageContext } from "../../../context/PageContext";
 
 import * as S from "./GetInTouch.styled";
+import BlurRevealText from "../../BlurRevealText/BlurRevealText";
+import { useScroll } from "motion/react";
 
 const GetInTouch = () => {
   const ctxPage = useContext(PageContext);
   const getInTouchSection = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: getInTouchSection,
+    offset: ["start end", "end end"],
+  });
 
   useEffect(() => {
     if (ctxPage) {
@@ -16,15 +23,11 @@ const GetInTouch = () => {
   return (
     <S.GetInTouchSection ref={getInTouchSection}>
       <S.GetInTouchHeader>
-        <S.GetInTouchTitle>
-          For any <span>collaborative</span> projects <span>or</span> inquiries feel free to reach out <span>to me.</span>
-        </S.GetInTouchTitle>
-        <S.GetInTouchButtonContainer>
-          <S.GetInTouchButton>get in touch.</S.GetInTouchButton>
-        </S.GetInTouchButtonContainer>
+        <BlurRevealText scrollYProgress={scrollYProgress} text="Get in touch." />
       </S.GetInTouchHeader>
       <S.GetInTouchFooter>
-        <S.GetInTouchFooterText>2025 Designed & Developed by Filip Drzazga</S.GetInTouchFooterText>
+        <S.GetInTouchFooterText>DESIGNED & DEVELOPED BY_FILIPDRZAZGA</S.GetInTouchFooterText>
+        <S.GetInTouchFooterText>2@25 All RIGHTS RESERVED</S.GetInTouchFooterText>
       </S.GetInTouchFooter>
       <svg width="0" height="0">
         <defs>

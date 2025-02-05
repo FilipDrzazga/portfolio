@@ -41,11 +41,11 @@ const Hero = () => {
         <TextAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
           <TextAnimation text="LINKEDIN" />
-          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.1rem", left: "50%", rotate: "315deg" }} />
+          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
           <TextAnimation text="GITHUB" />
-          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.1rem", left: "40%", rotate: "315deg" }} />
+          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
       <ScrollToExplore />

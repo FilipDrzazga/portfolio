@@ -19,7 +19,7 @@ const HeroHeader = styled.header`
 `;
 const HeroTitleFirst = styled.h2`
   width: 100%;
-  font-size: ${({theme})=>theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.large};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   letter-spacing: -0.15rem;
@@ -44,7 +44,6 @@ const HeroWatfordTime = styled.span`
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.secondary};
-  // letter-spacing: -0.05rem;
 `;
 const HeroImgContainer = styled.div`
   position: absolute;

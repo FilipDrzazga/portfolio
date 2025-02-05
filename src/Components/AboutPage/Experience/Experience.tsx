@@ -4,10 +4,17 @@ import { PageContext } from "../../../context/PageContext";
 import GooeyBloobs from "../../GooeyBloobs/GooeyBloobs";
 
 import * as S from "./Experience.styled";
+import BlurRevealText from "../../BlurRevealText/BlurRevealText";
+import { useScroll } from "motion/react";
 
 const Experience = () => {
   const ctxPage = useContext(PageContext);
   const experienceSectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: experienceSectionRef,
+    offset: ["start end", "end end"],
+  });
 
   useEffect(() => {
     if (ctxPage) {
@@ -18,12 +25,7 @@ const Experience = () => {
   return (
     <S.ExperienceSection ref={experienceSectionRef}>
       <S.ExperienceHeader>
-        <S.ExperienceTitle>
-          Usually<span>tools</span>
-          <br />
-          in use.
-          <br />
-        </S.ExperienceTitle>
+        <BlurRevealText scrollYProgress={scrollYProgress} text="Usually tools in use." accelerated />
       </S.ExperienceHeader>
       <GooeyBloobs />
     </S.ExperienceSection>

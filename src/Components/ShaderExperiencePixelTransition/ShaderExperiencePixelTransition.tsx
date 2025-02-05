@@ -17,7 +17,7 @@ const ShaderExperiencePixelTransition = () => {
 
   const start = Math.trunc(Math.abs(top!)) - window.innerHeight;
   const end = Math.trunc(Math.abs(top!));
-  const progressTransition = useTransform(scrollY, [start, start + height! / 2, end], [0, 0.5, 1]);
+  const progressTransition = useTransform(scrollY, [start, start + height! / 2, end], [0, 0.9, 1]);
 
   const uniforms = useMemo(
     () => ({
