@@ -35,18 +35,12 @@ const AboutMeHeader = styled.header`
   width: 100%;
 `;
 const AboutMeTitle = styled.h2`
-    width: 100%;
-    font-size: ${({ theme }) => theme.fontSize.large};
-    font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
-    font-weight: ${({ theme }) => theme.fontWeight.medium};
-    color: ${({ theme }) => theme.colors.secondary};
-    line-height: 2rem;
-  span {
-    font-size: ${({ theme }) => theme.fontSize.large};
-    font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
-    font-weight: ${({ theme }) => theme.fontWeight.medium};
-    color: ${({ theme }) => theme.colors.secondary};
-  }
+  width: 100%;
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  color: ${({ theme }) => theme.colors.secondary};
+  line-height: 2rem;
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 80%;

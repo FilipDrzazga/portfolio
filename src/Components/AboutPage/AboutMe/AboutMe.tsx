@@ -25,8 +25,7 @@ const AboutMe = () => {
       <S.AboutMeTxtContainer>
         <S.AboutMeHeader>
           <S.AboutMeTitle>
-            Animation <span>enthusiast</span> constantly honing skills to <span>create smooth</span> and engaging experiences that
-            leave everyone <span>satisfied</span>.
+            Animation enthusiast constantly honing skills to create smooth and engaging experiences that leave everyone satisfied.
           </S.AboutMeTitle>
         </S.AboutMeHeader>
         <S.AboutMeDetailsContainer>

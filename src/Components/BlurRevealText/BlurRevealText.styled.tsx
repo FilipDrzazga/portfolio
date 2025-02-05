@@ -5,7 +5,7 @@ interface Props {
   $height: number;
 }
 
-const DivStoryContainer = styled(motion.div)<Props>`
+const WordContainer = styled(motion.div)<Props>`
   position: sticky;
   top: ${({ $height }) => `calc(45% - ${$height / 2}px)`};
   width: 100%;
@@ -19,11 +19,11 @@ const DivStoryContainer = styled(motion.div)<Props>`
   color: ${({ theme }) => theme.colors.secondary};
 `;
 const CharactersContainer = styled(motion.div)`
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items: center;;
-  `;
-const SpanCharacters = styled(motion.span)`
+  align-items: center;
+`;
+const Characters = styled(motion.span)`
     display: inline-block;
     font-size: ${({ theme }) => theme.fontSize.large};
     font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
@@ -34,4 +34,4 @@ const SpanCharacters = styled(motion.span)`
   }
 `;
 
-export { DivStoryContainer, CharactersContainer, SpanCharacters };
+export { WordContainer, CharactersContainer, Characters };
