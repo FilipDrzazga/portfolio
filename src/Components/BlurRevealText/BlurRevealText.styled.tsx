@@ -19,10 +19,10 @@ const DivStoryContainer = styled(motion.div)<Props>`
   color: ${({ theme }) => theme.colors.secondary};
 `;
 const CharactersContainer = styled(motion.div)`
-  display:flex;
+  display: flex;
   justify-content: center;
-  align-items: center;;
-  `;
+  align-items: center;
+`;
 const SpanCharacters = styled(motion.span)`
     display: inline-block;
     font-size: ${({ theme }) => theme.fontSize.large};
