@@ -36,7 +36,7 @@ const AboutMeHeader = styled.header`
 `;
 const AboutMeTitle = styled.h2`
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.fontSize.medium};
   font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   color: ${({ theme }) => theme.colors.secondary};

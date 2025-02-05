@@ -11,17 +11,18 @@ const WordContainer = styled(motion.div)<Props>`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: stretch;
+  justify-content:stretch;
+  gap: 0.3rem;
   align-items: center;
-  gap: 0.5rem;
   margin-top: 100px;
-  margin-bottom: 300px;
+  margin-bottom: 100px;
   color: ${({ theme }) => theme.colors.secondary};
 `;
 const CharactersContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: -0.5rem;
 `;
 const Characters = styled(motion.span)`
     display: inline-block;
@@ -29,8 +30,8 @@ const Characters = styled(motion.span)`
     font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     color: ${({ theme }) => theme.colors.secondary};
-    line-height: 1.5rem;
     margin-left: -0.1rem;
+    line-height: 1.8rem;
   }
 `;
 

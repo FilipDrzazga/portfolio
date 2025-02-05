@@ -19,20 +19,14 @@ const HeroHeader = styled.header`
 `;
 const HeroTitleFirst = styled.h2`
   width: 100%;
-  font-size: 2.5rem;
+  font-size: ${({theme})=>theme.fontSize.large};
   font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: 300;
-  letter-spacing: -0.15rem;
-  word-spacing: -0.15rem;
-  color: ${({ theme }) => theme.colors.secondary};
-  font-size: 2.5rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: 300;
+  font-weight: ${({ theme }) => theme.fontWeight.light};
   letter-spacing: -0.15rem;
   word-spacing: -0.15rem;
   color: ${({ theme }) => theme.colors.secondary};
   span {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     letter-spacing: -0.15rem;
@@ -45,12 +39,12 @@ const HeroTitleSecond = styled(HeroTitleFirst)`
 `;
 const HeroWatfordTime = styled.span`
   margin-top: -0.2rem;
-  padding-left: 0.3rem;
-  font-size: ${({ theme }) => theme.fontSize.small};
+  padding-left: 0.2rem;
+  font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
   color: ${({ theme }) => theme.colors.secondary};
-  letter-spacing: -0.05rem;
+  // letter-spacing: -0.05rem;
 `;
 const HeroImgContainer = styled.div`
   position: absolute;
