@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { type MotionValue, useMotionValueEvent, useTransform,useScroll } from "motion/react";
+import { useTransform, useScroll } from "motion/react";
 
 import * as S from "./TextAnimation.styled";
 

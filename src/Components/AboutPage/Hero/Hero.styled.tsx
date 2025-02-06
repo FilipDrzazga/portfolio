@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import styled from "styled-components";
 
 const HeroSection = styled.section`
@@ -17,25 +18,24 @@ const HeroHeader = styled.header`
   display: flex;
   flex-direction: column;
 `;
-const HeroTitleFirst = styled.h2`
-  width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-family: ${({ theme }) => theme.fontFamily.latoLight};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  letter-spacing: -0.15rem;
-  word-spacing: -0.15rem;
-  color: ${({ theme }) => theme.colors.secondary};
-  span {
+const HeroTitle= styled.h2`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
     font-size: 2.2rem;
     font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
     font-weight: ${({ theme }) => theme.fontWeight.medium};
-    letter-spacing: -0.15rem;
+    letter-spacing: -0.10rem;
     word-spacing: -0.15rem;
+    line-height: 1.2;
     color: ${({ theme }) => theme.colors.secondary};
-  }
 `;
-const HeroTitleSecond = styled(HeroTitleFirst)`
-  margin-top: -1rem;
+const TitleTextContainer = styled(motion.div)`
+
+`;
+const TitleCharacters= styled(motion.span)`
+
 `;
 const HeroWatfordTime = styled.span`
   margin-top: -0.2rem;
@@ -99,8 +99,9 @@ const HeroSocialBtn = styled.button`
 export {
   HeroSection,
   HeroHeader,
-  HeroTitleFirst,
-  HeroTitleSecond,
+  HeroTitle,
+  TitleTextContainer,
+  TitleCharacters,
   HeroWatfordTime,
   HeroImgContainer,
   HeroImg,
