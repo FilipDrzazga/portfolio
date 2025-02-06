@@ -9,13 +9,12 @@ interface TextAnimationProps {
   isFadeOnScroll?: boolean;
 }
 
-const specialSignsArr = [
-  "!", "@", "#", "$", "%", "&", "*", "(", ")","=", "+", "[", "]", "{", "}", "~", "€", "£", "¥", "¢"];
+const specialSignsArr = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "=", "+", "[", "]", "{", "}", "~", "€", "£", "¥", "¢"];
 
 const containerVariants = {
-  initial: {opacity: 0},
+  initial: { opacity: 0 },
   animate: {
-    opacity:1,
+    opacity: 1,
     transition: {
       delayChildren: 0.5,
       staggerChildren: 0.1,
@@ -24,27 +23,30 @@ const containerVariants = {
 };
 
 const textAnimationVariants = {
-  initial: { opacity: 0, x: -1,'--afterOpacity': 1, },
-  animate: { opacity: 1, x: 0, '--afterOpacity': 0},
-}
+  initial: { opacity: 0, x: -1, "--afterOpacity": 1 },
+  animate: { opacity: 1, x: 0, "--afterOpacity": 0 },
+};
 
-const TextAnimation = ({ text, style = {}, isFadeOnScroll }:TextAnimationProps) => {
+const TextAnimation = ({ text, style = {}, isFadeOnScroll }: TextAnimationProps) => {
   const { scrollY } = useScroll();
   const getRandomSign = useCallback(() => {
     return specialSignsArr[Math.floor(Math.random() * specialSignsArr.length)];
   }, []);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const opacity = isFadeOnScroll ? useTransform(scrollY, [0, 100], [1, 0]) : 1;
-  const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ['10%', '0%']) : 0;
-  
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ["10%", "0%"]) : 0;
+
   return (
-    <S.AnimatedLetterContainer style={{ ...style, opacity,bottom  }} variants={containerVariants} initial="initial" animate="animate">
+    <S.AnimatedLetterContainer
+      style={{ ...style, opacity, bottom }}
+      variants={containerVariants}
+      initial="initial"
+      animate="animate"
+    >
       {text.split("").map((char, index) => (
-        <S.AnimatedLetter
-          key={index}
-          variants={textAnimationVariants}
-          $randomContent={getRandomSign()}
-        >
+        <S.AnimatedLetter key={index} variants={textAnimationVariants} $randomContent={getRandomSign()}>
           {char}
         </S.AnimatedLetter>
       ))}

@@ -18,25 +18,21 @@ const HeroHeader = styled.header`
   display: flex;
   flex-direction: column;
 `;
-const HeroTitle= styled.h2`
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-    font-size: 2.2rem;
-    font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
-    font-weight: ${({ theme }) => theme.fontWeight.medium};
-    letter-spacing: -0.10rem;
-    word-spacing: -0.15rem;
-    line-height: 1.2;
-    color: ${({ theme }) => theme.colors.secondary};
+const HeroTitle = styled.h2`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  font-size: 2.2rem;
+  font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
+  font-weight: ${({ theme }) => theme.fontWeight.medium};
+  letter-spacing: -0.1rem;
+  word-spacing: -0.15rem;
+  line-height: 1.2;
+  color: ${({ theme }) => theme.colors.secondary};
 `;
-const TitleTextContainer = styled(motion.div)`
-
-`;
-const TitleCharacters= styled(motion.span)`
-
-`;
+const TitleTextContainer = styled(motion.div)``;
+const TitleCharacters = styled(motion.span)``;
 const HeroWatfordTime = styled.span`
   margin-top: -0.2rem;
   padding-left: 0.2rem;

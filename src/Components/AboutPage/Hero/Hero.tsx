@@ -10,15 +10,13 @@ import { HiArrowLongRight } from "react-icons/hi2";
 const title = ["Creative Developer Based in Watford"];
 
 const titleTextContainerVariants = {
-  initial:{opacity:0},
-  animate:{opacity:1, transition:{delayChildren:0.5,staggerChildren:0.05}},
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { delayChildren: 0.5, staggerChildren: 0.05 } },
 };
 const titleCharactersVariants = {
-  initial:{opacity:0, filter: 'blur(10px)'},
-  animate:{opacity:1, filter: 'blur(0px)', transition:{duration:1}},
+  initial: { opacity: 0, filter: "blur(10px)" },
+  animate: { opacity: 1, filter: "blur(0px)", transition: { duration: 1 } },
 };
-
-
 
 const Hero = () => {
   const ctxPage = useContext(PageContext);
@@ -39,12 +37,16 @@ const Hero = () => {
       <S.HeroHeader>
         <S.HeroTitle>
           {title.map((text, i) => (
-            <S.TitleTextContainer variants={titleTextContainerVariants} initial='initial' animate='animate' key={i}>{text.split('').map((char,j)=>(
-              <S.TitleCharacters variants={titleCharactersVariants} key={j}>{char}</S.TitleCharacters>
-            ))}</S.TitleTextContainer>
-           ))}
+            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
+              {text.split("").map((char, j) => (
+                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
+                  {char}
+                </S.TitleCharacters>
+              ))}
+            </S.TitleTextContainer>
+          ))}
         </S.HeroTitle>
-        <S.HeroWatfordTime>{<TextAnimation text={watfordTime}/>}</S.HeroWatfordTime>
+        <S.HeroWatfordTime>{<TextAnimation text={watfordTime} />}</S.HeroWatfordTime>
         <S.HeroImgContainer ref={imgRef}>
           <S.HeroImg src={image} alt="My photo"></S.HeroImg>
         </S.HeroImgContainer>
@@ -60,7 +62,11 @@ const Hero = () => {
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
-      <TextAnimation isFadeOnScroll text="[ SCROLL TO EXPLORE ]" style={{position:'absolute', bottom:'10%', left:'50%', transform:'translate(-50%, -50%)'}} />
+      <TextAnimation
+        isFadeOnScroll
+        text="[ SCROLL TO EXPLORE ]"
+        style={{ position: "absolute", bottom: "10%", left: "50%", transform: "translate(-50%, -50%)" }}
+      />
     </S.HeroSection>
   );
 };

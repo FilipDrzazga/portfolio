@@ -6,6 +6,7 @@ const SectionNavigation = styled.section`
   width: 100%;
   height: 10vh;
   padding: ${({ theme }) => theme.padding.small};
+  padding-top: 1.5rem;
   background-color: transparent;
   backdrop-filter: blur(5px);
   z-index: 1000;

@@ -5,8 +5,7 @@ interface AnimatedLetterProps {
   readonly $randomContent: string;
 }
 
-const AnimatedLetterContainer = styled(motion.div)`
-`;
+const AnimatedLetterContainer = styled(motion.div)``;
 const AnimatedLetter = styled(motion.span)<AnimatedLetterProps>`
   position: relative;
   font-size: 0.65rem;
@@ -23,8 +22,8 @@ const AnimatedLetter = styled(motion.span)<AnimatedLetterProps>`
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
     font-size: 0.65rem;
-    opacity: var(--afterOpacity)
+    opacity: var(--afterOpacity);
   }
 `;
 
-export {  AnimatedLetterContainer, AnimatedLetter };
+export { AnimatedLetterContainer, AnimatedLetter };
