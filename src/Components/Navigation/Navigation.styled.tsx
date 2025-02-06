@@ -38,7 +38,7 @@ const LiNavigation = styled.li`
 `;
 const ANavigation = styled(motion.a)`
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
   font-size: 0.65rem;
   color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;

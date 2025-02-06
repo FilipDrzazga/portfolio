@@ -91,7 +91,7 @@ const HeroSocialBtn = styled.button`
   outeline: none;
   font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.secondary};
   text-align: left;
 `;

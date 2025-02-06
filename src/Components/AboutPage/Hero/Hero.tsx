@@ -1,8 +1,6 @@
 import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
-import ScrollToExplore from "../../ScrollToExplore/ScrollToExplore";
 import TextAnimation from "../../TextAnimation/TextAnimation";
-
 import useWatfordTime from "../../../hooks/useWatfordTime";
 
 import * as S from "./Hero.styled";
@@ -32,7 +30,7 @@ const Hero = () => {
         <S.HeroTitleSecond>
           <span>Based in</span> Watford.
         </S.HeroTitleSecond>
-        <S.HeroWatfordTime>{watfordTime}</S.HeroWatfordTime>
+        <S.HeroWatfordTime>{<TextAnimation text={watfordTime}/>}</S.HeroWatfordTime>
         <S.HeroImgContainer ref={imgRef}>
           <S.HeroImg src={image} alt="My photo"></S.HeroImg>
         </S.HeroImgContainer>
@@ -48,7 +46,7 @@ const Hero = () => {
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
-      <ScrollToExplore />
+      <TextAnimation isFadeOnScroll text="[ SCROLL TO EXPLORE ]" style={{position:'absolute', bottom:'10%', left:'50%', transform:'translate(-50%, -50%)'}} />
     </S.HeroSection>
   );
 };

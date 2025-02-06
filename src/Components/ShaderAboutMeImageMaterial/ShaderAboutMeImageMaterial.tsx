@@ -50,6 +50,7 @@ const ShaderAboutMeImageMaterial = () => {
       max: 10.0,
       step: 0.1,
     },
+    hidden: true,
   };
 
   const imageTexture = useTexture(texturePath);
