@@ -46,7 +46,7 @@ const Hero = () => {
             </S.TitleTextContainer>
           ))}
         </S.HeroTitle>
-        <S.HeroWatfordTime>{<TextAnimation text={watfordTime} />}</S.HeroWatfordTime>
+       <TextAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
           <S.HeroImg src={image} alt="My photo"></S.HeroImg>
         </S.HeroImgContainer>

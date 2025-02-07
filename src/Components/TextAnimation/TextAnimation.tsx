@@ -7,6 +7,7 @@ interface TextAnimationProps {
   text: string;
   style?: React.CSSProperties;
   isFadeOnScroll?: boolean;
+  $letterSize?: string;
 }
 
 const specialSignsArr = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "=", "+", "[", "]", "{", "}", "~", "€", "£", "¥", "¢"];
@@ -27,7 +28,7 @@ const textAnimationVariants = {
   animate: { opacity: 1, x: 0, "--afterOpacity": 0 },
 };
 
-const TextAnimation = ({ text, style = {}, isFadeOnScroll }: TextAnimationProps) => {
+const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize }: TextAnimationProps) => {
   const { scrollY } = useScroll();
   const getRandomSign = useCallback(() => {
     return specialSignsArr[Math.floor(Math.random() * specialSignsArr.length)];
@@ -39,18 +40,27 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll }: TextAnimationProps)
   const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ["10%", "0%"]) : 0;
 
   return (
-    <S.AnimatedLetterContainer
+    <S.AnimatedContainer
       style={{ ...style, opacity, bottom }}
       variants={containerVariants}
       initial="initial"
-      animate="animate"
+      whileInView='animate'
+      viewport={{once: true}}
     >
-      {text.split("").map((char, index) => (
-        <S.AnimatedLetter key={index} variants={textAnimationVariants} $randomContent={getRandomSign()}>
-          {char}
-        </S.AnimatedLetter>
-      ))}
-    </S.AnimatedLetterContainer>
+      {text.split(' ').map((word, index) => (
+        <S.AnimatedWordContainer key={index}>
+          {word.split('').map((letter, index) => (
+            <S.AnimatedCharacters
+              key={index}
+              variants={textAnimationVariants}
+              $randomContent={getRandomSign()}
+              $letterSize={$letterSize}
+            >
+              {letter}
+            </S.AnimatedCharacters>
+          ))}
+        </S.AnimatedWordContainer>))}
+    </S.AnimatedContainer>
   );
 };
 

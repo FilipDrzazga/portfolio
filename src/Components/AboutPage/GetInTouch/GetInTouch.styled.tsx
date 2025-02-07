@@ -16,7 +16,7 @@ const GetInTouchHeader = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 90%;
   height: 90%;
 `;
@@ -27,13 +27,6 @@ const GetInTouchFooter = styled.footer`
   align-items: center;
   width: 100%;
   height: 10%;
-`;
-const GetInTouchFooterText = styled.span`
-  font-size: 0.5rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  color: ${({ theme }) => theme.colors.secondary};
-  opacity: 0.5;
 `;
 const GooeyCircles = styled.div`
   position: absolute;
@@ -52,4 +45,4 @@ const Circle = styled(motion.div)`
   filter: blur(40px);
 `;
 
-export { GetInTouchSection, GetInTouchHeader, GetInTouchFooter, GetInTouchFooterText, GooeyCircles, Circle };
+export { GetInTouchSection, GetInTouchHeader, GetInTouchFooter, GooeyCircles, Circle };

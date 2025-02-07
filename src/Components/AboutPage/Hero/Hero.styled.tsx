@@ -33,14 +33,15 @@ const HeroTitle = styled.h2`
 `;
 const TitleTextContainer = styled(motion.div)``;
 const TitleCharacters = styled(motion.span)``;
-const HeroWatfordTime = styled.span`
-  margin-top: -0.2rem;
-  padding-left: 0.2rem;
-  font-size: 0.65rem;
-  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  color: ${({ theme }) => theme.colors.secondary};
-`;
+// const HeroWatfordTime = styled.span`
+//   margin-top: -0.2rem;
+//   // padding-left: 0.2rem;
+//   text-align: left;
+//   font-size: 0.65rem;
+//   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
+//   font-weight: ${({ theme }) => theme.fontWeight.light};
+//   color: ${({ theme }) => theme.colors.secondary};
+// `;
 const HeroImgContainer = styled.div`
   position: absolute;
   top: calc(100vh - 82%);
@@ -98,7 +99,6 @@ export {
   HeroTitle,
   TitleTextContainer,
   TitleCharacters,
-  HeroWatfordTime,
   HeroImgContainer,
   HeroImg,
   HeroSocialLinksContainer,

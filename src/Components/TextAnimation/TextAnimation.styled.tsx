@@ -3,12 +3,24 @@ import { motion } from "motion/react";
 
 interface AnimatedLetterProps {
   readonly $randomContent: string;
+  readonly $letterSize?: string;
 }
 
-const AnimatedLetterContainer = styled(motion.div)``;
-const AnimatedLetter = styled(motion.span)<AnimatedLetterProps>`
+const AnimatedContainer = styled(motion.div)`
+display: flex;
+justify-content: flex-start;
+gap: 0.3rem;
+`;
+const AnimatedWordContainer = styled(motion.div)`
+  display: flex;
+  justify-content: flex-start;
+  // align-items: center;
+  color: ${({ theme }) => theme.colors.secondary};
+`;
+const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
   position: relative;
-  font-size: 0.65rem;
+  display: inline-block;
+  font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.secondary};
@@ -21,9 +33,9 @@ const AnimatedLetter = styled(motion.span)<AnimatedLetterProps>`
     height: 100%;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
-    font-size: 0.65rem;
+    font-size: font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
     opacity: var(--afterOpacity);
   }
 `;
 
-export { AnimatedLetterContainer, AnimatedLetter };
+export { AnimatedContainer,AnimatedWordContainer, AnimatedCharacters };

@@ -13,26 +13,35 @@ interface BlobData {
 const initialCustomBlobs: BlobData[] = [
   { x: -100, y: -50, content: "Blob 1" },
   { x: 100, y: -50, content: "Blob 2" },
-  { x: -100, y: 50, content: "Blob 3" },
-  { x: 100, y: 50, content: "Blob 4" },
-  { x: -150, y: 0, content: "Blob 5" },
-  { x: 150, y: 0, content: "Blob 6" },
-  { x: 0, y: -150, content: "Blob 7" },
-  { x: 0, y: 150, content: "Blob 8" },
-  { x: -50, y: -150, content: "Blob 9" },
-  { x: 50, y: 150, content: "Blob 10" },
-  { x: 0, y: 200, content: "Blob 11" },
+  { x: -60, y: 50, content: "Blob 3" },
+  { x: 60, y: 50, content: "Blob 4" },
+  { x: 0, y: -75, content: "Blob 5" },
+  { x: 100, y: -160, content: "Blob 6" },
+  { x: 0, y: -170, content: "Blob 7" },
+  { x: 0, y: 140, content: "Blob 8" },
+  { x: -100, y: -160, content: "Blob 9" },
+  { x: 100, y: 170, content: "Blob 10" },
+  { x: -100, y: 170, content: "Blob 11" },
 ];
 
-// A separate component for the special (toggle) blob.
-const SpecialBlob = ({ spread, onClick }: { spread: boolean; onClick: () => void }) => {
-  // When not spread, size is 75. When spread, size is 37.5.
-  const [specialSize, setSpecialSize] = useState(spread ? 37.5 : 75);
+const bloobVariants = {
+  initial:(i)=>({
+    
+  }),
+  animate:(i)=>({
 
-  // Update local state when the spread prop changes.
+  }),
+}
+
+// A separate component for the special (toggle) blob.
+const SpecialBlob = ({ isBloobSpreaded, onClick }: { isBloobSpreaded: boolean; onClick: () => void }) => {
+  // When not isBloobSpreaded, size is 75. When isBloobSpreaded, size is 37.5.
+  const [specialSize, setSpecialSize] = useState(isBloobSpreaded ? 37.5 : 75);
+
+  // Update local state when the isBloobSpreaded prop changes.
   useEffect(() => {
-    setSpecialSize(spread ? 37.5 : 75);
-  }, [spread]);
+    setSpecialSize(isBloobSpreaded ? 37.5 : 75);
+  }, [isBloobSpreaded]);
 
   const target = { x: 0, y: 0, width: specialSize, height: specialSize };
 
@@ -44,9 +53,9 @@ const SpecialBlob = ({ spread, onClick }: { spread: boolean; onClick: () => void
 };
 
 const GooeyBloobs = () => {
-  // When spread is false, all other blobs remain centered (with larger size).
-  // When spread is true, they move to the positions defined in customBlobs.
-  const [spread, setSpread] = useState(false);
+  // When isBloobSpreaded is false, all other blobs remain centered (with larger size).
+  // When isBloobSpreaded is true, they move to the positions defined in customBlobs.
+  const [isBloobSpreaded, setIsBloobSpreaded] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [containerSize, setContainerSize] = useState<{ width: number; height: number }>({
     width: 0,
@@ -68,16 +77,16 @@ const GooeyBloobs = () => {
     return () => window.removeEventListener("resize", updateSize);
   }, []);
 
-  // Toggle spread state when the special blob is clicked.
-  const handleToggle = () => {
-    setSpread((prev) => !prev);
+  // Toggle isBloobSpreaded state when the special blob is clicked.
+  const handleBloobSpread = () => {
+    setIsBloobSpreaded((prev) => !prev);
   };
 
   // For other blobs:
-  // - When not spread: they are centered (x: 0, y: 0) with larger size.
-  // - When spread: they use the positions defined in customBlobs and size 75.
+  // - When not isBloobSpreaded: they are centered (x: 0, y: 0) with larger size.
+  // - When isBloobSpreaded: they use the positions defined in customBlobs and size 75.
   const getOtherBlobTarget = (blob: BlobData) => {
-    return spread
+    return isBloobSpreaded
       ? {
           x: blob.x,
           y: blob.y,
@@ -109,12 +118,12 @@ const GooeyBloobs = () => {
           const target = getOtherBlobTarget(blob);
           return (
             <S.Bloob key={index} animate={target} transition={{ duration: 1.5, ease: "easeInOut", type: "spring" }}>
-              {spread && <S.BloobText>{blob.content}</S.BloobText>}
+              {isBloobSpreaded && <S.BloobText></S.BloobText>}
             </S.Bloob>
           );
         })}
         {/* Render Special Toggle Blob */}
-        <SpecialBlob spread={spread} onClick={handleToggle} />
+        <SpecialBlob isBloobSpreaded={isBloobSpreaded} onClick={handleBloobSpread} />
       </S.BloobsContainer>
     </>
   );

@@ -4,6 +4,7 @@ import { PageContext } from "../../../context/PageContext";
 import * as S from "./GetInTouch.styled";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import { useScroll } from "motion/react";
+import TextAnimation from "../../TextAnimation/TextAnimation";
 
 const GetInTouch = () => {
   const ctxPage = useContext(PageContext);
@@ -24,10 +25,11 @@ const GetInTouch = () => {
     <S.GetInTouchSection ref={getInTouchSection}>
       <S.GetInTouchHeader>
         <BlurRevealText scrollYProgress={scrollYProgress} text="Get in touch." />
+        <TextAnimation text="OPEN TO NEW OPPORTUNITIES." style={{marginLeft:'-0.2rem'}} $letterSize="0.5rem"/>
       </S.GetInTouchHeader>
       <S.GetInTouchFooter>
-        <S.GetInTouchFooterText>DESIGNED & DEVELOPED BY_FILIPDRZAZGA</S.GetInTouchFooterText>
-        <S.GetInTouchFooterText>2@25 All RIGHTS RESERVED</S.GetInTouchFooterText>
+        <TextAnimation text="DESIGNED & DEVELOPED BY_FILIPDRZAZGA" $letterSize="0.5rem"/>
+        <TextAnimation text="2@25 All RIGHTS RESERVED" $letterSize="0.5rem"/>
       </S.GetInTouchFooter>
       <svg width="0" height="0">
         <defs>

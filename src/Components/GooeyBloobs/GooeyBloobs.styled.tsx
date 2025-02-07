@@ -8,6 +8,7 @@ const BloobsContainer = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5%;
   filter: url("#goo");
   overflow: hidden;
 `;
@@ -15,8 +16,6 @@ const BloobsContainer = styled(motion.div)`
 const Bloob = styled(motion.div)`
   position: absolute;
   background: ${({ theme }) => theme.colors.secondary};
-  // left: 50%;
-  // top: 50%;
   border-radius: 100%;
   display: flex;
   align-items: center;
@@ -24,7 +23,6 @@ const Bloob = styled(motion.div)`
   color: white;
   font-size: 20px;
   cursor: pointer;
-  // transform: translate(-50%, -50%);
 `;
 
 const BloobText = styled.span`

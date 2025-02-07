@@ -7,6 +7,7 @@ const ExperienceSection = styled.section`
   height: 100vh;
   padding: ${({ theme }) => theme.padding.small};
   background-color: transparent;
+  overflow: hidden;
 `;
 const ExperiencePixelBlocksContainer = styled.div `
 position:absolute;
@@ -31,5 +32,45 @@ const ExperienceHeader = styled.header`
   width: 100%;
   color: ${({ theme }) => theme.colors.secondary};
 `;
+const ExperienceCardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  padding-top: 2rem;
+`;
+const ExperienceCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 100%;
+`;
+const CardTitle = styled.h2`
+  font-size: 1.3rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoLight};
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+  color: ${({ theme }) => theme.colors.secondary};
+`;
+const CardContent = styled.p`
+  font-size: 0.8rem;
+  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  color: ${({ theme }) => theme.colors.secondary};
+  line-height: 1.5;
+  width: 100%;
+`;
 
-export { ExperienceSection, ExperiencePixelBlocksContainer, ExperiencePixelColumn, ExperiencePixelBlock, ExperienceHeader };
+export { ExperienceSection, 
+  ExperiencePixelBlocksContainer, 
+  ExperiencePixelColumn, 
+  ExperiencePixelBlock, 
+  ExperienceHeader,
+  ExperienceCardContainer,
+  ExperienceCard,
+  CardTitle,
+  CardContent };
