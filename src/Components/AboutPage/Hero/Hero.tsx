@@ -15,7 +15,7 @@ const titleTextContainerVariants = {
 };
 const titleCharactersVariants = {
   initial: { opacity: 0, filter: "blur(10px)" },
-  animate: { opacity: 1, filter: "blur(0px)", transition: { duration: 1 } },
+  animate: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5 } },
 };
 
 const Hero = () => {
@@ -46,7 +46,7 @@ const Hero = () => {
             </S.TitleTextContainer>
           ))}
         </S.HeroTitle>
-       <TextAnimation text={watfordTime} />
+        <TextAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
           <S.HeroImg src={image} alt="My photo"></S.HeroImg>
         </S.HeroImgContainer>

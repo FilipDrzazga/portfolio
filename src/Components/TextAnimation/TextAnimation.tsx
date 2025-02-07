@@ -1,5 +1,5 @@
-import { useCallback } from "react";
 import { useTransform, useScroll } from "motion/react";
+import { getRandomSign } from "../../utils/getRandomSign";
 
 import * as S from "./TextAnimation.styled";
 
@@ -9,8 +9,6 @@ interface TextAnimationProps {
   isFadeOnScroll?: boolean;
   $letterSize?: string;
 }
-
-const specialSignsArr = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "=", "+", "[", "]", "{", "}", "~", "€", "£", "¥", "¢"];
 
 const containerVariants = {
   initial: { opacity: 0 },
@@ -30,9 +28,6 @@ const textAnimationVariants = {
 
 const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize }: TextAnimationProps) => {
   const { scrollY } = useScroll();
-  const getRandomSign = useCallback(() => {
-    return specialSignsArr[Math.floor(Math.random() * specialSignsArr.length)];
-  }, []);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const opacity = isFadeOnScroll ? useTransform(scrollY, [0, 100], [1, 0]) : 1;
@@ -44,12 +39,12 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize }: TextAn
       style={{ ...style, opacity, bottom }}
       variants={containerVariants}
       initial="initial"
-      whileInView='animate'
-      viewport={{once: true}}
+      whileInView="animate"
+      viewport={{ once: true }}
     >
-      {text.split(' ').map((word, index) => (
+      {text.split(" ").map((word, index) => (
         <S.AnimatedWordContainer key={index}>
-          {word.split('').map((letter, index) => (
+          {word.split("").map((letter, index) => (
             <S.AnimatedCharacters
               key={index}
               variants={textAnimationVariants}
@@ -59,7 +54,8 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize }: TextAn
               {letter}
             </S.AnimatedCharacters>
           ))}
-        </S.AnimatedWordContainer>))}
+        </S.AnimatedWordContainer>
+      ))}
     </S.AnimatedContainer>
   );
 };

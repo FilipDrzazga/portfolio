@@ -7,14 +7,14 @@ interface AnimatedLetterProps {
 }
 
 const AnimatedContainer = styled(motion.div)`
-display: flex;
-justify-content: flex-start;
-gap: 0.3rem;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.2rem;
 `;
 const AnimatedWordContainer = styled(motion.div)`
   display: flex;
   justify-content: flex-start;
-  // align-items: center;
   color: ${({ theme }) => theme.colors.secondary};
 `;
 const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
@@ -38,4 +38,4 @@ const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
   }
 `;
 
-export { AnimatedContainer,AnimatedWordContainer, AnimatedCharacters };
+export { AnimatedContainer, AnimatedWordContainer, AnimatedCharacters };
