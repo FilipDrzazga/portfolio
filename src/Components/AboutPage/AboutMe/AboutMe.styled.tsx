@@ -27,6 +27,7 @@ const AboutMeTxtContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
   padding-top: ${({ theme }) => theme.padding.medium};
   padding-bottom: ${({ theme }) => theme.padding.medium};
 `;
@@ -44,10 +45,15 @@ const AboutMeTitle = styled.h2`
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
 `;
 const AboutMeTxt = styled.p`
   width: 100%;
-  margin-top: 3rem;
+  // margin-top: 3rem;
   font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};

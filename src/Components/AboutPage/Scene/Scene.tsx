@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 
 import ShaderHeroImageMaterial from "../../ShaderHeroImageMaterial/ShaderHeroImageMaterial";
 import ShaderAboutMeImageMaterial from "../../ShaderAboutMeImageMaterial/ShaderAboutMeImageMaterial";
-import ShaderExperiencePixelTransition from "../../ShaderExperiencePixelTransition/ShaderExperiencePixelTransition";
 
 const Scene = () => {
   const fovPosition = useMemo(() => {
@@ -22,7 +21,6 @@ const Scene = () => {
       <color attach="background" args={["#E9E9E9"]} />
       <ShaderHeroImageMaterial />
       <ShaderAboutMeImageMaterial />
-      <ShaderExperiencePixelTransition />
     </Canvas>
   );
 };
