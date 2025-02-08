@@ -11,8 +11,6 @@ const textAnimationVariants = {
   animate: (i: number) => ({ opacity: 1, x: 0, "--afterOpacity": 0, transition: { delay: i * 0.05 } }),
 };
 
-// const experienceToolsArr = ['Html', 'Css', 'JavaScript', 'React', 'React Native', 'Styled-components', 'Redux', 'R3F', 'Three.js', 'Motion', 'Reanimated', 'Expo', 'Firebase '  ]
-
 const Experience = () => {
   const ctxPage = useContext(PageContext);
   const experienceSectionRef = useRef<HTMLDivElement>(null);
@@ -51,7 +49,7 @@ const Experience = () => {
       </S.ExperienceHeader>
       <S.ExperienceTextContainer>
         <S.ExperienceText>
-          I'M TRYING TO UNDERSTAND THE WORLD {animatedSpanContent("WEBGL")} &<br /> {animatedSpanContent("CREATIVE CODING")},
+          I'M TRYING TO UNDERSTAND THE WORLD OF {animatedSpanContent("SHADERS")} &<br /> {animatedSpanContent("CREATIVE CODING")},
           EXPLORING HOW FAR I CAN PUSH VISUALS IN THE BROWSER. FROM BUILDING DYNAMIC 3D SCENES WITH{" "}
           {animatedSpanContent("THREE.JS")} & {animatedSpanContent("R3F")} TO ADDING SMOOTH INTERACTIONS WITH{" "}
           {animatedSpanContent("MOTION")} AND {animatedSpanContent("REANIMATED")},
