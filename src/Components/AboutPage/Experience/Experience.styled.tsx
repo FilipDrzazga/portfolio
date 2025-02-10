@@ -30,7 +30,7 @@ const ExperienceTextContainer = styled.div`
   gap: 2rem;
 `;
 const ExperienceText = styled.p`
-  width: 100%;
+  width: 100%;  margin-top: 1rem;
   font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};

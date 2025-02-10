@@ -1,10 +1,10 @@
 import PageContextProvider from "./context/PageContext";
 import { ThemeProvider } from "styled-components";
-import GlobalStyle from "./style/GlobalStyle";
-import { lightTheme } from "./style/DefaultTheme";
+import GlobalStyle from "./Style/GlobalStyle";
+import { lightTheme } from "./Style/DefaultTheme";
 
 // import LandingPage from "./Pages/LandingPage/LandingPage";
-import AboutPage from "./pages/AboutPage/AboutPage";
+import AboutPage from "./Pages/AboutPage/AboutPage";
 
 export default function App() {
   return (

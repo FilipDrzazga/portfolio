@@ -34,7 +34,7 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize }: TextAn
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ["10%", "0%"]) : 0;
 
-  return (
+    return (
     <S.AnimatedContainer
       style={{ ...style, opacity, bottom }}
       variants={containerVariants}

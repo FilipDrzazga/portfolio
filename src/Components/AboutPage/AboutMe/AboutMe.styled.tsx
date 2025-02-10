@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import { motion } from "motion/react";
+
+interface AboutMeSectionProps {
+  readonly $randomContent: string;
+}
 
 const AboutMeSection = styled.section`
   width: 100%;
@@ -66,6 +71,21 @@ const AboutMeTxt = styled.p`
 const AboutMeSpan = styled.span`
   color: ${({ theme }) => theme.colors.accent};
 `;
+const AboutMeAnimatedSpan = styled(motion.span)<AboutMeSectionProps>`
+position: relative;
+  font-weight: ${({ theme }) => theme.fontWeight.regular};
+   &::after {
+    content: ${({ $randomContent }) => `'${$randomContent}'`};
+    position: absolute;
+    top: 0;
+    left: 20%;
+    width: 6px;
+    height: 100%;
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: font-size: 0.65rem;
+    opacity: var(--afterOpacity);
+`;
 
 export {
   AboutMeSection,
@@ -77,4 +97,5 @@ export {
   AboutMeDetailsContainer,
   AboutMeTxt,
   AboutMeSpan,
+  AboutMeAnimatedSpan
 };

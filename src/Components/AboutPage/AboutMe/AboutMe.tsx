@@ -2,9 +2,11 @@ import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import { useScroll } from "motion/react";
+import SpanAnimation from "../../SpanAnimation/SpanAnimation";
 
 import * as S from "./AboutMe.styled";
 import image from "../../../images/aboutme_mobile_img_480w.webp";
+
 
 const AboutMe = () => {
   const ctxPage = useContext(PageContext);
@@ -39,13 +41,13 @@ const AboutMe = () => {
         </S.AboutMeHeader>
         <S.AboutMeDetailsContainer>
           <S.AboutMeTxt>
-            I’M A SELF-TAUGHT FRONT-END DEVELOPER CURRENTLY BASED IN WATFORD. FOR THE PAST FOUR YEARS, I’VE BEEN DIVING DEEP INTO
-            THE WORLD OF WEB/APP DEVELOPMENT, MASTERING JAVASCRIPT, REACT, AND A RANGE OF OTHER LIBRARIES ESSENTIAL FOR CREATING
-            DYNAMIC AND FUNCTIONAL WEBSITES OR APPLICATIONS.
+            I’M A <SpanAnimation text="SELF-TAUGHT FRONT-END DEVELOPER"/> CURRENTLY BASED IN WATFORD. FOR THE PAST FOUR YEARS, I’VE BEEN DIVING DEEP INTO
+            THE WORLD OF WEB/APP DEVELOPMENT, <SpanAnimation text="MASTERING JAVASCRIPT, REACT,"/> AND A RANGE OF <SpanAnimation text="OTHER LIBRARIES"/> ESSENTIAL FOR CREATING
+            DYNAMIC AND <SpanAnimation text="FUNCTIONAL WEBSITES OR APPLICATIONS."/>
           </S.AboutMeTxt>
           <S.AboutMeTxt>
             IN MY FREE TIME, I'M ALWAYS EAGER TO LEARN MORE AND PUSH MY SKILLS FURTHER IN THIS EVER-EVOLVING FIELD. WHETHER IT'S
-            EXPLORING NEW TECHNOLOGIES OR REFINING MY EXISTING KNOWLEDGE, I'M PASSIONATE ABOUT BUILDING DIGITAL EXPERIENCES THAT
+            EXPLORING <SpanAnimation text="NEW TECHNOLOGIES"/> OR REFINING MY EXISTING KNOWLEDGE, <SpanAnimation text="I'M PASSIONATE"/> ABOUT BUILDING DIGITAL EXPERIENCES THAT
             ARE BOTH INTUITIVE AND ENGAGING.
           </S.AboutMeTxt>
         </S.AboutMeDetailsContainer>
