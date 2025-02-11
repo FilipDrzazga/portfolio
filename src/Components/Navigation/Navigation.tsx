@@ -6,7 +6,7 @@ import SpanAnimation from "../SpanAnimation/SpanAnimation";
 const tabs = ["ABOUT", "PLAYGROUND", "WORK", "CONTACT"];
 
 const Navigation = () => {
-  const [isSelected, setIsSelected] = useState(tabs[0]);
+  // const [isSelected, setIsSelected] = useState(tabs[0]);
 
   return (
     <S.SectionNavigation>
@@ -14,9 +14,11 @@ const Navigation = () => {
         <S.NavNavigation>
           <S.UlNavigation>
             {tabs.map((tab, index) => (
-              <S.LiNavigation key={index} onClick={() => setIsSelected(tab)}>
+              <S.LiNavigation key={index}
+              //  onClick={() => setIsSelected(tab)}
+               >
                 <S.ANavigation>{<SpanAnimation text={tab} withHover />}</S.ANavigation>
-                {tab === isSelected && <S.ANavigationUnderline key={index} layoutId="underline"></S.ANavigationUnderline>}
+                {/* {tab === isSelected && <S.ANavigationUnderline key={index} layoutId="underline"></S.ANavigationUnderline>} */}
               </S.LiNavigation>
             ))}
           </S.UlNavigation>

@@ -29,7 +29,7 @@ const SpanAnimation = ({text, $isBold, withHover}:SpanAnimationProps) => {
 
   const mouseHandler = () => {
     if(!withHover) return;
-      animate('span',{ "--afterOpacity": [0, 1, 0], x: [-1, 0] },
+      animate('span',{ "--afterOpacity": [0, 1,0], x: [-1, 0,-1] },
         { delay: stagger(0.05) })
   }
 

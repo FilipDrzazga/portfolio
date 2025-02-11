@@ -6,17 +6,16 @@ import SpanAnimation from "../../SpanAnimation/SpanAnimation";
 import { useScroll } from "motion/react";
 
 import * as S from "./AboutMe.styled";
-import mobile from "../../../images/aboutme_mobile_img_480w.webp";
-import tablet from "../../../images/aboutme_tablet_img_768w.webp";
-import desktop from "../../../images/aboutme_desktop_img_1920w.webp";
+import mobileImg from "../../../images/aboutme_mobile_img_480w.webp";
+import tabletImg from "../../../images/aboutme_tablet_img_768w.webp";
+import desktopImg from "../../../images/aboutme_desktop_img_1920w.webp";
 
 
 const AboutMe = () => {
   const ctxPage = useContext(PageContext);
-
   const aboutMeSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
-
+  
   const { scrollYProgress } = useScroll({
     target: aboutMeSectionRef,
     offset: ["start end", "end end"],
@@ -32,7 +31,7 @@ const AboutMe = () => {
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>
       <S.AboutMeImgContainer ref={imgRef}>
-        <ResponsiveImage style={{width:'auto', maxWidth:'100%',objectFit:'cover',opacity:0}} mobile={mobile} tablet={tablet} desktop={desktop}/>
+        <ResponsiveImage style={{width:'auto', maxWidth:'100%',objectFit:'cover',opacity:0}} mobile={mobileImg} tablet={tabletImg} desktop={desktopImg}/>
       </S.AboutMeImgContainer>
       <S.AboutMeTxtContainer>
         <S.AboutMeHeader>

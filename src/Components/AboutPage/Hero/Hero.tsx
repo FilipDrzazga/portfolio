@@ -7,9 +7,9 @@ import SpanAnimation from "../../SpanAnimation/SpanAnimation";
 import { HiArrowLongRight } from "react-icons/hi2";
 
 import * as S from "./Hero.styled";
-import mobile from "../../../images/hero_mobile_img_480w.webp";
-import tablet from "../../../images/hero_tablet_img_768w.webp";
-import desktop from "../../../images/hero_desktop_img_1920w.webp";
+import mobileImg from "../../../images/hero_mobile_img_480w.webp";
+import tabletImg from "../../../images/hero_tablet_img_768w.webp";
+import desktopImg from "../../../images/hero_desktop_img_1920w.webp";
 
 const title = ["Creative Developer Based in Watford"];
 
@@ -52,7 +52,7 @@ const Hero = () => {
         </S.HeroTitle>
         <TextAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
-          <ResponsiveImage style={{width:'auto', maxWidth:'100%', objectFit:'cover', opacity:0}} mobile={mobile} tablet={tablet} desktop={desktop}/>
+          <ResponsiveImage style={{width:'auto', maxWidth:'100%', objectFit:'cover', opacity:0}} mobile={mobileImg} tablet={tabletImg} desktop={desktopImg}/>
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>
