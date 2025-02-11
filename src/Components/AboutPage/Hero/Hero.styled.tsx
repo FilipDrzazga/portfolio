@@ -43,13 +43,6 @@ const HeroImgContainer = styled.div`
   z-index: -1;
   overflow: hidden;
 `;
-const HeroImg = styled.img`
-  width: auto;
-  high: auto;
-  max-width: 100%;
-  object-fit: cover;
-  opacity: 0;
-`;
 const HeroSocialLinksContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,7 +84,6 @@ export {
   TitleTextContainer,
   TitleCharacters,
   HeroImgContainer,
-  HeroImg,
   HeroSocialLinksContainer,
   HeroSocialBtn,
 };

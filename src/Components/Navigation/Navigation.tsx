@@ -15,7 +15,7 @@ const Navigation = () => {
           <S.UlNavigation>
             {tabs.map((tab, index) => (
               <S.LiNavigation key={index} onClick={() => setIsSelected(tab)}>
-                <S.ANavigation>{<SpanAnimation withHover text={tab} />}</S.ANavigation>
+                <S.ANavigation>{<SpanAnimation text={tab} withHover />}</S.ANavigation>
                 {tab === isSelected && <S.ANavigationUnderline key={index} layoutId="underline"></S.ANavigationUnderline>}
               </S.LiNavigation>
             ))}

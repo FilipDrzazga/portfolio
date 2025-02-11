@@ -1,11 +1,14 @@
-import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
+import { useRef, useContext, useEffect } from "react";
+import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
-import { useScroll } from "motion/react";
 import SpanAnimation from "../../SpanAnimation/SpanAnimation";
+import { useScroll } from "motion/react";
 
 import * as S from "./AboutMe.styled";
-import image from "../../../images/aboutme_mobile_img_480w.webp";
+import mobile from "../../../images/aboutme_mobile_img_480w.webp";
+import tablet from "../../../images/aboutme_tablet_img_768w.webp";
+import desktop from "../../../images/aboutme_desktop_img_1920w.webp";
 
 
 const AboutMe = () => {
@@ -29,7 +32,7 @@ const AboutMe = () => {
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>
       <S.AboutMeImgContainer ref={imgRef}>
-        <S.AboutMeImg src={image} alt="My photo"></S.AboutMeImg>
+        <ResponsiveImage style={{width:'auto', maxWidth:'100%',objectFit:'cover',opacity:0}} mobile={mobile} tablet={tablet} desktop={desktop}/>
       </S.AboutMeImgContainer>
       <S.AboutMeTxtContainer>
         <S.AboutMeHeader>

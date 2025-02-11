@@ -20,12 +20,6 @@ const AboutMeImgContainer = styled.div`
   height: 80vh;
   overflow: hidden;
 `;
-const AboutMeImg = styled.img`
-  width: auto;
-  max-width: 100%;
-  object-fit: cover;
-  opacity: 0;
-`;
 const AboutMeTxtContainer = styled.div`
   width: 100%;
   display: flex;
@@ -90,7 +84,6 @@ position: relative;
 export {
   AboutMeSection,
   AboutMeImgContainer,
-  AboutMeImg,
   AboutMeTxtContainer,
   AboutMeHeader,
   AboutMeTitle,

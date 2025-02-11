@@ -1,12 +1,15 @@
 import { useRef, useContext, useEffect } from "react";
 import { PageContext } from "../../../context/PageContext";
+import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage";
 import TextAnimation from "../../TextAnimation/TextAnimation";
 import useWatfordTime from "../../../hooks/useWatfordTime";
-
 import SpanAnimation from "../../SpanAnimation/SpanAnimation";
-import * as S from "./Hero.styled";
-import image from "../../../images/hero_mobile_img_480w.webp";
 import { HiArrowLongRight } from "react-icons/hi2";
+
+import * as S from "./Hero.styled";
+import mobile from "../../../images/hero_mobile_img_480w.webp";
+import tablet from "../../../images/hero_tablet_img_768w.webp";
+import desktop from "../../../images/hero_desktop_img_1920w.webp";
 
 const title = ["Creative Developer Based in Watford"];
 
@@ -49,17 +52,17 @@ const Hero = () => {
         </S.HeroTitle>
         <TextAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
-          <S.HeroImg src={image} alt="My photo"></S.HeroImg>
+          <ResponsiveImage style={{width:'auto', maxWidth:'100%', objectFit:'cover', opacity:0}} mobile={mobile} tablet={tablet} desktop={desktop}/>
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>
         <TextAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
-          <SpanAnimation text="LINKEDIN" />
+          <SpanAnimation text="LINKEDIN" withHover />
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
-          <SpanAnimation text="GITHUB" />
+          <SpanAnimation text="GITHUB" withHover />
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
