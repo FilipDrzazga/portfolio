@@ -3,6 +3,7 @@ import { PageContext } from "../../../context/PageContext";
 import TextAnimation from "../../TextAnimation/TextAnimation";
 import useWatfordTime from "../../../hooks/useWatfordTime";
 
+import SpanAnimation from "../../SpanAnimation/SpanAnimation";
 import * as S from "./Hero.styled";
 import image from "../../../images/hero_mobile_img_480w.webp";
 import { HiArrowLongRight } from "react-icons/hi2";
@@ -54,16 +55,17 @@ const Hero = () => {
       <S.HeroSocialLinksContainer>
         <TextAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
-          <TextAnimation text="LINKEDIN" />
+          <SpanAnimation text="LINKEDIN" />
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
-          <TextAnimation text="GITHUB" />
+          <SpanAnimation text="GITHUB" />
           <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
       <TextAnimation
         isFadeOnScroll
+        withRepeat
         text="[ SCROLL TO EXPLORE ]"
         style={{ position: "absolute", bottom: "10%", left: "50%", transform: "translate(-50%, -50%)" }}
       />

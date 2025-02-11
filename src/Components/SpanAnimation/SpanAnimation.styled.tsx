@@ -20,6 +20,7 @@ position: relative;
     color: ${({ theme }) => theme.colors.primary};
     font-size: font-size: 0.65rem;
     opacity: var(--afterOpacity);
+    user-select: none;
 `;
 
   export { SpanAnimation };

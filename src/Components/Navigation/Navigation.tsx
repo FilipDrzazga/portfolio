@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import * as S from "./Navigation.styled";
-import TextAnimation from "../TextAnimation/TextAnimation";
+import SpanAnimation from "../SpanAnimation/SpanAnimation";
 
 const tabs = ["ABOUT", "PLAYGROUND", "WORK", "CONTACT"];
 
@@ -15,7 +15,7 @@ const Navigation = () => {
           <S.UlNavigation>
             {tabs.map((tab, index) => (
               <S.LiNavigation key={index} onClick={() => setIsSelected(tab)}>
-                <S.ANavigation>{<TextAnimation text={tab} />}</S.ANavigation>
+                <S.ANavigation>{<SpanAnimation withHover text={tab} />}</S.ANavigation>
                 {tab === isSelected && <S.ANavigationUnderline key={index} layoutId="underline"></S.ANavigationUnderline>}
               </S.LiNavigation>
             ))}

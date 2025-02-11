@@ -36,6 +36,7 @@ const LiNavigation = styled.li`
   justify-content: center;
   align-items: center;
   list-style: none;
+  user-select: none;
 `;
 const ANavigation = styled(motion.a)`
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
