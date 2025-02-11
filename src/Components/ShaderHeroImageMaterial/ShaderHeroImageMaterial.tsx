@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import { PageContext } from "../../context/PageContext";
-import { useScroll } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 
@@ -37,6 +37,8 @@ const ShaderHeroImageMaterial = () => {
     return tabletImg;
   }, [isMobile, isTablet, isScreen]);
 
+  const displacementStrength = useTransform(scrollY, [0, 400], [0, 0.4]);
+
   const imageTexture = useTexture(texturePath);
 
   const uniforms = useMemo(
@@ -56,24 +58,26 @@ const ShaderHeroImageMaterial = () => {
   );
 
   const updateShaderUniforms = useCallback(
-    (clockTime: number, scrollYValue: number) => {
+    (clockTime: number, scrollYValue: number, displacementStrength: number) => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
       const { uniforms: shaderUniforms } = shaderMaterial;
 
       shaderUniforms.u_time.value = clockTime;
+      shaderUniforms.u_displacementStrength.value = displacementStrength;
 
-      const targetY = scrollYValue + top!;
       const targetX = left!;
+      const targetY = scrollYValue + top!;
+      const targetPos = new THREE.Vector3(targetX, targetY, 0);
 
-      meshRef.current.position.set(targetX, targetY, 0);
+      meshRef.current.position.lerp(targetPos, 0.9);
     },
-    [left, top]
+    [top, left]
   );
 
   useFrame((state) => {
-    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get());
+    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get(), displacementStrength.get());
   });
 
   return (

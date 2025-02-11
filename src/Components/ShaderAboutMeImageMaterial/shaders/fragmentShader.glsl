@@ -4,7 +4,6 @@ uniform sampler2D u_imageTexture;
 uniform float u_gridSize;
 uniform float u_squareSize;
 uniform float u_displacementStrength;
-uniform float u_scroll;  // New uniform to control scroll progress (0.0 to 1.0)
 
 void main() {
     // Determine grid information.
@@ -21,8 +20,7 @@ void main() {
 
     // Animate the displacement strength based on scroll.
     // When u_scroll is 0.0: full displacement; when u_scroll is 1.0: no displacement.
-    float animatedStrength = u_displacementStrength * (1.0 - u_scroll);
-    vec2 displacement = randomSquareOffset * animatedStrength;
+    vec2 displacement = randomSquareOffset * u_displacementStrength;
     vec2 displacedUV = vUv + displacement;
     
     // Sample the texture at the displaced UV coordinates.

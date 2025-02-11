@@ -65,10 +65,11 @@ const ShaderAboutMeImageMaterial = () => {
 
       shaderUniforms.u_displacementStrength.value = displacementStrength;
 
-      const targetY = scrollYValue + top!;
       const targetX = left!;
+      const targetY = scrollYValue + top!;
+      const targetPos = new THREE.Vector3(targetX, targetY, 0);
 
-      meshRef.current.position.set(targetX, targetY, 0);
+      meshRef.current.position.lerp(targetPos, 0.9);
     },
     [left, top]
   );
