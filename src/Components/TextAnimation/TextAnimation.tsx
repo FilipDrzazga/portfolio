@@ -25,33 +25,28 @@ const containerVariants = {
 
 const textAnimationVariants = {
   initial: { opacity: 0, x: -1, "--afterOpacity": 1 },
-  animate:  { opacity: 1, x: 0, "--afterOpacity": 0},
+  animate: { opacity: 1, x: 0, "--afterOpacity": 0 },
 };
 
-const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize, withRepeat}: TextAnimationProps) => {
+const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize, withRepeat }: TextAnimationProps) => {
   const { scrollY } = useScroll();
-  const [scope, animate] = useAnimate()
+  const [scope, animate] = useAnimate();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const opacity = isFadeOnScroll ? useTransform(scrollY, [0, 100], [1, 0]) : 1;
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ["10%", "0%"]) : 0;
 
-  useEffect(()=>{
-    if(!withRepeat) return;
-      const interval = setInterval(() => {
-        animate(
-          'span',
-          { "--afterOpacity": [0, 1, 0], x: [-1, 0] },
-          {  delay: stagger(0.05) }
-        );
-      }, 7000);
-  
-      return () => clearInterval(interval);
+  useEffect(() => {
+    if (!withRepeat) return;
+    const interval = setInterval(() => {
+      animate("span", { "--afterOpacity": [0, 1, 0], x: [-1, 0] }, { delay: stagger(0.05) });
+    }, 7000);
 
-  },[withRepeat])
+    return () => clearInterval(interval);
+  }, [withRepeat, animate]);
 
-    return (
+  return (
     <S.AnimatedContainer
       ref={scope}
       style={{ ...style, opacity, bottom }}
@@ -63,7 +58,7 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize, withRepe
       {text.split(" ").map((word, i) => (
         <S.AnimatedWordContainer key={i}>
           {word.split("").map((letter, j) => (
-            <S.AnimatedCharacters          
+            <S.AnimatedCharacters
               custom={j}
               key={j}
               variants={textAnimationVariants}

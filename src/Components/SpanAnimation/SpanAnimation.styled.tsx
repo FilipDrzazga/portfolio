@@ -8,7 +8,7 @@ interface AnimatedLetterProps {
 
 const SpanAnimation = styled(motion.span)<AnimatedLetterProps>`
 position: relative;
-  font-weight: ${({ theme, $isBold }) => $isBold? theme.fontWeight.bold : theme.fontWeight.regular};
+  font-weight: ${({ theme, $isBold }) => ($isBold ? theme.fontWeight.bold : theme.fontWeight.regular)};
    &::after {
     content: ${({ $randomContent }) => `'${$randomContent}'`};
     position: absolute;
@@ -23,4 +23,4 @@ position: relative;
     user-select: none;
 `;
 
-  export { SpanAnimation };
+export { SpanAnimation };

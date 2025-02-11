@@ -25,11 +25,11 @@ const GetInTouch = () => {
     <S.GetInTouchSection ref={getInTouchSection}>
       <S.GetInTouchHeader>
         <BlurRevealText scrollYProgress={scrollYProgress} text="Get in touch." />
-        <TextAnimation text="OPEN TO NEW OPPORTUNITIES." style={{marginLeft:'-0.2rem'}} $letterSize="0.5rem"/>
+        <TextAnimation text="OPEN TO NEW OPPORTUNITIES." style={{ marginLeft: "-0.2rem" }} $letterSize="0.5rem" />
       </S.GetInTouchHeader>
       <S.GetInTouchFooter>
-        <TextAnimation text="DESIGNED & DEVELOPED BY_FILIPDRZAZGA" $letterSize="0.5rem"/>
-        <TextAnimation text="2@25 All RIGHTS RESERVED" $letterSize="0.5rem"/>
+        <TextAnimation text="DESIGNED & DEVELOPED BY_FILIPDRZAZGA" $letterSize="0.5rem" />
+        <TextAnimation text="2@25 All RIGHTS RESERVED" $letterSize="0.5rem" />
       </S.GetInTouchFooter>
       <svg width="0" height="0">
         <defs>

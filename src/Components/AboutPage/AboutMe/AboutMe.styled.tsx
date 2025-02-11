@@ -90,5 +90,5 @@ export {
   AboutMeDetailsContainer,
   AboutMeTxt,
   AboutMeSpan,
-  AboutMeAnimatedSpan
+  AboutMeAnimatedSpan,
 };

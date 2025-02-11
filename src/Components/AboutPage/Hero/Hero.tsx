@@ -52,7 +52,12 @@ const Hero = () => {
         </S.HeroTitle>
         <TextAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
-          <ResponsiveImage style={{width:'auto', maxWidth:'100%', objectFit:'cover', opacity:0}} mobile={mobileImg} tablet={tabletImg} desktop={desktopImg}/>
+          <ResponsiveImage
+            style={{ width: "auto", maxWidth: "100%", objectFit: "cover", opacity: 0 }}
+            mobile={mobileImg}
+            tablet={tabletImg}
+            desktop={desktopImg}
+          />
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>

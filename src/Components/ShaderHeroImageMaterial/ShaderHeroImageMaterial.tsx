@@ -25,13 +25,13 @@ const ShaderHeroImageMaterial = () => {
   const isScreen = useMediaQuery({ minWidth: 1025 });
 
   const texturePath = useMemo(() => {
-    if (isMobile){
+    if (isMobile) {
       return mobileImg;
-    } 
-    if (isTablet){
+    }
+    if (isTablet) {
       return tabletImg;
     }
-    if (isScreen){
+    if (isScreen) {
       return desktopImg;
     }
     return tabletImg;
@@ -46,8 +46,8 @@ const ShaderHeroImageMaterial = () => {
       u_mouse: { value: new THREE.Vector2() },
       u_time: { value: 0 },
       u_maxDelay: { value: 1.0 },
-      u_fadeDuration:{ value: 0.5 },
-      u_dispFadeDuration :{ value: 0.5 },
+      u_fadeDuration: { value: 0.5 },
+      u_dispFadeDuration: { value: 0.5 },
       u_gridSize: { value: 20.0 },
       u_squareSize: { value: 5.0 },
       u_displacementStrength: { value: 0.0 },

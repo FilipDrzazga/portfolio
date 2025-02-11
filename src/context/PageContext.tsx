@@ -20,24 +20,12 @@ interface ContextValue {
   aboutMeImgRect: DOMRect | null;
   experienceSectionRect: DOMRect | null;
   getInTouchSectionRect: DOMRect | null;
-  getHeroImgBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
-  getIntroSectionBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
-  getAboutMeSectionBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
-  getAboutMeImgBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
-  getExperienceSectionBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
-  getGetInTouchSectionBoundingClientRect: <T extends HTMLElement>(
-    elementRef: RefObject<T>
-  ) => void;
+  getHeroImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getIntroSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getAboutMeSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getAboutMeImgBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getExperienceSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
+  getGetInTouchSectionBoundingClientRect: <T extends HTMLElement>(elementRef: RefObject<T>) => void;
 }
 
 export const PageContext = createContext<ContextValue | null>(null);
@@ -56,10 +44,7 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
    * and updates the state with the element’s bounding client rect.
    */
   const updateBoundingRect = useCallback(
-    <T extends HTMLElement>(
-      elementRef: RefObject<T>,
-      setter: Dispatch<SetStateAction<DOMRect | null>>
-    ) => {
+    <T extends HTMLElement>(elementRef: RefObject<T>, setter: Dispatch<SetStateAction<DOMRect | null>>) => {
       if (elementRef.current) {
         setter(elementRef.current.getBoundingClientRect());
       }
@@ -142,11 +127,7 @@ const PageContextProvider = ({ children }: PageContextProviderProps) => {
     ]
   );
 
-  return (
-    <PageContext.Provider value={contextValue}>
-      {children}
-    </PageContext.Provider>
-  );
+  return <PageContext.Provider value={contextValue}>{children}</PageContext.Provider>;
 };
 
 export default PageContextProvider;
