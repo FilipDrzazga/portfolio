@@ -11,7 +11,9 @@ import mobileImg from "../../../images/hero_mobile_img_480w.webp";
 import tabletImg from "../../../images/hero_tablet_img_768w.webp";
 import desktopImg from "../../../images/hero_desktop_img_1920w.webp";
 
-const title = ["Creative Developer Based in Watford"];
+const creativeTxt = ["Creative"];
+const developerTxt = ["Developer"];
+const watfordTxt = ["Based in Watford"];
 
 const titleTextContainerVariants = {
   initial: { opacity: 0 },
@@ -37,7 +39,25 @@ const Hero = () => {
     <S.HeroSection ref={heroSectionRef}>
       <S.HeroHeader>
         <S.HeroTitle>
-          {title.map((text, i) => (
+          {creativeTxt.map((text, i) => (
+            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
+              {text.split("").map((char, j) => (
+                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
+                  {char}
+                </S.TitleCharacters>
+              ))}
+            </S.TitleTextContainer>
+          ))}
+                    {developerTxt.map((text, i) => (
+            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
+              {text.split("").map((char, j) => (
+                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
+                  {char}
+                </S.TitleCharacters>
+              ))}
+            </S.TitleTextContainer>
+          ))}
+                    {watfordTxt.map((text, i) => (
             <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
               {text.split("").map((char, j) => (
                 <S.TitleCharacters variants={titleCharactersVariants} key={j}>
@@ -47,7 +67,7 @@ const Hero = () => {
             </S.TitleTextContainer>
           ))}
         </S.HeroTitle>
-        <TextAnimation text={watfordTime} />
+        <SpanAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>
           <ResponsiveImage
             style={{ width: "auto", maxWidth: "100%", objectFit: "cover", opacity: 0 }}
@@ -58,22 +78,23 @@ const Hero = () => {
         </S.HeroImgContainer>
       </S.HeroHeader>
       <S.HeroSocialLinksContainer>
-        <TextAnimation text="PORTFOLIO 25'" />
+        <SpanAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
           <SpanAnimation text="LINKEDIN" withHover />
-          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
+          <HiArrowLongRight size={10} color="#121212" style={{position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
           <SpanAnimation text="GITHUB" withHover />
-          <HiArrowLongRight color="#121212" style={{ position: "absolute", bottom: "0.0rem", left: "45%", rotate: "315deg" }} />
+          <HiArrowLongRight size={10} color="#121212" style={{position: "absolute", bottom: "-0.05rem", left: "45%", rotate: "315deg" }} />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
+      <S.ScrollContainer>
       <TextAnimation
         isFadeOnScroll
         withRepeat
         text="[ SCROLL TO EXPLORE ]"
-        style={{ position: "absolute", bottom: "10%", left: "50%", transform: "translate(-50%, -50%)" }}
       />
+      </S.ScrollContainer>
     </S.HeroSection>
   );
 };

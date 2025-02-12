@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { motion } from "motion/react";
+import styled from "styled-components";
+import { device } from "../../Style/BreakPoints";
 
 const SectionNavigation = styled.section`
   position: fixed;
@@ -37,12 +38,9 @@ const LiNavigation = styled.li`
   align-items: center;
   list-style: none;
   user-select: none;
+  cursor: pointer;
 `;
 const ANavigation = styled(motion.a)`
-  font-family: ${({ theme }) => theme.fontFamily.latoRegular};
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
-  font-size: 0.65rem;
-  color: ${({ theme }) => theme.colors.secondary};
   text-decoration: none;
 `;
 const ANavigationUnderline = styled(motion.div)`
