@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { motion } from "motion/react";
+import styled from "styled-components";
+import { device } from "../../Style/BreakPoints";
 
 interface AnimatedLetterProps {
   readonly $randomContent: string;
@@ -28,14 +29,27 @@ const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
     content: ${({ $randomContent }) => `'${$randomContent}'`};
     position: absolute;
     top: 0;
-    left: 20%;
-    width: 6px;
+    left: 0;
+    width: 100%;
     height: 100%;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
-    font-size: font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
+    font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
     opacity: var(--afterOpacity);
   }
+  @media ${device[375]} {
+    font-size: ${({ $letterSize }) => $letterSize || "0.7rem"};
+    &::after {
+      font-size: ${({ $letterSize }) => $letterSize || "0.7rem"};
+    }
+  }
+  @media ${device["430x932"]} {
+    font-size: ${({ $letterSize }) => $letterSize || "0.73rem"};
+    &::after {
+      font-size: ${({ $letterSize }) => $letterSize || "0.73rem"};
+    }
+  }
+
 `;
 
 export { AnimatedContainer, AnimatedWordContainer, AnimatedCharacters };

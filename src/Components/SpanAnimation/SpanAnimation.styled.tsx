@@ -1,5 +1,6 @@
-import styled from "styled-components";
 import { motion } from "motion/react";
+import styled from "styled-components";
+import { device } from "../../Style/BreakPoints";
 
 interface AnimatedLetterProps {
   readonly $randomContent: string;
@@ -8,19 +9,36 @@ interface AnimatedLetterProps {
 
 const SpanAnimation = styled(motion.span)<AnimatedLetterProps>`
 position: relative;
-  font-weight: ${({ theme, $isBold }) => ($isBold ? theme.fontWeight.bold : theme.fontWeight.regular)};
+font-family: ${({ theme }) => theme.fontFamily.latoRegular};
+font-weight: ${({ theme, $isBold }) => ($isBold ? theme.fontWeight.bold : theme.fontWeight.regular)};
+color: ${({ theme }) => theme.colors.secondary};
+font-size: 0.65rem;
    &::after {
     content: ${({ $randomContent }) => `'${$randomContent}'`};
     position: absolute;
     top: 0;
-    left: 20%;
-    width: 6px;
+    left: 0;
+    width: 100%;
     height: 100%;
+    font-size: 0.65rem;
+    font-family: ${({ theme }) => theme.fontFamily.latoRegular};
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
-    font-size: font-size: 0.65rem;
     opacity: var(--afterOpacity);
-    user-select: none;
+}
+@media ${device[412]}{
+  font-size: 0.73rem;
+  &::after {
+    font-size: 0.73rem;
+  }
+}
+@media ${device['430x932']}{
+  font-size: 0.73rem;
+  &::after {
+    font-size: 0.73rem;
+  }
+}
 `;
 
 export { SpanAnimation };

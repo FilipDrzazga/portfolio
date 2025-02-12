@@ -1,7 +1,7 @@
 import * as S from "./Navigation.styled";
 import SpanAnimation from "../SpanAnimation/SpanAnimation";
 
-const tabs = ["ABOUT", "PLAYGROUND", "WORK", "CONTACT"];
+const tabs = ["ABOUT", "PLAYGROUND", "WORK", "LET'S TALK"];
 
 const Navigation = () => {
   // const [isSelected, setIsSelected] = useState(tabs[0]);

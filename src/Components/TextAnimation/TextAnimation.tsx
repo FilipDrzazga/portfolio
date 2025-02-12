@@ -6,7 +6,6 @@ import { useEffect } from "react";
 
 interface TextAnimationProps {
   text: string;
-  style?: React.CSSProperties;
   isFadeOnScroll?: boolean;
   $letterSize?: string;
   withRepeat?: boolean;
@@ -28,14 +27,12 @@ const textAnimationVariants = {
   animate: { opacity: 1, x: 0, "--afterOpacity": 0 },
 };
 
-const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize, withRepeat }: TextAnimationProps) => {
+const TextAnimation = ({ text, isFadeOnScroll, $letterSize, withRepeat }: TextAnimationProps) => {
   const { scrollY } = useScroll();
   const [scope, animate] = useAnimate();
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const opacity = isFadeOnScroll ? useTransform(scrollY, [0, 100], [1, 0]) : 1;
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const bottom = isFadeOnScroll ? useTransform(scrollY, [0, 100], ["10%", "0%"]) : 0;
 
   useEffect(() => {
     if (!withRepeat) return;
@@ -49,7 +46,7 @@ const TextAnimation = ({ text, style = {}, isFadeOnScroll, $letterSize, withRepe
   return (
     <S.AnimatedContainer
       ref={scope}
-      style={{ ...style, opacity, bottom }}
+      style={{opacity}}
       variants={containerVariants}
       initial="initial"
       whileInView="animate"
