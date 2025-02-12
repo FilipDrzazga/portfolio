@@ -1,5 +1,5 @@
-import { useEffect, useRef, useContext } from "react";
-import { PageContext } from "../../../context/PageContext";
+import { useEffect, useRef } from "react";
+import { usePageStore } from "../../../zustand/uesPageStore";
 import { useScroll } from "motion/react";
 
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
@@ -7,13 +7,11 @@ import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import * as S from "./Intro.styled";
 
 const Intro = () => {
-  const ctxPage = useContext(PageContext);
   const introSectionRef = useRef<HTMLDivElement>(null);
+  const getIntroSectionBoundingClientRect = usePageStore((state) => state.getIntroSectionBoundingClientRect);
 
   useEffect(() => {
-    if (ctxPage) {
-      ctxPage.getIntroSectionBoundingClientRect(introSectionRef);
-    }
+      getIntroSectionBoundingClientRect(introSectionRef);
   }, []);
 
   const { scrollYProgress } = useScroll({

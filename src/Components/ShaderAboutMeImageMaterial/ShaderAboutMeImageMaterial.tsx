@@ -1,8 +1,8 @@
-import { useMemo, useCallback, useRef, useContext } from "react";
+import { useMemo, useCallback, useRef } from "react";
+import { usePageStore } from "../../zustand/uesPageStore";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { PageContext } from "../../context/PageContext";
 import { useScroll, useTransform } from "framer-motion";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 import { useMediaQuery } from "react-responsive";
@@ -15,9 +15,10 @@ import tabletImg from "../../images/aboutme_tablet_img_768w.webp";
 import desktopImg from "../../images/aboutme_desktop_img_1920w.webp";
 
 const ShaderAboutMeImageMaterial = () => {
-  const ctxPage = useContext(PageContext);
   const meshRef = useRef<THREE.Mesh>(null!);
-  const { top, left, height, width } = useCalcMeshPosition(ctxPage?.aboutMeImgRect);
+  const aboutMeImgRect = usePageStore((state) => state.aboutMeImgRect);
+
+  const { top, left, height, width } = useCalcMeshPosition(aboutMeImgRect);
   const { scrollY } = useScroll();
 
   const isMobile = useMediaQuery({ maxWidth: 768, orientation: "portrait" });

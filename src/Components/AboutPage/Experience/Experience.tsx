@@ -1,5 +1,5 @@
-import { useRef, useEffect, useContext } from "react";
-import { PageContext } from "../../../context/PageContext";
+import { useRef, useEffect } from "react";
+import { usePageStore } from "../../../zustand/uesPageStore";
 import { useScroll } from "motion/react";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import SpanAnimation from "../../SpanAnimation/SpanAnimation";
@@ -7,8 +7,8 @@ import SpanAnimation from "../../SpanAnimation/SpanAnimation";
 import * as S from "./Experience.styled";
 
 const Experience = () => {
-  const ctxPage = useContext(PageContext);
   const experienceSectionRef = useRef<HTMLDivElement>(null);
+  const getExperienceSectionBoundingClientRect = usePageStore((state)=>state.getExperienceSectionBoundingClientRect);
 
   const { scrollYProgress } = useScroll({
     target: experienceSectionRef,
@@ -16,9 +16,8 @@ const Experience = () => {
   });
 
   useEffect(() => {
-    if (ctxPage) {
-      ctxPage.getExperienceSectionBoundingClientRect(experienceSectionRef);
-    }
+      getExperienceSectionBoundingClientRect(experienceSectionRef);
+
   }, []);
 
   return (

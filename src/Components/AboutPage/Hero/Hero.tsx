@@ -1,5 +1,5 @@
-import { useRef, useContext, useEffect } from "react";
-import { PageContext } from "../../../context/PageContext";
+import { useRef, useEffect } from "react";
+import { usePageStore } from "../../../zustand/uesPageStore";
 import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage";
 import TextAnimation from "../../TextAnimation/TextAnimation";
 import useWatfordTime from "../../../hooks/useWatfordTime";
@@ -23,17 +23,14 @@ const titleCharactersVariants = {
 };
 
 const Hero = () => {
-  const ctxPage = useContext(PageContext);
-
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+  const getHeroImgBoundingClientRect = usePageStore((state) => state.getHeroImgBoundingClientRect);
 
   const watfordTime = useWatfordTime();
 
   useEffect(() => {
-    if (ctxPage) {
-      ctxPage.getHeroImgBoundingClientRect(imgRef);
-    }
+      getHeroImgBoundingClientRect(imgRef);
   }, []);
 
   return (

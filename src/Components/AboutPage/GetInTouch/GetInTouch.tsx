@@ -1,5 +1,5 @@
-import { useEffect, useRef, useContext } from "react";
-import { PageContext } from "../../../context/PageContext";
+import { useEffect, useRef } from "react";
+import { usePageStore } from "../../../zustand/uesPageStore";
 
 import * as S from "./GetInTouch.styled";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
@@ -7,8 +7,8 @@ import { useScroll } from "motion/react";
 import TextAnimation from "../../TextAnimation/TextAnimation";
 
 const GetInTouch = () => {
-  const ctxPage = useContext(PageContext);
   const getInTouchSection = useRef<HTMLDivElement>(null);
+  const getGetInTouchSectionBoundingClientRect = usePageStore((state) => state.getGetInTouchSectionBoundingClientRect);
 
   const { scrollYProgress } = useScroll({
     target: getInTouchSection,
@@ -16,9 +16,7 @@ const GetInTouch = () => {
   });
 
   useEffect(() => {
-    if (ctxPage) {
-      ctxPage.getGetInTouchSectionBoundingClientRect(getInTouchSection);
-    }
+      getGetInTouchSectionBoundingClientRect(getInTouchSection);
   }, []);
 
   return (

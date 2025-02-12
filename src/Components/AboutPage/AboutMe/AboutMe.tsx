@@ -1,5 +1,5 @@
-import { PageContext } from "../../../context/PageContext";
-import { useRef, useContext, useEffect } from "react";
+import { useRef, useEffect } from "react";
+import { usePageStore } from "../../../zustand/uesPageStore";
 import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage";
 import BlurRevealText from "../../BlurRevealText/BlurRevealText";
 import SpanAnimation from "../../SpanAnimation/SpanAnimation";
@@ -11,7 +11,8 @@ import tabletImg from "../../../images/aboutme_tablet_img_768w.webp";
 import desktopImg from "../../../images/aboutme_desktop_img_1920w.webp";
 
 const AboutMe = () => {
-  const ctxPage = useContext(PageContext);
+  const getAboutMeImgBoundingClientRect = usePageStore((state)=>state.getAboutMeImgBoundingClientRect)
+  const getAboutMeSectionBoundingClientRect = usePageStore((state)=>state.getAboutMeSectionBoundingClientRect)
   const aboutMeSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -21,11 +22,9 @@ const AboutMe = () => {
   });
 
   useEffect(() => {
-    if (ctxPage) {
-      ctxPage.getAboutMeImgBoundingClientRect(imgRef);
-      ctxPage.getAboutMeSectionBoundingClientRect(aboutMeSectionRef);
-    }
-  }, [imgRef]);
+      getAboutMeImgBoundingClientRect(imgRef);
+      getAboutMeSectionBoundingClientRect(aboutMeSectionRef);
+  }, []);
 
   return (
     <S.AboutMeSection ref={aboutMeSectionRef}>
