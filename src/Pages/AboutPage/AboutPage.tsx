@@ -7,15 +7,16 @@ import Experience from "../../Components/AboutPage/Experience/Experience";
 import GetInTouch from "../../Components/AboutPage/GetInTouch/GetInTouch";
 
 const AboutPage = () => {
+
   return (
     <>
-      <Scene />
       <Navigation />
       <Hero />
       <Intro />
       <AboutMe />
       <Experience />
       <GetInTouch />
+      <Scene />
     </>
   );
 };

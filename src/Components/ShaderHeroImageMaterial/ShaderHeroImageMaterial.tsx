@@ -3,7 +3,7 @@ import { usePageStore } from "../../zustand/uesPageStore";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "motion/react";
 import { useMediaQuery } from "react-responsive";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 
@@ -58,7 +58,7 @@ const ShaderHeroImageMaterial = () => {
   );
 
   const updateShaderUniforms = useCallback(
-    (clockTime: number, scrollYValue: number, displacementStrength: number) => {
+    (clockTime: number, displacementStrength: number) => {
       if (!meshRef.current) return;
 
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
@@ -66,22 +66,16 @@ const ShaderHeroImageMaterial = () => {
 
       shaderUniforms.u_time.value = clockTime;
       shaderUniforms.u_displacementStrength.value = displacementStrength;
-
-      const targetX = left!;
-      const targetY = scrollYValue + top!;
-      const targetPos = new THREE.Vector3(targetX, targetY, 0);
-
-      meshRef.current.position.lerp(targetPos, 0.9);
     },
-    [top, left]
+    []
   );
 
   useFrame((state) => {
-    updateShaderUniforms(state.clock.getElapsedTime(), scrollY.get(), displacementStrength.get());
+    updateShaderUniforms(state.clock.getElapsedTime(), displacementStrength.get());
   });
 
   return (
-    <mesh ref={meshRef}>
+    <mesh ref={meshRef} position={[left!, top!, 0]}>
       <planeGeometry args={[width, height, 1, 1]} />
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms} />
     </mesh>
