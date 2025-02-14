@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
+import { device } from "../../Style/BreakPoints";
 
 interface Props {
   $height: number;
@@ -29,7 +30,8 @@ const Characters = styled(motion.span)`
     color: ${({ theme }) => theme.colors.secondary};
     margin-left: -0.1rem;
     line-height: 1.7rem;
-  }
+    @media ${device['360x740']} {
+    }
 `;
 
 export { WordContainer, CharactersContainer, Characters };

@@ -3,7 +3,7 @@ import { usePageStore } from "../../zustand/uesPageStore";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
-import { useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "motion/react";
 import useCalcMeshPosition from "../../hooks/useCalcMeshPosition";
 import { useMediaQuery } from "react-responsive";
 
@@ -59,28 +59,22 @@ const ShaderAboutMeImageMaterial = () => {
   );
 
   const updateShaderUniforms = useCallback(
-    (scrollYValue: number, displacementStrength: number) => {
+    (displacementStrength: number) => {
       if (!meshRef.current) return;
       const shaderMaterial = meshRef.current.material as THREE.ShaderMaterial;
       const { uniforms: shaderUniforms } = shaderMaterial;
 
       shaderUniforms.u_displacementStrength.value = displacementStrength;
-
-      const targetX = left!;
-      const targetY = scrollYValue + top!;
-      const targetPos = new THREE.Vector3(targetX, targetY, 0);
-
-      meshRef.current.position.lerp(targetPos, 0.9);
     },
-    [left, top]
+    []
   );
 
   useFrame(() => {
-    updateShaderUniforms(scrollY.get(), displacementStrength.get());
+    updateShaderUniforms(displacementStrength.get());
   });
 
   return (
-    <mesh ref={meshRef}>
+    <mesh ref={meshRef} position={[left!, top!, 0]}>
       <planeGeometry args={[width, height, 1, 1]}></planeGeometry>
       <shaderMaterial fragmentShader={fragmentShader} vertexShader={vertexShader} uniforms={uniforms}></shaderMaterial>
     </mesh>

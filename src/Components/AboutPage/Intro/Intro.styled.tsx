@@ -5,7 +5,7 @@ const IntroSection = styled(motion.section)`
   position: relative;
   max-width: 100%;
   height: 200vh;
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: transparent;
   padding: ${({ theme }) => theme.padding.small};
 `;
 
