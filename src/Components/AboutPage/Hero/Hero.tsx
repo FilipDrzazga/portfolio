@@ -11,10 +11,6 @@ import tabletImg from "../../../images/hero_tablet_img_768w.webp";
 import desktopImg from "../../../images/hero_desktop_img_1920w.webp";
 import IconPicker from "../../IconPicker/IconPicker";
 
-const creativeTxt = ["Creative"];
-const developerTxt = ["Developer"];
-const watfordTxt = ["Based in Watford"];
-
 const titleTextContainerVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { delayChildren: 0.5, staggerChildren: 0.05 } },
@@ -22,6 +18,18 @@ const titleTextContainerVariants = {
 const titleCharactersVariants = {
   initial: { opacity: 0, filter: "blur(10px)" },
   animate: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.5 } },
+};
+
+const text = (text: string) => {
+  return (
+    <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate">
+      {text.split("").map((char, i) => (
+        <S.TitleCharacters variants={titleCharactersVariants} key={i}>
+          {char}
+        </S.TitleCharacters>
+      ))}
+    </S.TitleTextContainer>
+  );
 };
 
 const Hero = () => {
@@ -39,33 +47,9 @@ const Hero = () => {
     <S.HeroSection ref={heroSectionRef}>
       <S.HeroHeader>
         <S.HeroTitle>
-          {creativeTxt.map((text, i) => (
-            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
-              {text.split("").map((char, j) => (
-                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
-                  {char}
-                </S.TitleCharacters>
-              ))}
-            </S.TitleTextContainer>
-          ))}
-          {developerTxt.map((text, i) => (
-            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
-              {text.split("").map((char, j) => (
-                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
-                  {char}
-                </S.TitleCharacters>
-              ))}
-            </S.TitleTextContainer>
-          ))}
-          {watfordTxt.map((text, i) => (
-            <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
-              {text.split("").map((char, j) => (
-                <S.TitleCharacters variants={titleCharactersVariants} key={j}>
-                  {char}
-                </S.TitleCharacters>
-              ))}
-            </S.TitleTextContainer>
-          ))}
+          {text("Creative")}
+          {text("Developer")}
+          {text("Based in Watford")}
         </S.HeroTitle>
         <SpanAnimation text={watfordTime} />
         <S.HeroImgContainer ref={imgRef}>

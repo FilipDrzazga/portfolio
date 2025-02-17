@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { device } from "../../style/BreakPoints";
 
-const IconPicker = styled.div`
+const IconPicker = styled(motion.div)`
   position: absolute;
   bottom: -0.3rem;
   left: 3.5rem;

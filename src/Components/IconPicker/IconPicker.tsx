@@ -15,7 +15,7 @@ const icons = {
 const IconPicker = ({ icon, size, color, dataAtrr }: IconPickerProps) => {
   const IconComponent = icons[icon];
   return (
-    <S.IconPicker data-arrow={dataAtrr}>
+    <S.IconPicker animate={{ opacity: [0, 1], transition: { delay: 1 } }} data-arrow={dataAtrr}>
       <IconComponent size={size} color={color} />
     </S.IconPicker>
   );
