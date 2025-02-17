@@ -1,14 +1,14 @@
 varying vec2 vUv;
 
 uniform sampler2D u_imageTexture;
-uniform float u_gridSize;
-uniform float u_squareSize;
 uniform float u_displacementStrength;
+
+const vec2 gridSize = vec2(20.0, 20.0);
+const vec2 squareSize = vec2(5.0, 5.0) / gridSize;
+
 
 void main() {
     // Determine grid information.
-    vec2 gridSize = vec2(u_gridSize);
-    vec2 squareSize = vec2(u_squareSize) / gridSize;
     vec2 squareIndex = floor(vUv / squareSize);
 
     // Generate a random value based on the square index.

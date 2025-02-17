@@ -51,8 +51,6 @@ const ShaderAboutMeImageMaterial = () => {
     () => ({
       u_scrollY: { value: 0.0 },
       u_imageTexture: { value: imageTexture },
-      u_gridSize: { value: 20.0 },
-      u_squareSize: { value: 5.0 },
       u_displacementStrength: { value: 0.4 },
     }),
     [imageTexture]

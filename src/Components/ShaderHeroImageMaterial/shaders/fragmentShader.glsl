@@ -1,24 +1,26 @@
 varying vec2 vUv;
 
 uniform sampler2D u_imageTexture;
-uniform float u_gridSize;
-uniform float u_squareSize;
 uniform float u_displacementStrength;
 
-// Uniforms for timing and base color:
+// Grid calculation
+const vec2 gridSize = vec2(20.0, 20.0);
+const vec2 squareSize = vec2(5.0, 5.0) / gridSize;
+
+// Uniforms for timing:
 uniform float u_time;             // Elapsed time (in seconds).
-uniform vec4 u_baseColor;         // Color shown before the texture appears.
 uniform float u_maxDelay;         // Maximum random delay for any square.
 uniform float u_fadeDuration;     // Duration over which each square fades in.
 uniform float u_dispFadeDuration; // Duration over which displacement fades to 0 after full grid is visible.
 
-// New uniform: only squares with a random value above this threshold will be visible.
+const vec3 color = vec3(233.0 / 255.0);
+const vec4 baseColor = vec4(color, 1.0); // colour shown before texture loaded
+
+// Only squares with a random value above this threshold will be visible.
 uniform float u_visibilityThreshold; // e.g. 0.5 for 50% chance
 
 void main() {
     // --- Grid Calculation ---
-    vec2 gridSize = vec2(u_gridSize);
-    vec2 squareSize = vec2(u_squareSize) / gridSize;
     vec2 squareIndex = floor(vUv / squareSize);
 
     // Generate a pseudo-random value based on the square's index.
@@ -53,7 +55,7 @@ void main() {
     t *= isVisible;
     
     // Mix between the base color and the texture color based on the fade-in factor.
-    vec4 finalColor = mix(u_baseColor, textureColor, t);
+    vec4 finalColor = mix(baseColor, textureColor, t);
 
     gl_FragColor = finalColor;
 }

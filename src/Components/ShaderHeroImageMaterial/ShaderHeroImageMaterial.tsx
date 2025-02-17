@@ -44,14 +44,11 @@ const ShaderHeroImageMaterial = () => {
   const uniforms = useMemo(
     () => ({
       u_imageTexture: { value: imageTexture },
-      u_baseColor: { value: new THREE.Vector4(233 / 255, 233 / 255, 233 / 255, 1.0) },
       u_mouse: { value: new THREE.Vector2() },
       u_time: { value: 0 },
       u_maxDelay: { value: 1.0 },
       u_fadeDuration: { value: 0.5 },
       u_dispFadeDuration: { value: 0.5 },
-      u_gridSize: { value: 20.0 },
-      u_squareSize: { value: 5.0 },
       u_displacementStrength: { value: 0.0 },
     }),
     [imageTexture]
