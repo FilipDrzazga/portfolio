@@ -31,6 +31,25 @@ const Characters = styled(motion.span)`
     margin-left: -0.1rem;
     line-height: 1.7rem;
     @media ${device['360x740']} {
+    margin-left: -0.05rem;
+      font-size: 2.5rem;
+      line-height: 2rem;
+    }
+    @media ${device[375]} {
+      font-size: 2.6rem;
+      line-height: 2.15rem;
+    }
+    @media ${device['390x844']} {
+      font-size: 2.8rem;
+      line-height: 2.3rem;
+    }
+    @media ${device[412]} {
+      font-size: 3rem;
+      line-height: 2.5rem;
+    }
+    @media ${device['430x932']} {
+      font-size: 3rem;
+      line-height: 2.7rem;
     }
 `;
 
