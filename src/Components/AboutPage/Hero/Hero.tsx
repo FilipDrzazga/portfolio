@@ -4,12 +4,12 @@ import ResponsiveImage from "../../ResponsiveImage/ResponsiveImage";
 import TextAnimation from "../../TextAnimation/TextAnimation";
 import useWatfordTime from "../../../hooks/useWatfordTime";
 import SpanAnimation from "../../SpanAnimation/SpanAnimation";
-import { HiArrowLongRight } from "react-icons/hi2";
 
 import * as S from "./Hero.styled";
 import mobileImg from "../../../images/hero_mobile_img_480w.webp";
 import tabletImg from "../../../images/hero_tablet_img_768w.webp";
 import desktopImg from "../../../images/hero_desktop_img_1920w.webp";
+import IconPicker from "../../IconPicker/IconPicker";
 
 const creativeTxt = ["Creative"];
 const developerTxt = ["Developer"];
@@ -81,19 +81,11 @@ const Hero = () => {
         <SpanAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
           <SpanAnimation text="LINKEDIN" withHover />
-          <HiArrowLongRight
-            size={10}
-            color="#121212"
-            style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }}
-          />
+          <IconPicker dataAtrr="linkedin" icon="arrow" size={10} color="#121212" />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
           <SpanAnimation text="GITHUB" withHover />
-          <HiArrowLongRight
-            size={10}
-            color="#121212"
-            style={{ position: "absolute", bottom: "-0.05rem", left: "45%", rotate: "315deg" }}
-          />
+          <IconPicker dataAtrr="github" icon="arrow" size={10} color="#121212" />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
       <S.ScrollContainer>

@@ -44,9 +44,9 @@ const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
     }
   }
   @media ${device["430x932"]} {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     &::after {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
     }
   }
 `;
