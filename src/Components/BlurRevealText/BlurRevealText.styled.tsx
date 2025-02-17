@@ -31,7 +31,7 @@ const Characters = styled(motion.span)`
     margin-left: -0.1rem;
     line-height: 1.7rem;
     @media ${device['360x740']} {
-    margin-left: -0.05rem;
+      margin-left: -0.05rem;
       font-size: 2.5rem;
       line-height: 2rem;
     }

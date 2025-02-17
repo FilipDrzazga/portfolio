@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
+import { device } from '../../../Style/BreakPoints';
 
 interface AboutMeSectionProps {
   readonly $randomContent: string;
@@ -7,7 +8,6 @@ interface AboutMeSectionProps {
 
 const AboutMeSection = styled.section`
   width: 100%;
-  // height: 200vh; // apply for screen and bigger
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +19,9 @@ const AboutMeImgContainer = styled.div`
   width: 100%;
   height: 80vh;
   overflow: hidden;
+  @media ${device['360x740']} {
+    height: 70vh;
+  }
 `;
 const AboutMeTxtContainer = styled.div`
   width: 100%;
@@ -41,6 +44,9 @@ const AboutMeTitle = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   color: ${({ theme }) => theme.colors.secondary};
   line-height: 2rem;
+  @media ${device['360x740']} {
+    font-size: 2.5rem;
+  }
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 100%;
@@ -52,7 +58,6 @@ const AboutMeDetailsContainer = styled.div`
 `;
 const AboutMeTxt = styled.p`
   width: 100%;
-  // margin-top: 3rem;
   font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
@@ -61,6 +66,9 @@ const AboutMeTxt = styled.p`
   text-align: justify;
   text-align-last: center;
   hyphens: auto;
+  @media ${device['360x740']} {
+  
+  }
 `;
 const AboutMeSpan = styled.span`
   color: ${({ theme }) => theme.colors.accent};
