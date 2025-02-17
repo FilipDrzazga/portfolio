@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
+import { device } from "../../../style/BreakPoints";
 
 interface ExperienceSectionProps {
   readonly $randomContent: string;
@@ -30,7 +31,8 @@ const ExperienceTextContainer = styled.div`
   gap: 2rem;
 `;
 const ExperienceText = styled.p`
-  width: 100%;  margin-top: 1rem;
+  width: 100%;
+  margin-top: 1rem;
   font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.light};
@@ -38,8 +40,12 @@ const ExperienceText = styled.p`
   line-height: 1.1rem;
   text-align: justify;
   text-align-last: center;
-  span{
-
+  @media ${device[412]} {
+    font-size: 0.7rem;
+  }
+  @media ${device["430x932"]} {
+    font-size: 0.7rem;
+  }
 `;
 const ExperienceSpan = styled(motion.span)<ExperienceSectionProps>`
 position: relative;

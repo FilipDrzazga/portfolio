@@ -32,7 +32,7 @@ const Hero = () => {
   const watfordTime = useWatfordTime();
 
   useEffect(() => {
-      getHeroImgBoundingClientRect(imgRef);
+    getHeroImgBoundingClientRect(imgRef);
   }, []);
 
   return (
@@ -48,7 +48,7 @@ const Hero = () => {
               ))}
             </S.TitleTextContainer>
           ))}
-                    {developerTxt.map((text, i) => (
+          {developerTxt.map((text, i) => (
             <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
               {text.split("").map((char, j) => (
                 <S.TitleCharacters variants={titleCharactersVariants} key={j}>
@@ -57,7 +57,7 @@ const Hero = () => {
               ))}
             </S.TitleTextContainer>
           ))}
-                    {watfordTxt.map((text, i) => (
+          {watfordTxt.map((text, i) => (
             <S.TitleTextContainer variants={titleTextContainerVariants} initial="initial" animate="animate" key={i}>
               {text.split("").map((char, j) => (
                 <S.TitleCharacters variants={titleCharactersVariants} key={j}>
@@ -81,19 +81,23 @@ const Hero = () => {
         <SpanAnimation text="PORTFOLIO 25'" />
         <S.HeroSocialBtn data-linkedin="linkedin">
           <SpanAnimation text="LINKEDIN" withHover />
-          <HiArrowLongRight size={10} color="#121212" style={{position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }} />
+          <HiArrowLongRight
+            size={10}
+            color="#121212"
+            style={{ position: "absolute", bottom: "0.0rem", left: "55%", rotate: "315deg" }}
+          />
         </S.HeroSocialBtn>
         <S.HeroSocialBtn data-github="github">
           <SpanAnimation text="GITHUB" withHover />
-          <HiArrowLongRight size={10} color="#121212" style={{position: "absolute", bottom: "-0.05rem", left: "45%", rotate: "315deg" }} />
+          <HiArrowLongRight
+            size={10}
+            color="#121212"
+            style={{ position: "absolute", bottom: "-0.05rem", left: "45%", rotate: "315deg" }}
+          />
         </S.HeroSocialBtn>
       </S.HeroSocialLinksContainer>
       <S.ScrollContainer>
-      <TextAnimation
-        isFadeOnScroll
-        withRepeat
-        text="[ SCROLL TO EXPLORE ]"
-      />
+        <TextAnimation isFadeOnScroll withRepeat text="[ SCROLL TO EXPLORE ]" />
       </S.ScrollContainer>
     </S.HeroSection>
   );

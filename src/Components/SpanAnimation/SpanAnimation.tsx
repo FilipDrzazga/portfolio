@@ -40,7 +40,7 @@ const SpanAnimation = ({ text, $isBold, withHover }: SpanAnimationProps) => {
       initial="initial"
       ref={scope}
       onMouseEnter={() => mouseHandler()}
-      style={{display:'inline-block', marginRight: '0.1rem'}}
+      style={{ display: "inline-block", marginRight: "0.1rem" }}
     >
       {text.split("").map((char: string, i: number) => (
         <S.SpanAnimation custom={i} key={i} variants={textAnimationVariants} $randomContent={getRandomSign()} $isBold={$isBold}>

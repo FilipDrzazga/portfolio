@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
-import { device } from "../../Style/BreakPoints";
+import { device } from "../../style/BreakPoints";
 
 interface AnimatedLetterProps {
   readonly $randomContent: string;
@@ -21,7 +21,7 @@ const AnimatedWordContainer = styled(motion.div)`
 const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
   position: relative;
   display: inline-block;
-  font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
+  font-size: 0.65rem;
   font-family: ${({ theme }) => theme.fontFamily.latoRegular};
   font-weight: ${({ theme }) => theme.fontWeight.regular};
   color: ${({ theme }) => theme.colors.secondary};
@@ -34,22 +34,21 @@ const AnimatedCharacters = styled(motion.span)<AnimatedLetterProps>`
     height: 100%;
     background-color: ${({ theme }) => theme.colors.secondary};
     color: ${({ theme }) => theme.colors.primary};
-    font-size: ${({ $letterSize }) => $letterSize || "0.65rem"};
+    font-size: 0.65rem;
     opacity: var(--afterOpacity);
   }
   @media ${device[375]} {
-    font-size: ${({ $letterSize }) => $letterSize || "0.7rem"};
+    font-size: 0.65rem;
     &::after {
-      font-size: ${({ $letterSize }) => $letterSize || "0.7rem"};
+      font-size: 0.65rem;
     }
   }
   @media ${device["430x932"]} {
-    font-size: ${({ $letterSize }) => $letterSize || "0.73rem"};
+    font-size: 0.65rem;
     &::after {
-      font-size: ${({ $letterSize }) => $letterSize || "0.73rem"};
+      font-size: 0.65rem;
     }
   }
-
 `;
 
 export { AnimatedContainer, AnimatedWordContainer, AnimatedCharacters };

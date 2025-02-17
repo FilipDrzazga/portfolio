@@ -1,10 +1,5 @@
 import styled from "styled-components";
-import { motion } from "motion/react";
-import { device } from '../../../Style/BreakPoints';
-
-interface AboutMeSectionProps {
-  readonly $randomContent: string;
-}
+import { device } from "../../../style/BreakPoints";
 
 const AboutMeSection = styled.section`
   width: 100%;
@@ -19,9 +14,23 @@ const AboutMeImgContainer = styled.div`
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  @media ${device['360x740']} {
+  @media ${device["360x740"]} {
     height: 70vh;
   }
+  @media ${device[375]} {
+    height: 85vh;
+  }
+  @media ${device["390x844"]} {
+    height: 73vh;
+  }
+  @media ${device[393]} {
+    height: 70vh;
+  }
+  @media ${device[412]} {
+    height: 70vh;
+  }
+  @media ${device["430x932"]} {
+    height: 70vh;
 `;
 const AboutMeTxtContainer = styled.div`
   width: 100%;
@@ -36,17 +45,6 @@ const AboutMeTxtContainer = styled.div`
 const AboutMeHeader = styled.header`
   width: 100%;
   text-align: center;
-`;
-const AboutMeTitle = styled.h2`
-  width: 100%;
-  font-size: ${({ theme }) => theme.fontSize.large};
-  font-family: ${({ theme }) => theme.fontFamily.playfairMedium};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
-  color: ${({ theme }) => theme.colors.secondary};
-  line-height: 2rem;
-  @media ${device['360x740']} {
-    font-size: 2.5rem;
-  }
 `;
 const AboutMeDetailsContainer = styled.div`
   width: 100%;
@@ -66,27 +64,14 @@ const AboutMeTxt = styled.p`
   text-align: justify;
   text-align-last: center;
   hyphens: auto;
-  @media ${device['360x740']} {
-  
+  @media ${device[412]} {
+    font-size: 0.70rem;
   }
+  @media ${device["430x932"]} {
+    font-size: 0.70rem;
 `;
 const AboutMeSpan = styled.span`
   color: ${({ theme }) => theme.colors.accent};
-`;
-const AboutMeAnimatedSpan = styled(motion.span)<AboutMeSectionProps>`
-position: relative;
-  font-weight: ${({ theme }) => theme.fontWeight.regular};
-   &::after {
-    content: ${({ $randomContent }) => `'${$randomContent}'`};
-    position: absolute;
-    top: 0;
-    left: 20%;
-    width: 6px;
-    height: 100%;
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.primary};
-    font-size: font-size: 0.65rem;
-    opacity: var(--afterOpacity);
 `;
 
 export {
@@ -94,9 +79,7 @@ export {
   AboutMeImgContainer,
   AboutMeTxtContainer,
   AboutMeHeader,
-  AboutMeTitle,
   AboutMeDetailsContainer,
   AboutMeTxt,
   AboutMeSpan,
-  AboutMeAnimatedSpan,
 };

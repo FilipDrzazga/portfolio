@@ -16,7 +16,7 @@ const GetInTouch = () => {
   });
 
   useEffect(() => {
-      getGetInTouchSectionBoundingClientRect(getInTouchSection);
+    getGetInTouchSectionBoundingClientRect(getInTouchSection);
   }, []);
 
   return (
@@ -38,7 +38,7 @@ const GetInTouch = () => {
           </filter>
         </defs>
       </svg>
-      <S.GooeyCircles>
+      {/* <S.GooeyCircles>
         <S.Circle
           animate={{ y: [0, -50, 10] }}
           transition={{ repeat: Infinity, duration: 9, ease: "easeInOut", repeatType: "reverse" }}
@@ -54,7 +54,7 @@ const GetInTouch = () => {
           transition={{ repeat: Infinity, duration: 15, ease: "easeInOut", repeatType: "reverse" }}
           style={{ width: "10rem", height: "10rem", backgroundColor: "#FFC067", bottom: "10rem", right: "6rem" }}
         />
-      </S.GooeyCircles>
+      </S.GooeyCircles> */}
     </S.GetInTouchSection>
   );
 };

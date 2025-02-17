@@ -11,7 +11,7 @@ const Intro = () => {
   const getIntroSectionBoundingClientRect = usePageStore((state) => state.getIntroSectionBoundingClientRect);
 
   useEffect(() => {
-      getIntroSectionBoundingClientRect(introSectionRef);
+    getIntroSectionBoundingClientRect(introSectionRef);
   }, []);
 
   const { scrollYProgress } = useScroll({

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { device } from "../../../style/BreakPoints";
 
 const GetInTouchSection = styled.section`
   position: relative;
@@ -19,6 +20,21 @@ const GetInTouchHeader = styled.header`
   gap: 1.5rem;
   width: 90%;
   height: 90%;
+  @media ${device["360x740"]} {
+    gap: 2rem;
+  }
+  @media ${device[375]} {
+    gap: 2rem;
+  }
+  @media ${device["390x844"]} {
+    gap: 2rem;
+  }
+  @media ${device[412]} {
+    gap: 2rem;
+  }
+  @media ${device["430x932"]} {
+    gap: 2rem;
+  }
 `;
 const GetInTouchFooter = styled.footer`
   display: flex;

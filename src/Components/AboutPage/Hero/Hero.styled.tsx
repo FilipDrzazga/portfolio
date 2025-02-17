@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
-import { device } from "../../../Style/BreakPoints";
+import { device } from "../../../style/BreakPoints";
 
 const HeroSection = styled.section`
   position: relative;
@@ -14,26 +14,29 @@ const HeroSection = styled.section`
   z-index: 999;
 `;
 const HeroHeader = styled.header`
-  width:100%;
+  width: 100%;
   height: auto;
   display: flex;
   justify-self: center;
   flex-direction: column;
   margin-top: 4.3rem;
-  @media ${device['360x740']}{
+  @media ${device["360x740"]} {
     margin-top: 5.8rem;
-    }
+  }
   @media ${device[375]} {
-      margin-top: 4.5rem;
-      gap: 0.2rem;
-    }
-  @media ${device['390x844']}{
+    margin-top: 4.5rem;
+    gap: 0.2rem;
+  }
+  @media ${device["390x844"]} {
     margin-top: 8rem;
   }
-  @media ${device[412]}{
+  @media ${device[393]} {
+    margin-top: 9rem;
+  }
+  @media ${device[412]} {
     margin-top: 6rem;
   }
-  @media ${device['430x932']}{
+  @media ${device["430x932"]} {
     margin-top: 6rem;
   }
 `;
@@ -53,23 +56,26 @@ const HeroTitle = styled.h2`
   @media ${device[375]} {
     font-size: 2.8rem;
   }
-  @media ${device['360x740']}{
+  @media ${device["360x740"]} {
     font-size: 2.7rem;
   }
-  @media ${device['390x844']}{
+  @media ${device["390x844"]} {
     font-size: 2.9rem;
   }
-  @media ${device[412]}{
+  @media ${device[393]} {
+    font-size: 3rem;
+  }
+  @media ${device[412]} {
     font-size: 3.2rem;
   }
-  @media ${device['430x932']}{
+  @media ${device["430x932"]} {
     font-size: 3.2rem;
   }
 `;
 const TitleTextContainer = styled(motion.div)`
-  width:100%;
+  width: 100%;
   line-height: 1.8rem;
-  @media ${device['360x740']}{
+  @media ${device["360x740"]} {
     line-height: 2.2rem;
   }
   @media ${device[375]} {
@@ -78,7 +84,7 @@ const TitleTextContainer = styled(motion.div)`
   @media ${device[412]} {
     line-height: 2.5rem;
   }
-  @media ${device['430x932']}{
+  @media ${device["430x932"]} {
     line-height: 2.5rem;
   }
 `;
@@ -92,24 +98,28 @@ const HeroImgContainer = styled.div`
   height: 53%;
   z-index: -1;
   overflow: hidden;
-  @media ${device['360x740']}{
-  width: 65%;
+  @media ${device["360x740"]} {
+    width: 65%;
   }
   @media ${device[375]} {
-  top: calc(100vh - 85%);
-  width: 60%;
-  height: 55%;
-    }
-  @media ${device['390x844']}{
-  width: 68%;
+    top: calc(100vh - 85%);
+    width: 60%;
+    height: 55%;
   }
-  @media ${device[412]}{
-  top: calc(100vh - 85%);
-  width: 68%;
+  @media ${device["390x844"]} {
+    width: 68%;
   }
-  @media ${device['430x932']}{
-  top: calc(100vh - 85%);
-  width: 70%;
+  @media ${device[393]} {
+    width: 70%;
+    height: 55%;
+  }
+  @media ${device[412]} {
+    top: calc(100vh - 85%);
+    width: 68%;
+  }
+  @media ${device["430x932"]} {
+    top: calc(100vh - 85%);
+    width: 70%;
   }
 `;
 const HeroSocialLinksContainer = styled.div`
@@ -122,19 +132,19 @@ const HeroSocialLinksContainer = styled.div`
   & [data-linkedin="linkedin"] {
     margin-top: 1rem;
   }
-  @media ${device['360x740']}{
+  @media ${device["360x740"]} {
     margin-top: 0.5rem;
   }
   @media ${device[375]} {
     margin-top: -1.7rem;
-    }
-  @media ${device['390x844']}{
+  }
+  @media ${device["390x844"]} {
     margin-top: -1rem;
   }
-  @media ${device[412]}{
+  @media ${device[412]} {
     margin-top: 2.5rem;
   }
-  @media ${device['430x932']}{
+  @media ${device["430x932"]} {
     margin-top: 2.8rem;
   }
 `;
@@ -149,7 +159,7 @@ const HeroSocialBtn = styled.button`
   text-align: left;
 `;
 const ScrollContainer = styled.div`
-  position:relative;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,5 +176,5 @@ export {
   HeroImgContainer,
   HeroSocialLinksContainer,
   HeroSocialBtn,
-  ScrollContainer
+  ScrollContainer,
 };

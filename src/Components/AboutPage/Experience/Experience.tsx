@@ -8,7 +8,7 @@ import * as S from "./Experience.styled";
 
 const Experience = () => {
   const experienceSectionRef = useRef<HTMLDivElement>(null);
-  const getExperienceSectionBoundingClientRect = usePageStore((state)=>state.getExperienceSectionBoundingClientRect);
+  const getExperienceSectionBoundingClientRect = usePageStore((state) => state.getExperienceSectionBoundingClientRect);
 
   const { scrollYProgress } = useScroll({
     target: experienceSectionRef,
@@ -16,8 +16,7 @@ const Experience = () => {
   });
 
   useEffect(() => {
-      getExperienceSectionBoundingClientRect(experienceSectionRef);
-
+    getExperienceSectionBoundingClientRect(experienceSectionRef);
   }, []);
 
   return (
@@ -30,8 +29,8 @@ const Experience = () => {
           I'M TRYING TO UNDERSTAND THE WORLD OF <SpanAnimation $isBold text="WEBGL" /> &<br />{" "}
           <SpanAnimation $isBold text="CREATIVE CODING" />, EXPLORING HOW FAR I CAN PUSH VISUALS IN THE BROWSER. FROM BUILDING
           DYNAMIC 3D SCENES WITH <SpanAnimation $isBold text="THREE.JS" /> & <SpanAnimation $isBold text="R3F" /> TO ADDING SMOOTH
-          INTERACTIONS WITH <SpanAnimation $isBold text="MOTION" /> AND <SpanAnimation $isBold text="REANIMATED" />,
-          <br /> I ENJOY MAKING UI FEEL FLUID AND ENGAGING.
+          INTERACTIONS WITH <SpanAnimation $isBold text="MOTION" /> AND <SpanAnimation $isBold text="REANIMATED" />, I ENJOY
+          MAKING UI FEEL FLUID AND ENGAGING.
         </S.ExperienceText>
         <S.ExperienceText>
           I WORK WITH <SpanAnimation $isBold text="REACT" /> & <SpanAnimation $isBold text="REACT NATIVE" />, USING{" "}

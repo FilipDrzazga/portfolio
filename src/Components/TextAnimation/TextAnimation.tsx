@@ -46,7 +46,7 @@ const TextAnimation = ({ text, isFadeOnScroll, $letterSize, withRepeat }: TextAn
   return (
     <S.AnimatedContainer
       ref={scope}
-      style={{opacity}}
+      style={{ opacity }}
       variants={containerVariants}
       initial="initial"
       whileInView="animate"

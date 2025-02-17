@@ -11,8 +11,8 @@ import tabletImg from "../../../images/aboutme_tablet_img_768w.webp";
 import desktopImg from "../../../images/aboutme_desktop_img_1920w.webp";
 
 const AboutMe = () => {
-  const getAboutMeImgBoundingClientRect = usePageStore((state)=>state.getAboutMeImgBoundingClientRect)
-  const getAboutMeSectionBoundingClientRect = usePageStore((state)=>state.getAboutMeSectionBoundingClientRect)
+  const getAboutMeImgBoundingClientRect = usePageStore((state) => state.getAboutMeImgBoundingClientRect);
+  const getAboutMeSectionBoundingClientRect = usePageStore((state) => state.getAboutMeSectionBoundingClientRect);
   const aboutMeSectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -22,8 +22,8 @@ const AboutMe = () => {
   });
 
   useEffect(() => {
-      getAboutMeImgBoundingClientRect(imgRef);
-      getAboutMeSectionBoundingClientRect(aboutMeSectionRef);
+    getAboutMeImgBoundingClientRect(imgRef);
+    getAboutMeSectionBoundingClientRect(aboutMeSectionRef);
   }, []);
 
   return (

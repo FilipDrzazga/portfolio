@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
-import { device } from "../../Style/BreakPoints";
 
 const SectionNavigation = styled.section`
   position: fixed;
