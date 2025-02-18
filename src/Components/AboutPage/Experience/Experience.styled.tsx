@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "motion/react";
-import { device } from "../../../style/BreakPoints";
+import { device } from "../../../Style/BreakPoints";
 
 interface ExperienceSectionProps {
   readonly $randomContent: string;

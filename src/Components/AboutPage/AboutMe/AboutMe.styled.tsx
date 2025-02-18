@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { device } from "../../../style/BreakPoints";
+import { device } from "../../../Style/BreakPoints";
 
 const AboutMeSection = styled.section`
   width: 100%;

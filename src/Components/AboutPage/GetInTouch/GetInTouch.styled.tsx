@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { device } from "../../../style/BreakPoints";
+import { device } from "../../../Style/BreakPoints";
 
 const GetInTouchSection = styled.section`
   position: relative;

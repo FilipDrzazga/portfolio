@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
-import { device } from "../../../style/BreakPoints";
+import { device } from "../../../Style/BreakPoints";
 
 const HeroSection = styled.section`
   position: relative;
